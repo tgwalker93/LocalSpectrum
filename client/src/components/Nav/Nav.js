@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Nav = () =>
   <nav className="navbar navbar-inverse navbar-top">
     <div className="container-fluid">
@@ -9,9 +9,14 @@ const Nav = () =>
           <span className="icon-bar" /> <span className="icon-bar" />
           <span className="icon-bar" />
         </button>
-        <a href="/" className="navbar-brand">
-          Searchlist
-        </a>
+        <ul className="nav navbar-nav">
+        <li
+          className={window.location.pathname === "/books" ? "active" : ""}
+        >
+          <Link to="/books">SearchList</Link>
+        </li>
+
+        </ul>
       </div>
     </div>
   </nav>;
