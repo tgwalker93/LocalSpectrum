@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
+import {ProfileImg, ProfileInfo, Body} from "../../components/BusinessProfile";
 
 class Books extends Component {
   // Setting our component's initial state
