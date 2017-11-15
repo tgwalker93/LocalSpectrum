@@ -1,0 +1,36 @@
+input.form-control{
+    height: 50px;
+    border: 1.5px solid #6c38d9;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 1);
+    color:#6c38d9;
+    font-family: FontAwesome!important;
+}
+
+.form-control:focus{
+    border: 1.5px solid #e014c3;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0)
+}
+
+form{
+    margin-top: 100px;
+}
+
+form.login{
+    margin-top: 50px;
+}
+.btn-success {
+    border: 1.5px solid #6c38d9;
+    border-radius: 40px;
+    padding: 14px 30px;
+    background-color: rgba(255, 255, 255,1);
+    color:#6c38d9;
+
+}
+
+.btn-success:hover, .btn-success:active, .btn-success:focus, .btn-success:visited {
+    border: 1.5px solid #e014c3;
+    background-color: #e014c3;
+    color:white;
+
+}

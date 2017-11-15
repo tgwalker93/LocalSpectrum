@@ -1,0 +1,49 @@
+
+/* #6c38d9 #6c38d9 #FD24C8 */
+
+.hero {
+  height: 600px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:  50% 0px;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  display: block;
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #E6F4FF;
+}
+
+.hero * {
+  position: relative;
+  z-index: 2;
+}
+
+
+
+
+.hero h2{
+  color: #FD24C8;
+  font-weight:350;
+  letter-spacing: 0.1em;
+  padding-top:20px;
+}
+
+.hero h1 {
+  font-size: 45px;
+  padding-top: 60px;
+  margin-top: 0;
+  color: #6c38d9;
+}
+
+.glyphicon-heart {
+  font-size: 30px;
+  color:#FD24C8;
+}

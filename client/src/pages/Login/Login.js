@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Jumbotron from "../../components/Jumbotron";
+
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import API from "../../utils/API";
@@ -48,11 +48,10 @@ class Login extends Component {
         return (
             <Container fluid>
                 <Row>
-                    <Col size="md-12">
-                        <Jumbotron>
-                            <h1>LOGIN</h1>
-                        </Jumbotron>
-                        <form>
+                    <div className="col-sm-3 hidden-xs"></div>
+                    <div className="col-sm-6">
+                        
+                        <form className="login">
                             Username
                             <Input
                                 value={this.state.username}
@@ -109,7 +108,8 @@ class Login extends Component {
                                 </FormBtn>
                            
                         </form> */}
-                    </Col>
+                    </div>
+                    <div className="col-sm-3 hidden-xs"></div>
                 </Row>
             </Container>
         );
