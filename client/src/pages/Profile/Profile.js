@@ -5,10 +5,11 @@ import { Input, FormBtn } from "../../components/Form";
 import API from "../../utils/API";
 
 
-class Home extends Component {
+class Profile extends Component {
     // Setting our component's initial state
     state = {
-        search: ""
+        search: "",
+        addItem: ""
     };
 
     // When the component mounts, load all books and save them to this.state.books
@@ -45,22 +46,23 @@ class Home extends Component {
                 <Row>
                     <Col size="md-12">
                         <Jumbotron>
-                            <h1>Search your item!</h1>
+                            <h1>YOUR PROFILE</h1>
                         </Jumbotron>
                         <form>
                             <Input
-                                value={this.state.search}
+                                value={this.state.addItem}
                                 onChange={this.handleInputChange}
-                                name="search"
-                                placeholder="Burgers, Tacos, Fries"
+                                name="addItem"
+                                placeholder="Add Item"
                             />
-    
+                            <div>
                             <FormBtn
-                                onClick={this.handleFormSubmit}
+                                onClick={this.addItem}
                             >
-                                Search
-              </FormBtn>
- 
+                                Add Item
+                            </FormBtn>
+
+                            </div>
                         </form>
                     </Col>
                 </Row>
@@ -69,4 +71,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Profile;

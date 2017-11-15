@@ -11,9 +11,27 @@ const Nav = () =>
         </button>
         <ul className="nav navbar-nav">
         <li
-          className={window.location.pathname === "/books" ? "active" : ""}
+          className={window.location.pathname === "/" ? "active" : ""}
         >
-          <Link to="/books">SearchList</Link>
+          <Link to="/">SearchList</Link>
+        </li>
+
+        <li
+          className={window.location.pathname === "/" ? "active" : ""}
+        >
+          <Link to="/home">Home</Link>
+        </li>
+
+        <li
+          className={window.location.pathname === "/profile" ? "active" : ""}
+        >
+          <Link to="/profile">Profile</Link>
+        </li>
+
+        <li
+          className={window.location.pathname === "/login" ? "active" : ""}
+        >
+          <Link to="/login">Login</Link>
         </li>
 
         </ul>
