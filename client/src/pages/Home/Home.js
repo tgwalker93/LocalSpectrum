@@ -59,7 +59,7 @@ class Home extends Component {
                                 onClick={this.handleFormSubmit}
                             >
                                 Search
-              </FormBtn>
+                            </FormBtn>
  
                         </form>
                     </Col>

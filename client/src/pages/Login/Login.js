@@ -26,26 +26,22 @@ class Login extends Component {
         });
     };
 
-    login() {
-
-    }
-    createAccount() {
+    login = event => {
 
     }
 
     // Then reload books from the database
-    handleFormSubmit = event => {
+    createAccount = event => {
+        console.log("i'm in handleFormSubmit")
         event.preventDefault();
-        //HANDLE API WORK HERE
-        // if (this.state.title && this.state.author) {
-        //     API.saveBook({
-        //         title: this.state.title,
-        //         author: this.state.author,
-        //         synopsis: this.state.synopsis
-        //     })
-        //         .then(res => this.loadBooks())
-        //         .catch(err => console.log(err));
-        // }
+        if (this.state.username && this.state.password) {
+            API.saveUser({
+                username: this.state.username,
+                password: this.state.password
+            })
+                .then(res => console.log(res + "SUCESSFUL HANDLEFORM SUBMIT"))
+                .catch(err => console.log(err));
+        }
     };
 
     render() {
@@ -72,13 +68,13 @@ class Login extends Component {
                                 placeholder="PASSWORD"
                             />
                             <FormBtn
-                                onClick={this.handleFormSubmit}
+                                onClick={this.login}
                             >
                                 Log in
                             </FormBtn>
 
                             <FormBtn
-                                onClick={this.handleFormSubmit}
+                                onClick={this.createAccount}
                             >
                                 Create Account
                             </FormBtn>
