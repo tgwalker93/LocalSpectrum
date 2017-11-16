@@ -2,6 +2,9 @@ import React, { Component } from "react";
 
 import { Row, Container } from "../../components/Grid";
 import { Input } from "../../components/Form";
+import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Redirect } from 'react-router-dom'
+
 import API from "../../utils/API";
 
 
@@ -11,7 +14,7 @@ class Register extends Component {
         search: "",
         username: "",
         password: "",
-        confirmpassword: ""
+        confirmPassword: ""
     };
 
     // When the component mounts, load all books and save them to this.state.books
@@ -39,11 +42,14 @@ class Register extends Component {
             API.saveUser({
                 username: this.state.username,
                 password: this.state.password
-            })
-                .then(res => console.log(res + "SUCESSFUL HANDLEFORM SUBMIT"))
+            }).then(this.routeToProfile("tgwalk"))
                 .catch(err => console.log(err));
         }
     };
+    routeToProfile(username) {
+        console.log("i'm in routeToProfile");
+        this.props.history.push("/profile/" + username)
+    }
 
     render() {
         return (
@@ -70,12 +76,12 @@ class Register extends Component {
                             />
                             <p>Confirm Password</p>
                             <Input
-                                value={this.state.password}
+                                value={this.state.confirmPassword}
                                 onChange={this.handleInputChange}
-                                name="password"
+                                name="confirmPassword"
                                 type="password"
                                 placeholder="&#xf023; CONFIRM PASSWORD"
-                            />
+                            /> 
                             <button className="btn btn-success loginBtn"
                                 onClick={this.login}
                             >
@@ -89,35 +95,6 @@ class Register extends Component {
                             </button>
 
                         </form>
-                        {/* <form>
-                            Login
-                            <Input
-                                value={this.state.username}
-                                onChange={this.handleInputChange}
-                                name="search"
-                                placeholder="Username"
-                            />
-                 
-                                Password
-                            <Input
-                                    value={this.state.password}
-                                    onChange={this.handleInputChange}
-                                    name="search"
-                                    placeholder="Password"
-                                />
-                       
-                                <FormBtn
-                                    onClick={this.login}
-                                >
-                                    Login
-                                </FormBtn>
-                                <FormBtn
-                                    onClick={this.createAccount}
-                                >
-                                    Create Account
-                                </FormBtn>
-                           
-                        </form> */}
                     </div>
                     <div className="col-sm-3 hidden-xs"></div>
                 </Row>

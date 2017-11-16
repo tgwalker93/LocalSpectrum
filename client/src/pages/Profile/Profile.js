@@ -9,12 +9,13 @@ class Profile extends Component {
     // Setting our component's initial state
     state = {
         search: "",
-        addItem: ""
+        addItem: "",
+        username: this.props.match.params.username
     };
 
     // When the component mounts, load all books and save them to this.state.books
     componentDidMount() {
-
+        this.loadUserProfile() 
     }
 
     // Handles updating component state when the user types into the input field
@@ -25,6 +26,11 @@ class Profile extends Component {
         });
     };
 
+
+    loadUserProfile() {
+        console.log("loading user profile");
+        console.log(this.username);
+    }
     // Then reload books from the database
     handleFormSubmit = event => {
         event.preventDefault();
@@ -45,7 +51,7 @@ class Profile extends Component {
             <Container fluid>
                 <Row>
                     <Col size="md-12">
-                        <Jumbotron>
+                        <Jumbotron username={this.state.username}>
                             <h1>YOUR PROFILE</h1>
                         </Jumbotron>
                         <form>
