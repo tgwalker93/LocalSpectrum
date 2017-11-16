@@ -11,6 +11,12 @@ class GoogleButton extends React.Component{
     var id_token = googleUser.getAuthResponse().id_token;
     console.log({accessToken: id_token});
     //anything else you want to do(save to localStorage)...
+    // request.execute(function(resp) {
+    //   console.log('ID: ' + resp.id);
+    //   console.log('Display Name: ' + resp.displayName);
+    //   console.log('Image URL: ' + resp.image.url);
+    //   console.log('Profile URL: ' + resp.url);
+    // });
   }
 
   render () {
