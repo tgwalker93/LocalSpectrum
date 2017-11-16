@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const App = () =>
   <Router>
@@ -16,6 +17,7 @@ const App = () =>
         <Route exact path="/books" component={Books} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
         <Route component={Home} />
       </Switch>
       <Footer />
