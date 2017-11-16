@@ -23,6 +23,8 @@ class App extends Component {
         {/* <Login /> */}
         {/* <ProfileImg />
         <Body /> */}
+        <GoogleButton>
+        </GoogleButton>
         <Footer />
       </div>
       </Router>

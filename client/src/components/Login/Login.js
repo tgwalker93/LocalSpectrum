@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Login.css";
-
+import GoogleButton from '../GoogleButton'
 
 
 const Login = props => (
@@ -8,7 +8,7 @@ const Login = props => (
     <div className="row">
         <div className="col-sm-12">
         <GoogleButton>
-            </GoogleButton>
+        </GoogleButton>
             <form className="login" action="/login" method="POST" name="validation">
 
                 <fieldset>
