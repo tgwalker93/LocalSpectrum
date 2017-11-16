@@ -17,7 +17,7 @@ const Nav = () =>
       <div id="navbar" className="navbar-collapse collapse">
         <ul className="nav navbar-nav navbar-right">
         <li className={window.location.pathname === "/login" ? "active" : ""}><Link className="log" to="/login"><span className="glyphicon glyphicon-user"></span> Login</Link></li>
-        <li className={window.location.pathname === "/create" ? "active" : ""}><Link className="log" to="/create"><span className="glyphicon glyphicon-log-in"></span> Register</Link></li>
+        <li className={window.location.pathname === "/register" ? "active" : ""}><Link className="log" to="/register"><span className="glyphicon glyphicon-log-in"></span> Register</Link></li>
         </ul>
       </div>
     </div>

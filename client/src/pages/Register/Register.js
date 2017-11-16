@@ -1,16 +1,17 @@
 import React, { Component } from "react";
-import GoogleButton from '../../components/GoogleButton'
-import { Col, Row, Container } from "../../components/Grid";
-import { Input, FormBtn } from "../../components/Form";
+
+import { Row, Container } from "../../components/Grid";
+import { Input } from "../../components/Form";
 import API from "../../utils/API";
 
 
-class Login extends Component {
+class Register extends Component {
     // Setting our component's initial state
     state = {
         search: "",
         username: "",
-        password: ""
+        password: "",
+        confirmpassword: ""
     };
 
     // When the component mounts, load all books and save them to this.state.books
@@ -50,8 +51,7 @@ class Login extends Component {
                 <Row>
                     <div className="col-sm-3 hidden-xs"></div>
                     <div className="col-sm-6">
-                        <GoogleButton>
-                        </GoogleButton>
+                        
                         <form className="login">
                             <p>Username</p>
                             <Input
@@ -65,7 +65,16 @@ class Login extends Component {
                                 value={this.state.password}
                                 onChange={this.handleInputChange}
                                 name="password"
+                                type="password"
                                 placeholder="&#xf023; PASSWORD"
+                            />
+                            <p>Confirm Password</p>
+                            <Input
+                                value={this.state.password}
+                                onChange={this.handleInputChange}
+                                name="password"
+                                type="password"
+                                placeholder="&#xf023; CONFIRM PASSWORD"
                             />
                             <button className="btn btn-success loginBtn"
                                 onClick={this.login}
@@ -117,4 +126,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Register;
