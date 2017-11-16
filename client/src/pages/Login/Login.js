@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import GoogleButton from '../../components/GoogleButton'
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import API from "../../utils/API";
@@ -50,7 +50,8 @@ class Login extends Component {
                 <Row>
                     <div className="col-sm-3 hidden-xs"></div>
                     <div className="col-sm-6">
-                        
+                        <GoogleButton>
+                        </GoogleButton>
                         <form className="login">
                             Username
                             <Input
@@ -64,6 +65,7 @@ class Login extends Component {
                                 value={this.state.password}
                                 onChange={this.handleInputChange}
                                 name="password"
+                                type="password"
                                 placeholder="PASSWORD"
                             />
                             <FormBtn
