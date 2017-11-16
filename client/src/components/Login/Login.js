@@ -7,6 +7,8 @@ const Login = props => (
 
     <div className="row">
         <div className="col-sm-12">
+        <GoogleButton>
+            </GoogleButton>
             <form className="login" action="/login" method="POST" name="validation">
 
                 <fieldset>
