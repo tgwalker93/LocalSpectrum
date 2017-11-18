@@ -10,7 +10,7 @@ var cheerio = require("cheerio");
 
 
 //models 
-var User = require("../../models/user.js");
+var User = require("../../models/User.js");
 
 const router = require("express").Router();
 
@@ -41,6 +41,7 @@ app.post("/saveUser", function (req, res) {
         // Or log the doc
         else {
             console.log(doc);
+            res.json(doc);
         }
     });
 

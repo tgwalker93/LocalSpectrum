@@ -36,19 +36,27 @@ class Register extends Component {
 
     // Then reload books from the database
     createAccount = event => {
-        console.log("i'm in handleFormSubmit")
+        console.log("i'm in Create Account function!")
         event.preventDefault();
         if (this.state.username && this.state.password) {
             API.saveUser({
                 username: this.state.username,
                 password: this.state.password
-            }).then(this.routeToProfile("tgwalk"))
+            }).then( res => 
+                    {
+                    console.log("After save user is done");
+                    this.setState({ user: res.data })
+                    this.routeToProfile(this.state.user._id)
+
+                    }
+            
+            )
                 .catch(err => console.log(err));
         }
     };
-    routeToProfile(username) {
+    routeToProfile(id) {
         console.log("i'm in routeToProfile");
-        this.props.history.push("/profile/" + username)
+        this.props.history.push("/profile/" + id)
     }
 
     render() {

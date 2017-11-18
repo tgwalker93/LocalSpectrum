@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
     username: { type: String, 
         required: true 
     },
@@ -45,18 +45,18 @@ const userSchema = new Schema({
         type: String,
         required: false
     },
-    products: {
+    items: [{
+        type: Schema.Types.ObjectId,
+        ref: "Item",
+}],
+    itemReview: {
         type: [Schema.Types.ObjectId],
-        ref: "Product"
-    },
-    userReview: {
-        type: [Schema.Types.ObjectId],
-        ref: "UserReview"
+        ref: "itemReview"
     },
     synopsis: String,
     date: { type: Date, default: Date.now }
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", UserSchema);
 
 module.exports = User;
