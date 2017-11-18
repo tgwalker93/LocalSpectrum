@@ -3,7 +3,6 @@ import Jumbotron from "../../components/Jumbotron";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import NavAfter  from "../../components/NavAfter";
-
 import Panel from "../../components/Panel";
 import API from "../../utils/API";
 import { ItemContainer, ItemPanel } from "../../components/ItemContainer"
@@ -18,7 +17,6 @@ class Profile extends Component {
         location:"", //search Location
         logo:"",//Business Logo
         businessDetails:"",//Business Details
-
         userId: this.props.match.params.id,
         userProfile: [],
         currentItem: {
@@ -51,7 +49,7 @@ class Profile extends Component {
         API.getUserData(this.state.userId)
             .then(data =>
                 {
-                    console.log("API.getUserData on the front-end WAS SUCCESSFUL, i'm in the .then");
+                console.log("API.getUserData on the front-end WAS SUCCESSFUL, i'm in the .then");
                 console.log(data.data)
 
                 //WORKING ON GETTING ITEM DETAILS FROM ITEM IDs-----------------------------------------------------------------------------------
@@ -128,57 +126,54 @@ class Profile extends Component {
 
     render() {
         return (
-             // After you login  we need to show the navbar with welcome username and logout
-             <div>
-                <NavAfter username={this.state.username} />
-            
-                <Container fluid>
-                <Row>
-                    <Col size="sm-1 hidden-xs"></Col>
-                    <Col size="sm-6">
+            <div>
+            <NavAfter username={this.state.username} />
+        
+            <Container fluid>
+            <Row>
+                <Col size="sm-1 hidden-xs"></Col>
+                <Col size="sm-6">
+                <form>
+                    <Input
+                        value={this.state.search}
+                        onChange={this.handleInputChange}
+                        name="search"
+                        placeholder="&#xf002; Search for your local goodies"
+                    />
+
+                    </form>
+                    </Col>
+
+                    <Col size="sm-2">
                     <form>
                         <Input
-                            value={this.state.search}
+                            value={this.state.location}
                             onChange={this.handleInputChange}
-                            name="search"
-                            placeholder="&#xf002; Search for your local goodies"
+                            name="location"
+                            placeholder="&#xf041; enter zipcode"
                         />
+                    </form>
+                    </Col>
 
-                        </form>
-                        </Col>
+                    <Col size="sm-2">
+                    <form>   
+                    <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
+                    </form>
+                    </Col>
 
-                        <Col size="sm-2">
-                        <form>
-                            <Input
-                                value={this.state.location}
-                                onChange={this.handleInputChange}
-                                name="location"
-                                placeholder="&#xf041; enter zipcode"
-                            />
-                        </form>
-                        </Col>
-
-                        <Col size="sm-2">
-                        <form>   
-                        <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
-                        </form>
-                        </Col>
-
-                        <Col size="sm-1 hidden-xs"></Col>
-                          
-                        </Row> 
+                    <Col size="sm-1 hidden-xs"></Col>
+                      
+                    </Row> 
 
 
-                        {/*This is Business logo and Business Details Row */}
-                        <Row>
-                            
-                        </Row>
-                       {/*This is  End of Business logo and Business Details Row */}
-
-                    
-
-                {/* Tyler Code Do not change Anything */}
-                <Row> 
+                    {/*This is Business logo and Business Details Row */}
+                    <Row>
+                        
+                    </Row>
+                   {/*This is  End of Business logo and Business Details Row */}
+           
+           {/* Tyler Code Do not Touch This Part */}
+                <Row>
                     <Col size="md-12">
                         {/* <Jumbotron>
                             <h1>Welcome, {this.state.username}</h1>
@@ -224,10 +219,11 @@ class Profile extends Component {
                     <h1> END </h1> 
                     </Col>
                 </Row>
-                {/* Tyler Code Do not change Anything */}
             </Container>
-            </div>
+        {/* Tyler Code Do not Touch This Part */}
+        </div>
         );
+
     }
 }
 
