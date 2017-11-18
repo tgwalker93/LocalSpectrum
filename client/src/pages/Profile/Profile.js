@@ -42,10 +42,10 @@ class Profile extends Component {
 
 
     loadUserProfile() {
-        API.getItemIds(this.state.userId)
+        API.getUserData(this.state.userId)
             .then(data =>
                 {
-                console.log("After API.getItems is done in profile")
+                console.log("API.getUserData on the front-end WAS SUCCESSFUL, i'm in the .then");
                 console.log(data.data)
 
                 //WORKING ON GETTING ITEM DETAILS FROM ITEM IDs-----------------------------------------------------------------------------------
@@ -63,20 +63,20 @@ class Profile extends Component {
         
     };
 
-    getUserItemsByItemId(itemIds) {
-        API.getItems(itemIds)
-            .then(data => {
-                console.log("After API.getItems is done in profile")
-                console.log(data.data)
-                this.setState({ items: data.data.items}, () => {
+    // getUserItemsByItemId(itemIds) {
+    //     API.getItems(itemIds)
+    //         .then(data => {
+    //             console.log("After API.getItems is done in profile")
+    //             console.log(data.data)
+    //             this.setState({ items: data.data.items}, () => {
 
-                })
+    //             })
 
-            })
+    //         })
 
-            .catch(err => console.log(err));
+    //         .catch(err => console.log(err));
 
-    };
+    // };
     // Then reload books from the database
     handleFormSubmit = event => {
         event.preventDefault();
@@ -153,7 +153,7 @@ class Profile extends Component {
                                 <div>
                                     {this.state.items.map(item => {
                                         return (
-                                            <ItemPanel key={item} itemName={item} summary={item}>
+                                            <ItemPanel key={item.itemName} itemName={item.itemName} summary={item.itemName}>
                                             </ItemPanel>
                                         );
                                     })}

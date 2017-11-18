@@ -20,18 +20,23 @@ export default {
   saveUser: function(userData) {
     return axios.post("/api/users/saveUser", userData)
   },
-  getItemIds: function(id) {
-    console.log("I'm in front-end API and the ID is " + id);
-    return axios.get("/api/profile/getItemIds/" + id)
+
+  //Get user data once on the profile page
+  getUserData: function(id) {
+    console.log("I'm in front-end API getUserData and the ID is " + id);
+    return axios.get("/api/profile/getUserData/" + id)
   },
-  getItems: function (itemIds) {
-    console.log("I'm in front-end API and the ID is " + itemIds);
-    itemIds = {itemIds};
-    return axios.get("/api/profile/getItems", itemIds);
-  },
+  // getItems: function (itemIds) {
+  //   console.log("I'm in front-end API and the ID is " + itemIds);
+  //   itemIds = {itemIds};
+  //   return axios.get("/api/profile/getItems", itemIds);
+  // },
   saveItem: function(item) {
     console.log("i'm in save item");
     console.log(item);
     return axios.post("/api/profile/saveItem", item)
+  },
+  getItemReviews: function(item) {
+    return axios.get("/api/profile/getItemReviews", item)
   }
 };

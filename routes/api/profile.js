@@ -22,54 +22,60 @@ const router = require("express").Router();
 // Routes
 //==========================
 //getItemIds
-app.get("/getItemIds/:id", function (req, res) {
-    console.log("I'm in profile api js /getItems/:id")
-    User.findById(req.params.id, function (error, doc) {
+app.get("/getUserData/:id", function (req, res) {
+    console.log("I'm in profile api js /getUserData/:id")
+    console.log(req.params.id);
+    User.findById(req.params.id)
+    .populate("items")
+    .then( function (doc, error) {
         // Log any errors
         if (error) {
+            console.log("getUserData back-end failed!")
             console.log(error);
         }
         // Or send the doc to the browser as a json object
         else {
+            console.log("getUserData back-end was successful!");
+            console.log(doc);
             res.json(doc);
         }
     });
 
-    //Get Items
-    app.get("/getItems", function (req, res) {
-        console.log("I'm IN THE BACKEND /getItems route api/profile")
-        var result = req.body;
-        console.log(result);
-        for(i=0; i<result.length; i++) {
-            result[i] = mongoose.Types.ObjectId(result[i]);
-        }
+    // //Get Items
+    // app.get("/getItems", function (req, res) {
+    //     console.log("I'm IN THE BACKEND /getItems route api/profile")
+    //     var result = req.body;
+    //     console.log(result);
+    //     for(i=0; i<result.length; i++) {
+    //         result[i] = mongoose.Types.ObjectId(result[i]);
+    //     }
 
-        User.find({
-            '_id': {
-                $in: result
+    //     User.find({
+    //         '_id': {
+    //             $in: result
                 
-                //[
-                //     mongoose.Types.ObjectId('4ed3ede8844f0f351100000c'),
-                //     mongoose.Types.ObjectId('4ed3f117a844e0471100000d'),
-                //     mongoose.Types.ObjectId('4ed3f18132f50c491100000e')
+    //             [
+    //                 mongoose.Types.ObjectId('4ed3ede8844f0f351100000c'),
+    //                 mongoose.Types.ObjectId('4ed3f117a844e0471100000d'),
+    //                 mongoose.Types.ObjectId('4ed3f18132f50c491100000e')
                     
-                // ]
-            }
-        },function (error, doc) {
-            // Log any errors
-            if (error) {
-                console.log(error);
-            }
-            // Or send the doc to the browser as a json object
-            else {
-                console.log("GET ITEMS WAS SUCCESSFUL ON THE BACK END")
-                console.log(doc);
-                res.json(doc);
-            }
-        });
+    //             ]
+    //         }
+    //     },function (error, doc) {
+    //         // Log any errors
+    //         if (error) {
+    //             console.log(error);
+    //         }
+    //         // Or send the doc to the browser as a json object
+    //         else {
+    //             console.log("GET ITEMS WAS SUCCESSFUL ON THE BACK END")
+    //             console.log(doc);
+    //             res.json(doc);
+    //         }
+    //     });
 
 
-    });
+    // });
 
 //SAVE ITEM EVERYTIME SOMEONE CLICKS ADD ITEM
 app.post("/saveItem", function (req, res) {
