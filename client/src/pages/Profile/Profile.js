@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
+import NavAfter  from "../../components/NavAfter";
 import Panel from "../../components/Panel";
 import API from "../../utils/API";
 import { ItemContainer, ItemPanel } from "../../components/ItemContainer"
@@ -13,6 +14,9 @@ class Profile extends Component {
         search: "",
         itemName: "",
         username: "",
+        location:"", //search Location
+        logo:"",//Business Logo
+        businessDetails:"",//Business Details
         userId: this.props.match.params.id,
         userProfile: [],
         currentItem: {
@@ -122,12 +126,58 @@ class Profile extends Component {
 
     render() {
         return (
+            <div>
+            <NavAfter username={this.state.username} />
+        
             <Container fluid>
+            <Row>
+                <Col size="sm-1 hidden-xs"></Col>
+                <Col size="sm-6">
+                <form>
+                    <Input
+                        value={this.state.search}
+                        onChange={this.handleInputChange}
+                        name="search"
+                        placeholder="&#xf002; Search for your local goodies"
+                    />
+
+                    </form>
+                    </Col>
+
+                    <Col size="sm-2">
+                    <form>
+                        <Input
+                            value={this.state.location}
+                            onChange={this.handleInputChange}
+                            name="location"
+                            placeholder="&#xf041; enter zipcode"
+                        />
+                    </form>
+                    </Col>
+
+                    <Col size="sm-2">
+                    <form>   
+                    <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
+                    </form>
+                    </Col>
+
+                    <Col size="sm-1 hidden-xs"></Col>
+                      
+                    </Row> 
+
+
+                    {/*This is Business logo and Business Details Row */}
+                    <Row>
+                        
+                    </Row>
+                   {/*This is  End of Business logo and Business Details Row */}
+           
+           {/* Tyler Code Do not Touch This Part */}
                 <Row>
                     <Col size="md-12">
-                        <Jumbotron>
+                        {/* <Jumbotron>
                             <h1>Welcome, {this.state.username}</h1>
-                        </Jumbotron>
+                        </Jumbotron> */}
                         <form>
                             <Input
                                 value={this.state.itemName}
@@ -170,7 +220,10 @@ class Profile extends Component {
                     </Col>
                 </Row>
             </Container>
+        {/* Tyler Code Do not Touch This Part */}
+        </div>
         );
+
     }
 }
 

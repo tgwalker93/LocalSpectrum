@@ -11,7 +11,7 @@ import Register from "./pages/Register";
 const App = () =>
   <Router>
     <div>
-      <Nav />
+      {/* <Nav /> */}
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/books" component={Books} />
