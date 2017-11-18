@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Hero from "../../components/Hero";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
+import Nav from "../../components/Nav";
 import API from "../../utils/API";
 
 
@@ -45,6 +46,8 @@ class Home extends Component {
 
     render() {
         return (
+            <div>
+                <Nav />
             <Container fluid>
                 <Row>
                     <Hero backgroundImage="https://media.giphy.com/media/3o6gbchrcNIt4Ma8Tu/giphy.gif">
@@ -105,6 +108,7 @@ class Home extends Component {
                     </Col> */}
                 </Row>
             </Container>
+            </div>
         );
     }
 }

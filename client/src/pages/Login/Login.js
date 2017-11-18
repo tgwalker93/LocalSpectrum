@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GoogleButton from '../../components/GoogleButton'
 import { Col, Row, Container } from "../../components/Grid";
+import Nav from "../../components/Nav";
 import { Input, FormBtn } from "../../components/Form";
 import API from "../../utils/API";
 
@@ -46,6 +47,8 @@ class Login extends Component {
 
     render() {
         return (
+            <div>
+                <Nav />
             <Container fluid>
                 <Row>
                     <div className="col-sm-3 hidden-xs"></div>
@@ -113,6 +116,7 @@ class Login extends Component {
                     <div className="col-sm-3 hidden-xs"></div>
                 </Row>
             </Container>
+            </div>
         );
     }
 }

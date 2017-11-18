@@ -4,7 +4,7 @@ import { Row, Container } from "../../components/Grid";
 import { Input } from "../../components/Form";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Redirect } from 'react-router-dom'
-
+import Nav from "../../components/Nav";
 import API from "../../utils/API";
 
 
@@ -61,6 +61,8 @@ class Register extends Component {
 
     render() {
         return (
+            <div>
+                <Nav />
             <Container fluid>
                 <Row>
                     <div className="col-sm-3 hidden-xs"></div>
@@ -107,6 +109,7 @@ class Register extends Component {
                     <div className="col-sm-3 hidden-xs"></div>
                 </Row>
             </Container>
+        </div>
         );
     }
 }
