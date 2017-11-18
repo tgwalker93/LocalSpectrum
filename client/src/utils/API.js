@@ -20,6 +20,9 @@ export default {
   saveUser: function(userData) {
     return axios.post("/api/users/saveUser", userData)
   },
+  loginUser: function(userData) {
+    return axios.post("/api/users/loginUser", userData)
+  },
   getItemIds: function(id) {
     console.log("I'm in front-end API and the ID is " + id);
     return axios.get("/api/profile/getItemIds/" + id)

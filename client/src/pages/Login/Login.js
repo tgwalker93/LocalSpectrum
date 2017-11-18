@@ -31,11 +31,11 @@ class Login extends Component {
     }
 
     // Then reload books from the database
-    createAccount = event => {
+    loginAccount = event => {
         console.log("i'm in handleFormSubmit")
         event.preventDefault();
         if (this.state.username && this.state.password) {
-            API.saveUser({
+            API.loginUser({
                 username: this.state.username,
                 password: this.state.password
             })
