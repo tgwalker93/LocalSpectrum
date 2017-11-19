@@ -13,6 +13,7 @@ class Profile extends Component {
     state = {
         search: "",
         itemName: "",
+        itemSummary: "",
         username: "",
         location:"", //search Location
         logo:"",//Business Logo
@@ -20,14 +21,10 @@ class Profile extends Component {
         userId: this.props.match.params.id,
         userProfile: [],
         currentItem: {
-            // userId: this.state.userId,
-            // itemObj: {
-            //     itemName: this.state.itemName
-            // }
-        },
-    
+        },    
         itemIds: [],
-        items: []
+        items: [],
+        itemReviews: []
     
     };
 
@@ -105,7 +102,8 @@ class Profile extends Component {
             currentItem: {
                 userId: this.state.userId,
                 itemObj: {
-                    itemName: this.state.itemName
+                    itemName: this.state.itemName,
+                    summary: this.state.itemSummary
                 }
             }
         }, () => {
@@ -133,7 +131,7 @@ class Profile extends Component {
             <Row>
                 <Col size="sm-1 hidden-xs"></Col>
                 <Col size="sm-6">
-                <form>
+                    <form>
                     <Input
                         value={this.state.search}
                         onChange={this.handleInputChange}
@@ -179,12 +177,21 @@ class Profile extends Component {
                             <h1>Welcome, {this.state.username}</h1>
                         </Jumbotron> */}
                         <form>
+                            Item Name:
                             <Input
                                 value={this.state.itemName}
                                 onChange={this.handleInputChange}
                                 name="itemName"
-                                placeholder="Add Item"
+                                placeholder=""
                             />
+                            Item Summary:
+                            <Input
+                                value={this.state.itemSummary}
+                                onChange={this.handleInputChange}
+                                name="itemSummary"
+                                placeholder=""
+                            />
+
                             <div>
                             <FormBtn
                                 onClick={this.addItem}
@@ -203,7 +210,7 @@ class Profile extends Component {
                                 <div>
                                     {this.state.items.map(item => {
                                         return (
-                                            <ItemPanel key={item.itemName} itemName={item.itemName} summary={item.itemName}>
+                                            <ItemPanel key={item.itemName} itemName={item.itemName} summary={item.summary}>
                                             </ItemPanel>
                                         );
                                     })}

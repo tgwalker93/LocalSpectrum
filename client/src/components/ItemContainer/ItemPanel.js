@@ -5,7 +5,7 @@ export const ItemPanel = props => (
     <div className='panel-heading'>
     <h3>
     <a className='item-image' target='_blank' href="">
-    {props.itemName},
+    {props.itemName}
     </a>
     {props.children}
     </h3>
