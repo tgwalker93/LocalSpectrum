@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import GoogleButton from '../../components/GoogleButton'
-import { Col, Row, Container } from "../../components/Grid";
+import {Row, Container } from "../../components/Grid";
 import Nav from "../../components/Nav";
-import { Input, FormBtn } from "../../components/Form";
+import { InputLog} from "../../components/LoginItem";
 import API from "../../utils/API";
 
 
@@ -49,73 +49,45 @@ class Login extends Component {
         return (
             <div>
                 <Nav />
-            <Container fluid>
-                <Row>
-                    <div className="col-sm-3 hidden-xs"></div>
-                    <div className="col-sm-6">
-                        <GoogleButton>
-                        </GoogleButton>
-                        <form className="login">
-                            <p>Username</p>
-                            <Input
-                                value={this.state.username}
-                                onChange={this.handleInputChange}
-                                name="username"
-                                placeholder="&#xf007; USERNAME"
-                            />
-                            <p>Password</p>
-                            <Input
-                                value={this.state.password}
-                                onChange={this.handleInputChange}
-                                name="password"
-                                placeholder="&#xf023; PASSWORD"
-                            />
-                            <button className="btn btn-success loginBtn"
-                                onClick={this.login}
-                            >
-                                Log in
-                            </button>
+                <Container fluid>
+                    <Row>
+                        <div className="col-sm-3 hidden-xs"></div>
+                        <div className="col-sm-6">
 
-                            <button className="btn btn-success registerBtn"
-                                onClick={this.createAccount}
-                            >
-                                Register
-                            </button>
-
-                        </form>
-                        {/* <form>
-                            Login
-                            <Input
-                                value={this.state.username}
-                                onChange={this.handleInputChange}
-                                name="search"
-                                placeholder="Username"
-                            />
-                 
-                                Password
-                            <Input
+                            <form className="login">
+                                <p>Username</p>
+                                <InputLog
+                                    value={this.state.username}
+                                    onChange={this.handleInputChange}
+                                    name="username"
+                                    placeholder="&#xf007; USERNAME"
+                                />
+                                <p>Password</p>
+                                <InputLog
                                     value={this.state.password}
                                     onChange={this.handleInputChange}
-                                    name="search"
-                                    placeholder="Password"
+                                    name="password"
+                                    placeholder="&#xf023; PASSWORD"
                                 />
-                       
-                                <FormBtn
+                                <button className="btn btn-warning loginBtn"
                                     onClick={this.login}
                                 >
-                                    Login
-                                </FormBtn>
-                                <FormBtn
+                                Log in
+                                </button>
+
+                                <GoogleButton>
+                                </GoogleButton>
+
+                                <button className="btn btn-warning registerBtn"
                                     onClick={this.createAccount}
                                 >
-                                    Create Account
-                                </FormBtn>
-                           
-                        </form> */}
-                    </div>
-                    <div className="col-sm-3 hidden-xs"></div>
-                </Row>
-            </Container>
+                                Register
+                                </button>
+                            </form>
+                        </div>
+                        <div className="col-sm-3 hidden-xs"></div>
+                    </Row>
+                </Container>
             </div>
         );
     }

@@ -50,18 +50,21 @@ class Home extends Component {
                 <Nav />
             <Container fluid>
                 <Row>
-                    <Hero backgroundImage="https://media.giphy.com/media/3o6gbchrcNIt4Ma8Tu/giphy.gif">
-                        <h1>Spreading words <span className="glyphicon glyphicon-heart"></span> Spreading love</h1>
-                        <h2>Explore & Connect</h2>
-                        <Row>
-                            <Col size="sm-1 hidden-xs"></Col>
+                    {/* <Hero backgroundImage="https://media.giphy.com/media/3o6gbchrcNIt4Ma8Tu/giphy.gif"> */}
+                    <Hero backgroundImage="https://dev.oasistears.com/images/default-source/Oasis-Tears/map30705a6833d7c644e9913ff000093bb79.jpg">
+                        {/* <h1>Spreading words <span className="glyphicon glyphicon-heart"></span> Spreading love</h1>
+                        <h2>Explore & Connect</h2> */}
+                    </Hero>
+                </Row>
+                <div className ="row inputBox">
+                            <Col size="sm-1"></Col>
                             <Col size="sm-6">
                             <form>
                                 <Input
                                     value={this.state.search}
                                     onChange={this.handleInputChange}
                                     name="search"
-                                    placeholder="&#xf002; Search for your local goodies"
+                                    placeholder=" &#xf002; Search for your local goodies"
                                 />
 
                             </form>
@@ -73,40 +76,24 @@ class Home extends Component {
                                     value={this.state.location}
                                     onChange={this.handleInputChange}
                                     name="location"
-                                    placeholder="&#xf041; enter zipcode"
+                                    placeholder=" &#xf041; Enter location"
                                 />
                             </form>
                             </Col>
 
                             <Col size="sm-2">
                             <form>   
-                            <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
+                            <FormBtn onClick={this.handleFormSubmit}><span className="glyphicon glyphicon-search"></span></FormBtn>
                             </form>
                             </Col>
 
-                            <Col size="sm-1 hidden-xs"></Col>
+                            <Col size="sm-1"></Col>
                           
-                        </Row>
+                    </div>
 
-                    </Hero>
-                    {/* <Col size="md-12">
-
-                        <form>
-                            <Input
-                                value={this.state.search}
-                                onChange={this.handleInputChange}
-                                name="search"
-                                placeholder="Burgers, Tacos, Fries"
-                            />
-
-                            <FormBtn
-                                onClick={this.handleFormSubmit}
-                            >
-                                Search
-                            </FormBtn>
-                        </form>
-                    </Col> */}
-                </Row>
+                    <div className="row text-center">
+                        <h1 className="subheading">Search Result</h1>
+                    </div>
             </Container>
             </div>
         );

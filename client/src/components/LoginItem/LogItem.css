@@ -1,0 +1,71 @@
+input.inputLog{
+    height: 50px;
+    border: 2px solid #FF1F99;
+    border-image-source: linear-gradient(45deg,#FF1F99, #FF7D18, #FED92A);
+    border-image-slice: 2;
+    border-radius: 0px;
+    background-color: #fff;
+    color:#FF1F99;
+    font-family: 'FontAwesome', sans-serif!important;
+    box-shadow: none;
+}
+
+.inputLog:focus{
+    border: 1.5px solid #FF1F99;
+    border-radius: 30px;
+    box-shadow: none;
+}
+
+form{
+    margin: 50px auto;
+    
+}
+
+.btn-warning {
+    border: 0px solid #FF1F99;
+    border-radius: 0px;
+    padding: 10px 20px;
+    color:#fff;
+    margin-bottom:120px;
+    text-transform: uppercase;
+
+}
+
+
+
+
+
+
+/* ==================login/register customize ============= */
+form.login{
+    margin-top: 150px;
+}
+
+.loginBtn, .registerBtn, .google-login {
+    margin-top:30px;
+    border-radius: 0px;
+}
+
+.loginBtn {
+    background: linear-gradient(130deg,#FF1F99, #FF7D18, #FED92A);
+}
+
+.google-login {
+    margin-left:30px;
+    background: linear-gradient(30deg,#FF1F99, #FF7D18, #FED92A);
+}
+
+.registerBtn {
+    margin-left:30px;
+    background: linear-gradient(-130deg,#FF1F99, #FF7D18, #FED92A);
+}
+
+
+.btn-warning:hover, .btn-warning:active, .btn-warning:focus, .btn-warning:visited {
+    border: 0px;
+    border-radius: 30px;
+    background: #FF1F99;
+    color:#fff;
+    box-shadow: none;
+    outline:none;
+}

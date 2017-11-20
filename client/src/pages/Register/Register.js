@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Row, Container } from "../../components/Grid";
-import { Input } from "../../components/Form";
+import { InputLog, LogBtn } from "../../components/LoginItem";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Redirect } from 'react-router-dom'
 import Nav from "../../components/Nav";
@@ -70,14 +70,14 @@ class Register extends Component {
                         
                         <form className="login">
                             <p>Username</p>
-                            <Input
+                            <InputLog
                                 value={this.state.username}
                                 onChange={this.handleInputChange}
                                 name="username"
                                 placeholder="&#xf007; USERNAME"
                             />
                             <p>Password</p>
-                            <Input
+                            <InputLog
                                 value={this.state.password}
                                 onChange={this.handleInputChange}
                                 name="password"
@@ -85,20 +85,20 @@ class Register extends Component {
                                 placeholder="&#xf023; PASSWORD"
                             />
                             <p>Confirm Password</p>
-                            <Input
+                            <InputLog
                                 value={this.state.confirmPassword}
                                 onChange={this.handleInputChange}
                                 name="confirmPassword"
                                 type="password"
                                 placeholder="&#xf023; CONFIRM PASSWORD"
                             /> 
-                            <button className="btn btn-success loginBtn"
+                            <button className="btn btn-warning loginBtn"
                                 onClick={this.login}
                             >
                                 Log in
                             </button>
 
-                            <button className="btn btn-success registerBtn"
+                            <button className="btn btn-warning registerBtn"
                                 onClick={this.createAccount}
                             >
                                 Register

@@ -21,14 +21,14 @@ class GoogleButton extends React.Component{
 
   render () {
     return (
-      <div>
+      // <div>
         <GoogleLogin socialId="713748908445-6gipmifvmjol8nvtso6ua2a7ovhub5fk.apps.googleusercontent.com"
-                     className="google-login"
+                     className="btn btn-warning google-login"
                      scope="profile"
                      fetchBasicProfile={false}
                      responseHandler={this.responseGoogle}
                      buttonText="Login With Google"/>
-      </div>
+      // </div>
     );
   }
 
