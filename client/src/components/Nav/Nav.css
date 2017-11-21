@@ -1,6 +1,6 @@
 .navbar-inverse{
     /* background: linear-gradient(120deg,#FF4130, #FE8728, #FFF316); */
-    background: linear-gradient(45deg,#0090F4, #6c38d9, #C12B9C);
+    background: linear-gradient(-45deg,#FF1F9A, #FF7E19, #FED92A);
     border-radius: 0px;
     border:0px;
     z-index: 1;
@@ -9,12 +9,23 @@
     margin-bottom: 0px!important;
 }
 
+img.logoImg{
+ width: 12%;
+ height: auto;
+}
+
 p#logo{
     color:#fff;
     font-weight: bolder;
     letter-spacing: 0.1em;
     font-family: 'Open Sans', sans-serif;
-    margin: 11px;
+    margin: 12px
+}
+
+.glyphicon{
+    font-weight: 100;
+    font-size:15px;
+    
 }
 
 a.logo, a.logo:hover{
@@ -25,7 +36,7 @@ a.logo, a.logo:hover{
 
 .navbar-inverse .navbar-nav>li>a{
     color:#fff;
-    font-weight: normal;
+    font-weight: 100;
     letter-spacing: 0.1em;
     font-family: 'Open Sans', sans-serif;
     
@@ -57,6 +68,51 @@ a.logo, a.logo:hover{
     }
 
 
+@media (min-width: 320px) and (max-width: 460px) {
+    img.logoImg{
+        width: 30%;
+        height: auto;
+       }
+       
+}
+
+@media (min-width: 460px) and (max-width: 768px) {
+    img.logoImg {
+        width: 20%;
+        height: auto;
+       }
+       
+}
+
+@media (min-width: 768px){
+    .navbar-right {
+        margin-top: -50px;
+    }
+
+    img.logoImg {
+        width: 16%;
+        height: auto;
+       }
+} 
+
+
+@media (min-width: 992px){
+    .navbar-right {
+        margin-top: -50px;
+    }
+    img.logoImg {
+        width: 12%;
+        height: auto;
+       }
+} 
+
+ @media (min-width: 1200px){
+    .navbar-right {
+        margin-top: -55px;
+    }
+} 
+    
+    
 
 @media (min-width: 768px) {
         a.log:after {

@@ -1,37 +1,60 @@
 input.form-control{
     height: 50px;
-    border: 1.5px solid #6c38d9;
-    border-radius: 30px;
-    background-color: rgba(255, 255, 255, 1);
-    color:#6c38d9;
+    border: 1.5px solid #fff;
+    border-radius: 5px;
+    background-color: #fff;
+    color:#FF1F99;
     font-family: 'FontAwesome', sans-serif!important;
+    box-shadow: none;
 }
 
 .form-control:focus{
-    border: 1.5px solid #e014c3;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0)
+    border: 1.5px solid #fff;
+    box-shadow: none;
 }
 
 form{
-    margin-top: 100px;
+    margin: 50px auto;
+    
+}
+.inputBox {
+    background: linear-gradient(-20deg,#FF1F99, #FF7D18, #FED92A)
+    
 }
 
+.glyphicon-search{
+    font-size:25px!important;
+}
 
 .btn-success {
-    border: 1.5px solid #e014c3;
-    border-radius: 40px;
-    padding: 14px 30px;
-    background-color: #e014c3;
-    color:white;
+    border: 1.5px solid #fff;
+    border-radius: 5px;
+    padding: 10px 14px 8px;
+    background-color: transparent;
+    color:#fff;
+    margin-bottom:30px;
 
 }
 
 .btn-success:hover, .btn-success:active, .btn-success:focus, .btn-success:visited {
-    border: 1.5px solid #6c38d9;
-    background-color: #6c38d9;
-    color:white;
+    border: 1.5px solid #fff;
+    background-color: #fff;
+    color:#FF1F99;
+    box-shadow: none;
+    outline:none;
 
 }
+
+h1.subheading {
+    /* background: linear-gradient(45deg, #FF1F99 0%, #FF1F99 30%, #FED92A 50%, #FED92A 75%, #FED92A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    color: #FF1F9A;
+    letter-spacing: 0.1em;
+    margin: 50px auto;
+}
+
+
 
 /* ==================login/register customize ============= */
 form.login{
