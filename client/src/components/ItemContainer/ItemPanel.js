@@ -2,20 +2,6 @@ import React from "react";
 import "./ItemPanel.css";
 
 export const ItemPanel = props => (
-<<<<<<< HEAD
-    <div className='panel panel-default'>
-    <div className='panel-heading'>
-    <h3>
-    <a className='item-image' target='_blank' href="">
-    {props.itemName}
-    </a>
-    {props.children}
-    </h3>
-    </div>
-    <div className='panel-body'>
-    {props.summary}
-    </div>
-=======
     <div className='card'>
         <div className="img-container">
             {/* <img alt={props.itemName} src={props.itemImage} /> */}
@@ -32,7 +18,6 @@ export const ItemPanel = props => (
                 
             </ul>
         </div>
->>>>>>> tammy
     </div>
 );
 

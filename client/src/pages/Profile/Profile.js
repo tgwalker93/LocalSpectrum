@@ -14,12 +14,8 @@ class Profile extends Component {
     state = {
         search: "",
         itemName: "",
-<<<<<<< HEAD
-        itemSummary: "",
-=======
         itemSummary:"",
         itemImage:"",
->>>>>>> tammy
         username: "",
         location:"", //search Location
         logo:"",//Business Logo
@@ -109,12 +105,7 @@ class Profile extends Component {
                 userId: this.state.userId,
                 itemObj: {
                     itemName: this.state.itemName,
-<<<<<<< HEAD
-                    summary: this.state.itemSummary
-=======
-                    itemSummary: this.state.itemSummary,
-                    itemImage: ""
->>>>>>> tammy
+                    itemSummary: this.state.itemSummary
                 }
             }
         }, () => {
@@ -139,50 +130,6 @@ class Profile extends Component {
             <NavAfter username={this.state.username} />
         
             <Container fluid>
-<<<<<<< HEAD
-            <Row>
-                <Col size="sm-1 hidden-xs"></Col>
-                <Col size="sm-6">
-                    <form>
-                    <Input
-                        value={this.state.search}
-                        onChange={this.handleInputChange}
-                        name="search"
-                        placeholder="&#xf002; Search for your local goodies"
-                    />
-
-                    </form>
-                    </Col>
-
-                    <Col size="sm-2">
-                    <form>
-                        <Input
-                            value={this.state.location}
-                            onChange={this.handleInputChange}
-                            name="location"
-                            placeholder="&#xf041; enter zipcode"
-                        />
-                    </form>
-                    </Col>
-
-                    <Col size="sm-2">
-                    <form>   
-                    <FormBtn onClick={this.handleFormSubmit}>Search</FormBtn>
-                    </form>
-                    </Col>
-
-                    <Col size="sm-1 hidden-xs"></Col>
-                      
-                    </Row> 
-
-
-                    {/*This is Business logo and Business Details Row */}
-                    <Row>
-                        
-                    </Row>
-                   {/*This is  End of Business logo and Business Details Row */}
-=======
->>>>>>> tammy
            
             {/* Tyler Code Do not Touch This Part */}
                 <Row>
@@ -191,34 +138,19 @@ class Profile extends Component {
                             <h1>Welcome, {this.state.username}</h1>
                         </Jumbotron> */}
                         <form>
-<<<<<<< HEAD
-                            Item Name:
-                            <Input
-=======
                             <InputLog
->>>>>>> tammy
                                 value={this.state.itemName}
                                 onChange={this.handleInputChange}
                                 name="itemName"
-                                placeholder=""
+                                placeholder="Item Name"
                             />
-                            Item Summary:
-                            <Input
-                                value={this.state.itemSummary}
-                                onChange={this.handleInputChange}
-                                name="itemSummary"
-                                placeholder=""
-                            />
-<<<<<<< HEAD
-
-=======
+                           
                             <InputLog
                                 value={this.state.itemSummary}
                                 onChange={this.handleInputChange}
                                 name="itemSummary"
                                 placeholder="Item Summary"
                             />
->>>>>>> tammy
                             <div>
                             <button className="btn btn-warning addBtn"
                                 onClick={this.addItem}
@@ -237,11 +169,7 @@ class Profile extends Component {
                                 <div>
                                     {this.state.items.map(item => {
                                         return (
-<<<<<<< HEAD
-                                            <ItemPanel key={item.itemName} itemName={item.itemName} summary={item.summary}>
-=======
                                             <ItemPanel key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary}>
->>>>>>> tammy
                                             </ItemPanel>
                                         );
                                     })}
