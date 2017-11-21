@@ -4,12 +4,12 @@ import "./ImageCard.css";
 const ImageCard = props => (
   <div className="card">
     <div className="img-container">
-      <img alt={props.name} src={props.image} />
+      <img alt={props.itemName} src={props.itemImage} />
     </div>
     <div className="content">
       <ul>
         <li>
-          <strong>Name:</strong> {props.name}
+          <strong>Name:</strong> {props.itemName}
         </li>
         <li>
           <strong>Occupation:</strong> {props.occupation}

@@ -6,7 +6,11 @@ var ItemSchema = new Schema({
         type: String,
         required: true
     },
-    summary: {
+    itemSummary: {
+        type: String,
+        required: false
+    },
+    itemImage: {
         type: String,
         required: false
     },

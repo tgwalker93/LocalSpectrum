@@ -51,7 +51,7 @@ class Home extends Component {
             <Container fluid>
                 <Row>
                     {/* <Hero backgroundImage="https://media.giphy.com/media/3o6gbchrcNIt4Ma8Tu/giphy.gif"> */}
-                    <Hero backgroundImage="https://dev.oasistears.com/images/default-source/Oasis-Tears/map30705a6833d7c644e9913ff000093bb79.jpg">
+                    <Hero backgroundImage="assets/img/map3.jpg">
                         {/* <h1>Spreading words <span className="glyphicon glyphicon-heart"></span> Spreading love</h1>
                         <h2>Explore & Connect</h2> */}
                     </Hero>

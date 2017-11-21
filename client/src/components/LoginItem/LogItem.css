@@ -60,6 +60,11 @@ form.login{
     background: linear-gradient(-130deg,#FF1F99, #FF7D18, #FED92A);
 }
 
+.addBtn{
+    background: linear-gradient(30deg,#FF1F99, #FF7D18, #FED92A);
+    margin: 20px 0px!important;
+}
+
 
 .btn-warning:hover, .btn-warning:active, .btn-warning:focus, .btn-warning:visited {
     border: 0px;
