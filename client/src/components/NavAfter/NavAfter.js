@@ -12,7 +12,7 @@ const NavAfter = (props) =>
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
         </button>
-        <p id="logo" className={window.location.pathname === "/" ? "active" : ""}><Link className="logo" to="/"><img className="logoImg img-responsive" src="assets/img/logo.png" alt=""/></Link></p>
+        <p id="logo" className={window.location.pathname === "/" ? "active" : ""}><Link className="logo" to="/"><img className="logoImg img-responsive" src="/assets/img/logo.png" alt=""/></Link></p>
         </div>
       <div id="navbar" className="navbar-collapse collapse">
         <ul className="nav navbar-nav navbar-right">
