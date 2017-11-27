@@ -3,11 +3,9 @@ var request = require("request");
 var express = require("express");
 var app = express.Router();
 
-
 //scraping tools
 var request = require("request");
 var cheerio = require("cheerio");
-
 
 //models 
 // var Note = require("../../models/Note.js");
@@ -16,7 +14,49 @@ var Item = require("../../models/Item.js");
 
 const router = require("express").Router();
 
+// Route function to get the profile information for the logged in user
+app.get("/getProfile/:id", function (req, res) {
+    console.log("server log: getProfile function called");
+    console.log(req.params.id);
+    User.findById(req.params.id)
+        .then(function (doc, err) {
+            if(err) {
+                console.log("getProfile failed with error: " + err)
+            } else {
+                res.json(doc);
+            }
+        });
+    // res.json(result);
+});
 
+app.post("/saveProfile", function(req, res) {
+    console.log("server log: saveProfile function called");
+    var result = req.body;
+    console.log(result);
+    // User.findOneAndUpdate({_id:req.body.id}, result, function(err, doc) {
+    //     res.send(doc);
+    // });
+    User.findOneAndUpdate({ "_id": req.body.id }, { $set: { "business_name": req.body.BusinessTitle, 
+                                                            "business_address":req.body.AddressLine1, 
+                                                            "business_zip":req.body.ZipCode, 
+                                                            "business_phone":req.body.PhoneNo,
+                                                            "business_faxno":req.body.FaxNo,
+                                                            "business_email":req.body.Email,
+                                                            "business_facebook":req.body.FacebookLink,
+                                                            "business_instagram":req.body.Instagram} },
+                        { multi: true, upsert: false })
+    .exec(function (err, doc) {
+        // Log any errors
+        if (err) {
+            console.log(err);
+        }
+        else {
+            // Or send the document to the browser
+            console.log(doc);
+            res.json(doc);
+        }
+    });
+});
 
 
 // Routes

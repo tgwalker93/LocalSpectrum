@@ -3,24 +3,17 @@ var request = require("request");
 var express = require("express");
 var app = express.Router();
 
-
 //scraping tools
 var request = require("request");
 var cheerio = require("cheerio");
-
 
 //models 
 var User = require("../../models/User.js");
 
 const router = require("express").Router();
 
-
-
-
-
 // Routes
 //==========================
-
 
 //SAVE ARTICLE FOR WHEN USER CLICKS SAVE
 app.post("/saveUser", function (req, res) {
@@ -47,12 +40,6 @@ app.post("/saveUser", function (req, res) {
 
 });
 
-
-
 //HEADLINES END ------------------------------------------------------
-
-
-
-
 
 module.exports = app;

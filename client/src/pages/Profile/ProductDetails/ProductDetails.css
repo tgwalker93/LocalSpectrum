@@ -1,0 +1,19 @@
+.card {
+    /* width: 20rem; */
+    height: auto;
+    padding: 2px;
+}
+
+p {
+    margin: 3px;
+}
+
+.card-block {
+    /* border: 1px solid red; */
+}
+
+img {
+    height: 50%; 
+    width: 100%; 
+    object-fit: contain;
+}
