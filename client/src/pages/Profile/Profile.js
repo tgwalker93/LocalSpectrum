@@ -6,7 +6,7 @@ import { InputLog} from "../../components/LoginItem";
 import NavAfter  from "../../components/NavAfter";
 import Panel from "../../components/Panel";
 import API from "../../utils/API";
-import { ItemContainer, ItemPanel } from "../../components/ItemContainer"
+import { ItemContainer, ItemPanel} from "../../components/ItemContainer"
 
 
 class Profile extends Component {
@@ -23,10 +23,14 @@ class Profile extends Component {
         userId: this.props.match.params.id,
         userProfile: [],
         currentItem: {
-        },    
+            // userId: this.state.userId,
+            // itemObj: {
+            //     itemName: this.state.itemName
+            // }
+        },
+    
         itemIds: [],
-        items: [],
-        itemReviews: []
+        items: []
     
     };
 
@@ -105,7 +109,8 @@ class Profile extends Component {
                 userId: this.state.userId,
                 itemObj: {
                     itemName: this.state.itemName,
-                    itemSummary: this.state.itemSummary
+                    itemSummary: this.state.itemSummary,
+                    itemImage: "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Spongebob-squarepants.svg/666px-Spongebob-squarepants.svg.png"
                 }
             }
         }, () => {
@@ -128,28 +133,29 @@ class Profile extends Component {
         return (
             <div>
             <NavAfter username={this.state.username} />
-        
-            <Container fluid>
+            
+            <Container fluid >
            
-            {/* Tyler Code Do not Touch This Part */}
+            <div style={{marginLeft: 20, marginRight: 20}}>
                 <Row>
                     <Col size="md-12">
                         {/* <Jumbotron>
                             <h1>Welcome, {this.state.username}</h1>
                         </Jumbotron> */}
                         <form>
+                            <p>Item Name</p>
                             <InputLog
                                 value={this.state.itemName}
                                 onChange={this.handleInputChange}
                                 name="itemName"
-                                placeholder="Item Name"
+                                placeholder="Add your item"
                             />
-                           
+                            <p>Item Summary</p>
                             <InputLog
                                 value={this.state.itemSummary}
                                 onChange={this.handleInputChange}
                                 name="itemSummary"
-                                placeholder="Item Summary"
+                                placeholder="Short summary of your item"
                             />
                             <div>
                             <button className="btn btn-warning addBtn"
@@ -162,6 +168,7 @@ class Profile extends Component {
                         </form>
                     </Col>
                 </Row>
+                </div>
                 <Row> 
                 <Col size="md-12">
                         {this.state.items.length ? (
@@ -169,7 +176,8 @@ class Profile extends Component {
                                 <div>
                                     {this.state.items.map(item => {
                                         return (
-                                            <ItemPanel key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary}>
+                                            
+                                            <ItemPanel key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage}>
                                             </ItemPanel>
                                         );
                                     })}
@@ -182,7 +190,7 @@ class Profile extends Component {
                 </Row>
                 <Row>
                     <Col size="md-12">
-                    <h1> END </h1> 
+                    
                     </Col>
                 </Row>
             </Container>
@@ -192,5 +200,7 @@ class Profile extends Component {
 
     }
 }
+
+
 
 export default Profile;

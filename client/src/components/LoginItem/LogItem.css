@@ -23,7 +23,7 @@ form{
 
 .btn-warning {
     border: 0px solid #FF1F99;
-    border-radius: 0px;
+    border-radius: 30px;
     padding: 10px 20px;
     color:#fff;
     margin-bottom:120px;
@@ -43,7 +43,7 @@ form.login{
 
 .loginBtn, .registerBtn, .google-login {
     margin-top:30px;
-    border-radius: 0px;
+    border-radius: 30px;
 }
 
 .loginBtn {

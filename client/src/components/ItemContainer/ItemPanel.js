@@ -1,24 +1,40 @@
 import React from "react";
 import "./ItemPanel.css";
+import Rating  from "../../components/Rating";
+import ReviewBtn from "../../components/ReviewBtn";
+import DeleteBtn from "../../components/DeleteBtn";
+
 
 export const ItemPanel = props => (
-    <div className='card'>
-        <div className="img-container">
-            {/* <img alt={props.itemName} src={props.itemImage} /> */}
-            {props.children}
-        </div>
-        <div className="content">
-            <ul>
-                <li>
-                    <strong>Item Name:</strong> {props.itemName}
-                </li>
-                <li>
-                    <strong>Item Description:</strong> {props.itemSummary}
-                </li>
+
+    <div className="col-sm-4">
+        <div className='card'>
+            <div className="img-container">
+                <img alt={props.itemName} src={props.itemImage} />
+                {props.children}
                 
-            </ul>
+            </div>
+            <DeleteBtn />
+            <div className="content">
+                <ul>
+                    <li className="itemTittle">
+                        <strong>{props.itemName}</strong>
+                    </li>
+                    <li className="itemDes">
+                        {props.itemSummary}
+                    </li>
+                </ul>
+                <hr />
+               <Rating />
+            </div>
+            {/* <span onClick={() => props.removeItem(props.id)} className="remove">𝘅</span> */}
+            
+            <ReviewBtn /> 
         </div>
     </div>
+
+
+
 );
 
     //     {/* <h3>
@@ -27,11 +43,11 @@ export const ItemPanel = props => (
     //         </a>
     //         {props.children}
     //     </h3> */}
-    
+
     // // <div className='panel-body'>
     // //     {props.itemSummary}
     // // </div>
-    
+
 // );
 
 // export default ArticlePanel
