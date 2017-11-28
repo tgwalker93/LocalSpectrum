@@ -54,7 +54,7 @@
   
   .card > .content > ul > li.itemTittle {
     margin-top: 18px;
-    margin-left: -20px;
+    margin-left: -25px;
   }
 
 .itemTittle{
@@ -70,13 +70,13 @@
 
   .itemDes{
     font-size: 13px;
-    margin-left: -20px;
+    margin-left: -25px;
     margin-top: 10px;
   }
 
   hr {
     border-top: 1.25px solid #FF1F99;
-    margin: 20px 30px 20px 20px;
+    margin: 20px 15px;
     
   }
   
@@ -96,12 +96,17 @@
 
   @media (min-width: 768px) and (max-width: 1000px) {
     .card {
-      height: 310px;
+      height: 307px;
       width: 240px;
     }
 
     .card > .img-container {
       height: 55%;
+    }
+
+    hr {
+      margin: 20px 10px;
+      
     }
        
 }

@@ -1,0 +1,22 @@
+.aboutText {
+    padding-top: 20px;
+}
+
+h1{
+   padding-bottom: 10px; 
+   
+    
+}
+
+.container{
+    padding: 20px 80px;
+    color: white;
+}
+
+.border {
+    margin-top: 23px;
+    margin-left: 20px;
+    border-right: 1px solid #fff;
+    height: 75px;
+    position: absolute;
+}

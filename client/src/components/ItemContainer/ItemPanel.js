@@ -2,6 +2,7 @@ import React from "react";
 import "./ItemPanel.css";
 import Rating  from "../../components/Rating";
 import ReviewBtn from "../../components/ReviewBtn";
+import EditBtn from "../../components/EditBtn";
 import DeleteBtn from "../../components/DeleteBtn";
 
 
@@ -25,50 +26,14 @@ export const ItemPanel = props => (
                     </li>
                 </ul>
                 <hr />
-               <Rating />
+               <Rating index={props.index} />
             </div>
             {/* <span onClick={() => props.removeItem(props.id)} className="remove">𝘅</span> */}
             
             <ReviewBtn /> 
+            <EditBtn /> 
         </div>
     </div>
-
-
-
 );
 
-    //     {/* <h3>
-    //         <a className='item-image' target='_blank' href="">
-    //             {props.itemName},
-    //         </a>
-    //         {props.children}
-    //     </h3> */}
-
-    // // <div className='panel-body'>
-    // //     {props.itemSummary}
-    // // </div>
-
-// );
-
-// export default ArticlePanel
-
-// export const ItemPanel = props => (
-//     <div className='panel panel-default'>
-//     <div className='panel-heading'>
-//     <h3>
-//     <a className='item-image' target='_blank' href="">
-//     {props.itemName},
-//     </a>
-//     {props.children}
-//     </h3>
-//     </div>
-//     <div className='panel-body'>
-//     {props.itemSummary}
-//     </div>
-//     </div>
-// );
-
-
-// import React from "react";
-// import "./ImageCard.css";
 

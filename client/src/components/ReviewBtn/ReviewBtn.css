@@ -1,25 +1,28 @@
 .review-btn {
   float: right;
   color: #fff;
-  padding: 24px 12px;
+  padding: 10px 20px;
   border-radius: 100px;
-  background: linear-gradient(-45deg,#FF1F99, #FF7D18 70%, #FED92A);
+  background: linear-gradient(-30deg,#B3EF74 , #5DCA73 70%, #41BA59) ;
+ 
   position: absolute;
-  top: 238px;
-  right: 35px;
+  top: 290px;
+  right: 12px;
   cursor: pointer;
+  transform: scale(0.8)
 }
 
 .review-btn:hover {
-  background: #FF1F99;
+  background: #41BA59;
+  
   
 }
 
 
 @media (min-width: 768px) and (max-width: 1000px) {
   .review-btn {
-    transform: scale(0.7);
-    top:202px;
-    right: 22px;
+    transform: scale(0.6);
+    top:247px;
+    right: 0px;
   }
 }

@@ -1,6 +1,8 @@
 import "./Rating.css";
 import React from 'react';
-import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+
+// import ReactDOM from 'react-dom';
 import StarRatingComponent from 'react-star-rating-component';
 // import Rating from 'react-rating-system';
 
@@ -9,7 +11,7 @@ class StartRating extends React.Component {
     super();
 
     this.state = {
-      rating: 1,
+      rating: 0,
       rating_custom_icon: 6,
       rating_half_star: 3.5,
       rating_empty_initial: 0
@@ -38,10 +40,10 @@ class StartRating extends React.Component {
 
   render() {
     return (
-      <div style={{marginLeft: 20}}>
-        <div style={{fontSize: 22}}>
+      <div>
+       <div className="starRating">
           <StarRatingComponent
-            name="app6"
+           name={`star${this.props.index}`}
             value={this.state.rating_empty_initial}
             onStarClick={this.onStarClickEmptyInitial.bind(this)}
           />
@@ -62,3 +64,7 @@ class StartRating extends React.Component {
 
 
 export default StartRating;
+
+StartRating.propTypes = {
+  index: PropTypes.number.isRequired
+}

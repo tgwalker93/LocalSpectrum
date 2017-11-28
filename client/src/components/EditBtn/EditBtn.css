@@ -1,0 +1,26 @@
+.edit-btn {
+  float: right;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 25px;
+  background: linear-gradient(-30deg,#36ECFF, #41C2FF 70%, #09B0FF);
+  /* linear-gradient(60deg,#0093D6, #00D6CE, #67BE78) */
+  position: absolute;
+  top: 290px;
+  right: 93px;
+  cursor: pointer;
+  transform: scale(0.8)
+}
+
+.edit-btn:hover {
+  background: #09B0FF;
+}
+
+
+@media (min-width: 768px) and (max-width: 1000px) {
+  .edit-btn {
+    transform: scale(0.6);
+    top:247px;
+    right: 60px;
+  }
+}

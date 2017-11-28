@@ -174,11 +174,11 @@ class Profile extends Component {
                         {this.state.items.length ? (
                             <ItemContainer>
                                 <div>
-                                    {this.state.items.map(item => {
+                                    {this.state.items.map((item, i) => {
                                         return (
                                             
-                                            <ItemPanel key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage}>
-                                            </ItemPanel>
+                                            <ItemPanel key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
+                                            
                                         );
                                     })}
                                 </div>

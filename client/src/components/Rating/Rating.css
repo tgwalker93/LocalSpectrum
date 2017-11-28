@@ -1,46 +1,11 @@
-#starRate li {
-  display:inline-block;
-  list-style: none;
-  padding:0;
-  font-size:90px;
+.starRating {
+  font-size: 22px;
+  margin-left: 12px;
 }
 
-#starRate  li[data-checked=true]{
-  color: #FFD700;
-}
-
-#starRate li input{
-  visibility:hidden
-}
-
-#starRate  li {
- transition: color .5s ease-out;
- color: #ABABAB;
-}
-
-#starRate li:hover label {
-  cursor: pointer;
-  text-shadow: 1px 4px 3px #def, 0 0 0 #000, 1px 4px 3px #def;
-  transition: all 0.3s ease;
-}
-
-#starRate div:hover li label{
-  color: rgba(255,223,0,0.8);
-  text-shadow: 1px 4px 3px #def, 0 0 0 #000, 1px 4px 3px #def;
-}
-
-#starRate li:hover  + li label{
-  color: #ABABAB;
-}
-
-#starRate li:hover  + li + li label{
-  color: #ABABAB;
-}
-
-#starRate li:hover  + li + li + li label{
-  color: #ABABAB;
-}
-
-#starRate li:hover  + li + li + li + li label{
-  color: #ABABAB;
+@media (min-width: 768px) and (max-width: 1000px){
+  .starRating {
+    font-size: 15px;
+    margin-left: 8px;
+  }
 }
