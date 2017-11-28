@@ -38,5 +38,19 @@ export default {
   },
   getItemReviews: function(item) {
     return axios.get("/api/profile/getItemReviews", item)
+  },
+
+  // methods to save and retrieve profile information
+  saveProfile: function(data) {
+    // console.log(data);
+    return axios.post("/api/profile/saveProfile", data);
+  },
+
+  getProfileInfo: function(id) {
+    return axios.get("/api/profile/getProfile/" + id);
+  },
+
+  saveProduct: function(item) {
+    return axios.post("api/profile/saveProduct", item);
   }
 };

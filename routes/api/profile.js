@@ -3,11 +3,9 @@ var request = require("request");
 var express = require("express");
 var app = express.Router();
 
-
 //scraping tools
 var request = require("request");
 var cheerio = require("cheerio");
-
 
 //models 
 // var Note = require("../../models/Note.js");
@@ -16,7 +14,51 @@ var Item = require("../../models/Item.js");
 
 const router = require("express").Router();
 
+// Route function to get the profile information for the logged in user
+app.get("/getProfile/:id", function (req, res) {
+    console.log("server log: getProfile function called");
+    console.log(req.params.id);
+    User.findById(req.params.id)
+        .then(function (doc, err) {
+            if(err) {
+                console.log("getProfile failed with error: " + err)
+            } else {
+                res.json(doc);
+            }
+        });
+    // res.json(result);
+});
 
+app.post("/saveProfile", function(req, res) {
+    console.log("server log: saveProfile function called");
+    var result = req.body;
+    console.log(req.body.businessName);
+    
+    User.findOneAndUpdate({ "_id": req.body.id }, { $set: { "business_name": req.body.businessName, 
+                                                            "business_address":req.body.businessAddress, 
+                                                            "business_zip":req.body.zipcode, 
+                                                            "business_phone":req.body.phoneNo,
+                                                            "business_faxno":req.body.faxNo,
+                                                            "business_email":req.body.email,
+                                                            "business_facebook":req.body.facebook,
+                                                            "business_instagram":req.body.instagram} },
+                        { multi: true, upsert: false })
+    .exec(function (err, doc) {
+        // Log any errors
+        if (err) {
+            console.log(err);
+        }
+        else {
+            // Or send the document to the browser
+            console.log(doc);
+            res.json(doc);
+        }
+    });
+});
+
+app.post("/saveProduct", function(req, res) {
+    console.log("Server Log: Save Product function called!");
+});
 
 
 // Routes

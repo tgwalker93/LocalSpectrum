@@ -1,0 +1,12 @@
+.businessInfoCol {
+    border: 1px solid red;
+}
+
+.infoCard {
+    /* background: url('http://localhost:3000/assets/img/map3.jpg'); */
+}
+
+.jumbotron {
+    /* background: url('http://localhost:3000/assets/img/map3.jpg'); */
+    overflow: auto;
+}

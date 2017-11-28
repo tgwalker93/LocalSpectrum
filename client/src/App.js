@@ -5,6 +5,7 @@ import Books from "./pages/Books";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import UserProfile from './pages/Profile';
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 // import About from "./pages/About";
@@ -17,12 +18,12 @@ const App = () =>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/books" component={Books} />
-        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/profile" component={UserProfile} />
         {/* <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} /> */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/profile/:id" component={Profile} />
+        <Route exact path="/profile/:id" component={UserProfile} />
         <Route component={Home} />
       </Switch>
       <Footer />
