@@ -2,6 +2,11 @@
     display: block; 
 }
 
+button {
+    margin: 5px;
+    
+}
+
 .glyphicon-asterisk {
     color: red; 
     vertical-align: middle;

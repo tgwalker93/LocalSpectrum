@@ -1,16 +1,23 @@
 {
   "name": "mern",
   "version": "0.1.0",
+  "eslintConfig": {
+    "env": {
+        "browser": true,
+        "node": true,
+        "jquery": true
+    }
+  },
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.17.1",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
+    "npm": "^5.5.1",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
     "react-google-login-component": "^0.9.2",
     "react-scripts": "1.0.14",
-    "react-transition-group": "^2.2.1",
-    "reactstrap": "^5.0.0-alpha.4"
+    "react-transition-group": "^2.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

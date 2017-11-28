@@ -32,18 +32,16 @@ app.get("/getProfile/:id", function (req, res) {
 app.post("/saveProfile", function(req, res) {
     console.log("server log: saveProfile function called");
     var result = req.body;
-    console.log(result);
-    // User.findOneAndUpdate({_id:req.body.id}, result, function(err, doc) {
-    //     res.send(doc);
-    // });
-    User.findOneAndUpdate({ "_id": req.body.id }, { $set: { "business_name": req.body.BusinessTitle, 
-                                                            "business_address":req.body.AddressLine1, 
-                                                            "business_zip":req.body.ZipCode, 
-                                                            "business_phone":req.body.PhoneNo,
-                                                            "business_faxno":req.body.FaxNo,
-                                                            "business_email":req.body.Email,
-                                                            "business_facebook":req.body.FacebookLink,
-                                                            "business_instagram":req.body.Instagram} },
+    console.log(req.body.businessName);
+    
+    User.findOneAndUpdate({ "_id": req.body.id }, { $set: { "business_name": req.body.businessName, 
+                                                            "business_address":req.body.businessAddress, 
+                                                            "business_zip":req.body.zipcode, 
+                                                            "business_phone":req.body.phoneNo,
+                                                            "business_faxno":req.body.faxNo,
+                                                            "business_email":req.body.email,
+                                                            "business_facebook":req.body.facebook,
+                                                            "business_instagram":req.body.instagram} },
                         { multi: true, upsert: false })
     .exec(function (err, doc) {
         // Log any errors
@@ -56,6 +54,10 @@ app.post("/saveProfile", function(req, res) {
             res.json(doc);
         }
     });
+});
+
+app.post("/saveProduct", function(req, res) {
+    console.log("Server Log: Save Product function called!");
 });
 
 

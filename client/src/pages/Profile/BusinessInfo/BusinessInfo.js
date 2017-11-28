@@ -27,7 +27,7 @@ class BusinessInfo extends Component {
             instagram: "",
             zipcode: ""
         };
-        this._handleInputChange = this._handleInputChange.bind(this);
+        // this._handleInputChange = this._handleInputChange.bind(this);
     }
 
     componentDidMount = () => {
@@ -46,10 +46,15 @@ class BusinessInfo extends Component {
 
     _handleInputChange = event => {
         const {name, value} = event.target; 
+
         this.setState({
             [name]: value
         });
     };
+
+    _saveProduct = () => {
+
+    }
 
     render() {
         const userName = this.state.userName; 
@@ -102,9 +107,9 @@ class BusinessInfo extends Component {
                         <Row>
                             <Col size="md-10">
                                 <InputLog
-                                    value={this.state.businessName}
+                                    value={businessName}
                                     onChange={this._handleInputChange}
-                                    name="BusinessTitle"
+                                    name="businessName"
                                     placeholder="Business Name"
                                     id="inputLogBusinessTitle"
                                 />
@@ -117,7 +122,7 @@ class BusinessInfo extends Component {
                         <TextArea
                             value={this.state.businessAddress}
                             onChange={this._handleInputChange}
-                            name="AddressLine1"
+                            name="businessAddress"
                             placeholder="Business Address"
                             id="txtAreaBusinessAddress"
                         />
@@ -127,7 +132,7 @@ class BusinessInfo extends Component {
                         <InputLog
                             value={this.state.zipcode}
                             onChange={this._handleInputChange}
-                            name="ZipCode"
+                            name="zipcode"
                             placeholder="ZipCode"
                             id="inputLogZipCode"
                         />
@@ -138,7 +143,7 @@ class BusinessInfo extends Component {
                         <InputLog
                             value={this.state.facebook}
                             onChange={this._handleInputChange}
-                            name="FacebookLink"
+                            name="facebook"
                             placeholder="Facebook Link"
                             id="inputLogFacebookLink"
                         />
@@ -149,7 +154,7 @@ class BusinessInfo extends Component {
                         <InputLog
                             value={this.state.instagram}
                             onChange={this._handleInputChange}
-                            name="Instagram"
+                            name="instagram"
                             placeholder="Instagram UserName"
                             id="inputLogInstagram"
                         />
@@ -160,7 +165,7 @@ class BusinessInfo extends Component {
                         <InputLog
                             value={this.state.email}
                             onChange={this._handleInputChange}
-                            name="Email"
+                            name="email"
                             placeholder="Email Id"
                             id="inputLogEmail"
                         />
@@ -171,7 +176,7 @@ class BusinessInfo extends Component {
                         <InputLog
                             value={this.state.phoneNo}
                             onChange={this._handleInputChange}
-                            name="PhoneNo"
+                            name="phoneNo"
                             placeholder="Phone No."
                             id="inputLogPhoneNo"
                         />
@@ -182,7 +187,7 @@ class BusinessInfo extends Component {
                         <InputLog
                             value={this.state.faxNo}
                             onChange={this._handleInputChange}
-                            name="FaxNo"
+                            name="faxNo"
                             placeholder="Fax No."
                             id="inputLogFaxNo"
                         />
@@ -223,7 +228,7 @@ class BusinessInfo extends Component {
                 </div>
                 {editModal}
                 <hr/>
-                <ProductDetails />
+                <ProductDetails userId={this.state.userId}/>
             </div>
         );
     }

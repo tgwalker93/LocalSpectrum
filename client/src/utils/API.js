@@ -48,5 +48,9 @@ export default {
 
   getProfileInfo: function(id) {
     return axios.get("/api/profile/getProfile/" + id);
+  },
+
+  saveProduct: function(item) {
+    return axios.post("api/profile/saveProduct", item);
   }
 };
