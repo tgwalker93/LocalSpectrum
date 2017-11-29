@@ -1,0 +1,67 @@
+.contactLeft {
+    margin-top: 115px;
+    margin-bottom: 150px;
+}
+
+.contactRight {
+    margin-top: 140px;
+}
+
+.contactLeft > h2 {
+ text-align: left!important;
+}
+
+.contactLeft > h4 {
+    text-align: left!important;
+    font-weight: 350;
+    line-height: 30px;
+    font-size:18px;
+}
+
+.contactLeft > hr {
+    border-top: 1.5px solid #FF1F99;
+    width: 50px;
+    margin: 30px 0;
+}
+
+.contactIcon {
+    background: linear-gradient(-120deg,#FF1F99, #FF7D18 ); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fa-envelope{
+ transform: scale(0.8);
+ margin-left:-5px;
+}
+
+.contactBtn{
+    background: linear-gradient(-160deg,#FF1F99, #FF7D18, #FED92A);
+    margin: 25px auto;
+    padding: 10px 30px!important;
+
+    
+}
+
+@media (max-width: 768px){
+    .contactLeft > h4, .contactLeft > h2 {
+       text-align: center!important;
+    }
+
+    .contactLeft > hr {
+        margin: 30px auto!important;
+    }
+
+    .contactLeft {
+        text-align: center;
+        margin: 80px 20px 30px 20px;
+    }
+
+    .contactRight {
+        margin: 0px 50px!important;
+    }
+
+    input.inputLog{
+        margin-top:40px;
+    }
+}
