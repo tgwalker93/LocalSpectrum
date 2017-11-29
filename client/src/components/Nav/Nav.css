@@ -22,8 +22,13 @@ p#logo{
     margin: 12px
 }
 
-.glyphicon{
+.iconOnly {
     font-weight: 100;
+    font-size:15px!important;
+}
+
+.glyphicon{
+    font-weight: 100!important;
     font-size:15px;
     
 }

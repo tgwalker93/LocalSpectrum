@@ -16,7 +16,10 @@ const NavAfter = (props) =>
         </div>
       <div id="navbar" className="navbar-collapse collapse">
         <ul className="nav navbar-nav navbar-right">
-        <li className={window.location.pathname === "/login" ? "active" : ""}><Link className="log" to="/login"><span className="glyphicon glyphicon-user"></span> Welcome,{props.username}</Link></li>
+        <li className={window.location.pathname === "/about" ? "active" : ""}><Link className="log" to="/about"><span className="glyphicon glyphicon-globe"></span> About</Link></li>
+        <li className={window.location.pathname === "/" ? "active" : ""}><Link className="log" to="/"><span className="glyphicon glyphicon-search iconOnly"></span> Search</Link></li>
+        <li className={window.location.pathname === "/contact" ? "active" : ""}><Link className="log" to="/contact"><span className="glyphicon glyphicon-earphone"></span> Contact</Link></li>
+        <li className={window.location.pathname === "/login" ? "active" : ""}><Link className="log" to="/login"><span className="glyphicon glyphicon-user"></span> Welcome {props.username}</Link></li>
         <li className={window.location.pathname === "/Home" ? "active" : ""}><Link className="log" to="/register"><span className="glyphicon glyphicon-log-out"></span> Logout</Link></li>
         
         </ul>

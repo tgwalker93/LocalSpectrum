@@ -1,22 +1,350 @@
 .aboutText {
-    padding-top: 20px;
+    padding-top: 15px;
+    color: #fff;
 }
 
 h1{
-   padding-bottom: 10px; 
-   
-    
+   font-size:200%;
+   text-transform: uppercase;
+   line-height: 45px;
+   margin-top: 12px;
 }
 
-.container{
+.containerBox{
     padding: 20px 80px;
     color: white;
 }
 
 .border {
-    margin-top: 23px;
+    margin-top: 22px;
     margin-left: 20px;
     border-right: 1px solid #fff;
-    height: 75px;
+    height: 72px;
     position: absolute;
 }
+
+
+@media (min-width: 1200px) and (max-width: 1304px) {
+
+    h1 {
+        font-size: 180%;
+        margin-top:15px;
+    }
+
+    .aboutText {
+        font-size: 90% ;
+        line-height: 22px;
+    }
+}
+
+@media (max-width: 1200px){
+    .aboutText {
+        padding-top: 3px;
+    }
+}
+
+@media (max-width: 450px){
+    .containerBox{
+        padding: 20px 50px 30px;
+    }
+
+    .howItWork {
+        padding: 30px 50px!important;
+    }
+
+    
+}
+
+/* ======== how it work section ====== */
+.howItWork{
+    color: #5E5E5E;
+    text-align: center;
+    padding: 30px 80px;
+}
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25px;
+    background: linear-gradient(120deg,#FF1F99, #FF7D18 , #FED829); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.decoLine{
+    border-top: 1.5px solid #FF1F99;
+    width: 70px;
+    margin: 20px auto;
+}
+
+.subTitle {
+ font-size: 12px;
+ padding-top: 4px;
+ 
+}
+
+h4 {
+    font-size:20px;
+    letter-spacing: 0.1em;
+    padding-bottom: 6px;
+}
+
+.fa-5x {
+    padding: 30px 0px 12px;
+
+}
+
+.fa-users{
+    background: linear-gradient(-120deg,#FF1F99, #FF7D18 ); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fa-upload{
+    background: linear-gradient(-120deg,#36ECFF, #41C2FF 70%, #09B0FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fa-search {
+    background: linear-gradient(120deg,#FF6F00, #FED92A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fa-pencil-square-o {
+    background: linear-gradient(-30deg,#B3EF74 , #5DCA73 70%, #41BA59);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+
+
+
+  /* .fa-5x:hover {
+    background: linear-gradient(-30deg,#36ECFF, #41C2FF 70%, #09B0FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  } */
+
+
+  /* ==========let get strat section ============== */
+
+
+  .getStarted {
+      margin-top:40px;
+      text-align: left;
+  }
+
+
+  h3 {
+      margin-top:35px;
+      color:#FF1F99;
+  }
+
+
+  .mockBtn1,  .mockBtn2, .mockBtn3  {
+      float: right!important;
+      color: #fff;
+      border:none;
+      border-radius: 25px;
+      margin-top: 40px;
+  }
+
+  .mockBtn1 {
+    background: linear-gradient(130deg,#FF1F99, #FF7D18, #FED92A);
+    padding:  10px 25px;
+  }
+
+  .mockBtn1:hover {
+      background: #FF1F99;
+  }
+
+  .mockBtn2 {
+    background: linear-gradient(-30deg,#36ECFF, #41C2FF 70%, #09B0FF);
+    padding:  10px 20px;
+  }
+
+  .mockBtn2:hover {
+    background: #09B0FF;
+}
+
+  .mockBtn3 {
+    background: linear-gradient(-30deg,#B3EF74 , #5DCA73 70%, #41BA59);
+    padding:  10px 30px;
+  }
+
+  .mockBtn3:hover {
+    background: #41BA59;
+}
+
+
+
+@media (max-width: 768px){
+    .mockBtn1,  .mockBtn2, .mockBtn3{
+        float: none!important;
+        
+    }
+
+    .getStarted {
+        text-align: center;
+    }
+    h3{
+        margin-top:40px;
+    }
+   
+}
+
+
+ /* ============== team section ============= */
+
+.teamSec{
+    padding: 15px 80px;
+    color: white;
+    text-align: center;
+    margin: 40px 0;
+    letter-spacing: 0.1em;
+    background: linear-gradient(160deg,#FF1F99, #FF7D18, #FED92A);
+}
+
+.teamBox {
+    padding: 30px 30px 30px 0px;
+    text-align: center;
+  
+}
+
+.marginThis{
+    margin-right: 20px;
+   
+}
+
+@media (max-width: 768px){
+    .marginThis{
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+}
+
+
+.first {
+  margin-left:-40px!important;
+  box-shadow: inset 0 0 0 2.5px #09B0FF;
+}
+
+.second {
+    box-shadow: inset 0 0 0 2.5px #FF7D18;
+}
+
+.third {
+    box-shadow: inset 0 0 0 2.5px #41BA59;
+}
+
+.four {
+    box-shadow: inset 0 0 0 2.5px #FF1F99;
+}
+
+.five{
+    box-shadow: inset 0 0 0 2.5px #41E9FF;
+}
+
+.img-circle {
+  margin: 15px auto;
+  transform: scale(0.8);
+}
+
+.iconBox > h3 {
+    margin-top:-5px!important;
+    font-size:18px;
+    color: #FF1F99;
+}
+
+
+.iconBox > p {
+    margin-bottom: 15px;
+}
+
+
+.iconBox > hr {
+    width: 65%!important;
+    margin: 25px auto 20px;
+}
+
+
+@media (max-width: 768px){
+    .iconBox{
+        margin: 0 90px!important;
+    }
+   
+}
+
+
+.socialIcon {
+    font-size: 15px!important;
+
+}
+
+
+
+
+
+  /* ============== drawing border effect ============= */
+
+.iconBox {
+    position: relative;
+    -webkit-transition: color 2s;
+    transition: color 2s;
+    /* box-shadow: inset 0 0 0 2.5px #FF7D18; */
+    padding-bottom: 30px;
+    text-align: center;
+    margin: 30px 10px 20px 10px;
+    /* border:2.5px solid #FF1F99;
+    border-image-source: linear-gradient(45deg,#FF1F99, #FF7D18, #FED92A);
+    border-image-slice: 2.5; */
+  }
+  
+  .iconBox::before, .iconBox::after {
+    position: absolute;
+    width: 0;
+    height: 0;
+    content: '';
+    border: 2.5px solid transparent;
+  }
+  
+  .iconBox::before {
+    top: 0;
+    left: 0;
+  }
+  
+  .iconBox::after {
+    right: 0;
+    bottom: 0;
+  }
+  
+  
+  .iconBox:hover::before, .iconBox:hover::after , .iconBox.active:before, .iconBox.active:after {
+    width: 100%;
+    height: 100%;
+  
+  }
+  
+  .iconBox:hover::before , .iconBox.active::before {
+    -webkit-transition: width .25s ease-out, height .25s ease-out .25s;
+    transition: width .25s ease-out, height .25s ease-out .25s;
+    border-top-color: #A108FF;
+    border-right-color: #A108FF;
+    
+  }
+  
+  .iconBox:hover::after , .iconBox.active::after {
+    -webkit-transition: border-color 0s ease-out .5s, width .25s ease-out .5s, height .25s ease-out .75s;
+    transition: border-color 0s ease-out .5s, width .25s ease-out .5s, height .25s ease-out .75s;
+    border-bottom-color: #A108FF;
+    border-left-color: #A108FF;
+    
+  }
+
+   /* ============== drawing border effect ============= */
+
