@@ -11,7 +11,8 @@ class Login extends Component {
     state = {
         search: "",
         username: "",
-        password: ""
+        password: "",
+        id: ""
     };
 
     // When the component mounts, load all books and save them to this.state.books
@@ -32,18 +33,25 @@ class Login extends Component {
     }
 
     // Then reload books from the database
-    createAccount = event => {
+    login = event => {
         console.log("i'm in handleFormSubmit")
         event.preventDefault();
         if (this.state.username && this.state.password) {
-            API.saveUser({
+            console.log(this.state.username);
+            console.log(this.state.password);
+            API.loginUser({
                 username: this.state.username,
                 password: this.state.password
             })
-                .then(res => console.log(res + "SUCESSFUL HANDLEFORM SUBMIT"))
+                .then(res => this.routeToProfile(res.data.id))
                 .catch(err => console.log(err));
         }
     };
+
+    routeToProfile(id) {
+        console.log("i'm in routeToProfile");
+        this.props.history.push("/profile/" + id)
+    }
 
     render() {
         return (

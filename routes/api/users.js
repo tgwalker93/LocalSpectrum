@@ -2,7 +2,8 @@ var path = require('path');
 var request = require("request");
 var express = require("express");
 var app = express.Router();
-
+var passport = require("passport");
+var LocalStrategy = require('passport-local').Strategy;
 
 //scraping tools
 var request = require("request");
@@ -46,6 +47,30 @@ app.post("/saveUser", function (req, res) {
     });
 
 });
+
+app.post('/loginUser',
+passport.authenticate('local', { session: false }),
+function (req, res) {
+    console.log("user authenticated..account.routes.js ", req.user.username, req.user.password);
+    res.cookie("userid", req.user._id, {domain: "localhost", maxAge: 365 * 24 * 60 * 60 * 1000} );
+    res.json({ username: req.user.username, password: req.user.password, id: req.user._id });
+    console.log("userid: " + req.user._id);
+});
+
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+     console.log("passport called")
+      process.nextTick(function () {
+        User.findOne({'username':username},
+          function(err, user) {
+              if (err) { return done(err); }
+              if (!user) { return done(null, false); }
+              if (user.password != password) { return done(null, false); }
+              return done(null, user);
+          });
+      });
+    }
+  ));
 
 
 
