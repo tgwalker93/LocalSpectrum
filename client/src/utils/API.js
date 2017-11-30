@@ -51,6 +51,6 @@ export default {
   },
 
   saveProduct: function(item) {
-    return axios.post("api/profile/saveProduct", item);
+    return axios.post("/api/profile/saveProduct", item);
   }
 };

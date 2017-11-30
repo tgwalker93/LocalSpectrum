@@ -25,7 +25,8 @@ class BusinessInfo extends Component {
             email: "",
             facebook: "",
             instagram: "",
-            zipcode: ""
+            zipcode: "",
+            items: []
         };
         // this._handleInputChange = this._handleInputChange.bind(this);
     }
@@ -37,9 +38,11 @@ class BusinessInfo extends Component {
     loadUserProfile = () => {
         API.getProfileInfo(this.state.userId)
             .then(data => {
+                console.log(data.data);
                 this.setState({userName: data.data.username, businessName: data.data.business_name, businessAddress: data.data.business_address, 
                                 phoneNo:data.data.business_phone,faxNo:data.data.business_faxno, email:data.data.business_email,
-                                facebook: data.data.business_facebook, instagram: data.data.business_instagram, zipcode:data.data.business_zip});
+                                facebook: data.data.business_facebook, instagram: data.data.business_instagram, zipcode:data.data.business_zip,
+                                items: data.data.items});
             })
             .catch(err => console.log(err));
     }
@@ -228,7 +231,7 @@ class BusinessInfo extends Component {
                 </div>
                 {editModal}
                 <hr/>
-                <ProductDetails userId={this.state.userId}/>
+                <ProductDetails userId={this.state.userId} items={this.state.items}/>
             </div>
         );
     }

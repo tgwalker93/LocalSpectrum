@@ -10,6 +10,7 @@ class ProductDetails extends Component {
         super(props);
         this.state = {
             userId: this.props.userId,
+            items: this.props.items,
             itemName: "",
             itemSummary:"",
             product: {
@@ -26,6 +27,7 @@ class ProductDetails extends Component {
     };
 
     render() {
+        console.log(this.state.items);
         let displayProduct = (
             <div className="card">
                 <img className="card-img-top .img-responsive" src="http://localhost:3000/assets/img/map3.png" alt="Card image" />   
@@ -41,21 +43,21 @@ class ProductDetails extends Component {
         ); 
 
         let _addItem = event => {
-            console.log("UserId: " + this.state.userId);
-            console.log("Item Name: " + this.state.itemName);
             event.preventDefault(); 
             if(this.state.itemName) {
                 this.setState({
-                    userId: this.state.userId,
-                    product: {
-                        itemObj: {
-                            itemName: this.state.itemName,
-                            itemSummary: this.state.itemSummary
+                    currentItem: {
+                        userId: this.state.userId,
+                        product: {
+                            itemObj: {
+                                itemName: this.state.itemName,
+                                itemSummary: this.state.itemSummary
+                            }
                         }
                     }
                 }, () => {
                     API.saveProduct({
-                        item: this.state.product
+                        item: this.state.currentItem
                     })
                     .then(res => {
                         console.log("Item is successfully saved!")

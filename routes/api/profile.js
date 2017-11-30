@@ -17,8 +17,9 @@ const router = require("express").Router();
 // Route function to get the profile information for the logged in user
 app.get("/getProfile/:id", function (req, res) {
     console.log("server log: getProfile function called");
-    console.log(req.params.id);
+    // console.log(req.params.id);
     User.findById(req.params.id)
+        .populate("items")
         .then(function (doc, err) {
             if(err) {
                 console.log("getProfile failed with error: " + err)
@@ -26,7 +27,6 @@ app.get("/getProfile/:id", function (req, res) {
                 res.json(doc);
             }
         });
-    // res.json(result);
 });
 
 app.post("/saveProfile", function(req, res) {
@@ -58,7 +58,28 @@ app.post("/saveProfile", function(req, res) {
 
 app.post("/saveProduct", function(req, res) {
     console.log("Server Log: Save Product function called!");
+    var product = new Item(req.body.item.product.itemObj);
+    product.save(function(err, doc) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            User.findOneAndUpdate({"_id":req.body.item.userId}, {$push: { "items": doc._id}}, { safe: true, upsert: true })
+                .exec(function(err, data) {
+                    if(err) {
+                        console.log(err);
+                    }
+                    else {
+                        res.json(data);
+                    }
+                });
+        }
+    });
 });
+
+app.get("/getProduct/:id", function(req, res) {
+    User.findById(req.params.id);
+})
 
 
 // Routes
