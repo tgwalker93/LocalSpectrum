@@ -30,7 +30,9 @@ class Profile extends Component {
         },
     
         itemIds: [],
-        items: []
+        items: [],
+        isLoggedIn: false,
+        userSearch: ""
     
     };
 
@@ -132,7 +134,13 @@ class Profile extends Component {
     render() {
         return (
             <div>
-            <NavAfter username={this.state.username} />
+
+                {this.state.isLoggedIn ? (
+                    <NavAfter username={this.state.username} />
+                ) : (
+                        <Nav />
+                    )}
+            
             
             <Container fluid >
            
