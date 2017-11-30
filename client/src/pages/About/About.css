@@ -231,23 +231,37 @@ h4 {
 
 .first {
   margin-left:-40px!important;
-  box-shadow: inset 0 0 0 2.5px #09B0FF;
+  border: 3px solid #09B0FF;
+  border-image-source: linear-gradient(-120deg,#36ECFF, #41C2FF 70%, #09B0FF);
+  border-image-slice: 2;
 }
 
 .second {
-    box-shadow: inset 0 0 0 2.5px #FF7D18;
+    /* box-shadow: inset 0 0 0 2.5px #FF7D18; */
+    border: 3px solid #09B0FF;
+    border-image-source: linear-gradient(60deg,#FF6F00, #FED92A);
+    border-image-slice: 2;
 }
 
 .third {
-    box-shadow: inset 0 0 0 2.5px #41BA59;
+    /* box-shadow: inset 0 0 0 2.5px #41BA59; */
+    border: 3px solid #41BA59;
+    border-image-source: linear-gradient(-30deg,#B3EF74 , #5DCA73 70%, #41BA59);
+    border-image-slice: 2;
 }
 
 .four {
-    box-shadow: inset 0 0 0 2.5px #FF1F99;
+    /* box-shadow: inset 0 0 0 2.5px #FF1F99; */
+    border: 3px solid #FF1F99;
+    border-image-source: linear-gradient(-120deg,#FF1F99, #FF7D18 ); 
+    border-image-slice: 2;
 }
 
 .five{
-    box-shadow: inset 0 0 0 2.5px #41E9FF;
+    /* box-shadow: inset 0 0 0 2.5px #41E9FF; */
+    border: 3px solid #FF1F99;
+    border-image-source: linear-gradient(-30deg,#36ECFF, #41C2FF 70%);
+    border-image-slice: 2;
 }
 
 .img-circle {
@@ -286,6 +300,10 @@ h4 {
 
 }
 
+.socialIcon:hover {
+    transform: scale(1.3)
+}
+
 
 
 
@@ -309,7 +327,7 @@ h4 {
     position: absolute;
     width: 0;
     height: 0;
-    content: '';
+    /* content: ''; */
     border: 2.5px solid transparent;
   }
   

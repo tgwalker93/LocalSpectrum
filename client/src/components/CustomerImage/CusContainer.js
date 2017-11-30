@@ -1,7 +1,7 @@
 import React from "react";
-import "./ItemContainer.css";
+import "./CusContainer.css";
 
-export const ItemContainer = ({children}) => (
+export const CusContainer = ({children}) => (
     <div id="wrapper">
         <h1 style={{marginLeft: 20}}>Your Items</h1>
         <div id="items">
@@ -11,4 +11,3 @@ export const ItemContainer = ({children}) => (
     </div>
 );
 
-// export default ArticlesContainer

@@ -102,7 +102,7 @@ class About extends Component {
                             <div className="col-sm-2 iconBox first">
                                 <img src="/assets/img/tyler.jpg" className="img-circle img-responsive" alt="Tyler" width="90%" height="90%" />
                                 <h3 style={{ color: "#09B0FF" }}>Tyler Walker</h3>
-                                <p>Back-end | Data Developer </p>
+                                <p>Mern | Node Developer</p>
                                 <hr style={{  borderTop: "1px solid #09B0FF" }}/>
                                 <div className="row">
                                     <div className="col-xs-3"></div>
@@ -135,7 +135,7 @@ class About extends Component {
                             <div className="col-sm-2 iconBox third">
                                 <img src="/assets/img/omar.jpg" className="img-circle img-responsive " alt="Omar" width="90%" height="90%" />
                                 <h3 style={{ color: "#41BA59" }}>Omar Solis</h3>
-                                <p>Back-end | Data Developer</p>
+                                <p>API | Authentication Developer</p>
                                 <hr style={{  borderTop: "1px solid #41BA59" }}/>
                                 <div className="row">
                                     <div className="col-xs-3"></div>
@@ -151,7 +151,7 @@ class About extends Component {
                             <div className="col-sm-2 iconBox four">
                                 <img src="/assets/img/prathihia.jpg" className="img-circle img-responsive" alt="Prathiha" width="90%" height="90%" />
                                 <h3 style={{ color: "#FF1F99" }}>Prathibha Chunchu</h3>
-                                <p>Front-end UX/UI Developer </p>
+                                <p>Front-end | API Developer </p>
                                 <hr />
                                 <div className="row">
                                     <div className="col-xs-3"></div>
@@ -175,7 +175,7 @@ class About extends Component {
                                     <Link to="https://www.linkedin.com/in/mjbelanic/" target="blank"><i style={{ color: "#36ECFF" }} className="fa fa-linkedin socialIcon" aria-hidden="true"></i></Link>
                                     </div>
                                     <div className="col-xs-3">
-                                    <Link to="" target="blank"><i style={{ color: "#36ECFF" }} className="fa fa-github socialIcon" aria-hidden="true"></i></Link>
+                                    <Link to="https://github.com/mjbelanic" target="blank"><i style={{ color: "#36ECFF" }} className="fa fa-github socialIcon" aria-hidden="true"></i></Link>
                                     </div>
                                     <div className="col-xs-3"></div>
                                 </div>
