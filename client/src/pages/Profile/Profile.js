@@ -6,7 +6,8 @@ import { InputLog} from "../../components/LoginItem";
 import NavAfter  from "../../components/NavAfter";
 import Panel from "../../components/Panel";
 import API from "../../utils/API";
-import { ItemContainer, ItemPanel} from "../../components/ItemContainer"
+import { BusContainer, BusItem} from "../../components/BusImage";
+import { CusContainer, CusItem} from "../../components/CustomerImage";
 
 
 class Profile extends Component {
@@ -172,17 +173,17 @@ class Profile extends Component {
                 <Row> 
                 <Col size="md-12">
                         {this.state.items.length ? (
-                            <ItemContainer>
+                            <BusContainer>
                                 <div>
                                     {this.state.items.map((item, i) => {
                                         return (
                                             
-                                            <ItemPanel key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
+                                            <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
                                             
                                         );
                                     })}
                                 </div>
-                            </ItemContainer>
+                            </BusContainer>
                         ) : (
                                 <h3> No Results to Display </h3>
                             )} 

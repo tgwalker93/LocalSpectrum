@@ -94,6 +94,7 @@ class Home extends Component {
                     <div className="row text-center">
                         <h1 className="subheading">Search Result</h1>
                     </div>
+                    
             </Container>
             </div>
         );

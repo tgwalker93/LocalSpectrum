@@ -1,12 +1,12 @@
 import React from "react";
-import "./ItemPanel.css";
+import "./BusItem.css";
 import Rating  from "../../components/Rating";
-import ReviewBtn from "../../components/ReviewBtn";
+// import ReviewBtn from "../../components/ReviewBtn";
 import EditBtn from "../../components/EditBtn";
 import DeleteBtn from "../../components/DeleteBtn";
 
 
-export const ItemPanel = props => (
+export const BusItem = props => (
 
     <div className="col-sm-4">
         <div className='card'>
@@ -30,7 +30,7 @@ export const ItemPanel = props => (
             </div>
             {/* <span onClick={() => props.removeItem(props.id)} className="remove">𝘅</span> */}
             
-            <ReviewBtn /> 
+            {/* <ReviewBtn />  */}
             <EditBtn /> 
         </div>
     </div>
