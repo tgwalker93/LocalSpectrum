@@ -3,10 +3,10 @@ import Modal from 'react-bootstrap-modal';
 import './BusinessInfo.css';
 import ProductDetails from '../ProductDetails/ProductDetails';
 import ImageUpload from '../BusinessCard/ImageUpload';
-import {ItemContainer, ItemPanel} from '../../../components/ItemContainer';
+// import {ItemContainer, ItemPanel} from '../../../components/ItemContainer';
 import {InputLog, TextArea} from '../../../components/LoginItem';
 import { Col, Row, Container } from "../../../components/Grid";
-import Jumbotron from '../../../components/Jumbotron';
+// import Jumbotron from '../../../components/Jumbotron';
 import Hero from '../../../components/Hero';
 // import InputField from './InputField';
 import API from "../../../utils/API";
@@ -26,7 +26,12 @@ class BusinessInfo extends Component {
             facebook: "",
             instagram: "",
             zipcode: "",
-            items: []
+            items: [],
+            itemName: "",
+            itemSummary:"",
+            product: {
+
+            }
         };
         // this._handleInputChange = this._handleInputChange.bind(this);
     }
@@ -38,11 +43,13 @@ class BusinessInfo extends Component {
     loadUserProfile = () => {
         API.getProfileInfo(this.state.userId)
             .then(data => {
-                console.log(data.data);
                 this.setState({userName: data.data.username, businessName: data.data.business_name, businessAddress: data.data.business_address, 
                                 phoneNo:data.data.business_phone,faxNo:data.data.business_faxno, email:data.data.business_email,
                                 facebook: data.data.business_facebook, instagram: data.data.business_instagram, zipcode:data.data.business_zip,
                                 items: data.data.items});
+                // this.state.items.map(item => {
+                //     console.log(item.itemName);
+                // });
             })
             .catch(err => console.log(err));
     }
@@ -59,6 +66,13 @@ class BusinessInfo extends Component {
 
     }
 
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
     render() {
         const userName = this.state.userName; 
         const businessName = this.state.businessName;
@@ -69,7 +83,7 @@ class BusinessInfo extends Component {
         const facebook = this.state.facebook;
         const instagram = this.state.instagram;
         const zipcode = this.state.zipcode;
-
+    
         // Function to handle the edit event
         let _editProfile = () => {
             this.setState({showModal: true});
@@ -91,7 +105,7 @@ class BusinessInfo extends Component {
             API.saveProfile(formData);
             this.setState({showModal: false});
         }
-
+        
         let editModal = (
             <Modal show={this.state.showModal} onHide={_closeModal}>
             <Modal.Header>
@@ -206,6 +220,54 @@ class BusinessInfo extends Component {
         </Modal>
         );
 
+        let displayProduct = (
+            <div>
+                {this.state.items.map(item => {
+                    return(
+                        <div className="card" key={item.itemName}>
+                            <img className="card-img-top .img-responsive" src="http://localhost:3000/assets/img/map3.png" alt="Card image" />   
+                            <div className="card-img-overlay">
+                                <div className="card-block">
+                                    <h4 className="card-title">{item.itemName}</h4>
+                                    <p className="card-text">{item.itemSummary}
+                                    </p>
+                                    <button className="btn btn-primary">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        );
+                })}
+            </div>
+        );
+
+        let _addItem = event => {
+            event.preventDefault(); 
+            if(this.state.itemName) {
+                this.setState({
+                    currentItem: {
+                        userId: this.state.userId,
+                        product: {
+                            itemObj: {
+                                itemName: this.state.itemName,
+                                itemSummary: this.state.itemSummary
+                            }
+                        }
+                    }
+                }, () => {
+                    API.saveProduct({
+                        item: this.state.currentItem
+                    })
+                    .then(res => {
+                        console.log("Item is successfully saved!");
+                        console.log(res);
+                    })
+                    .catch(err => {
+                        console.log("Error encountered while saying Product: " + err);
+                    })
+                })
+            }
+        }
+        
         return (
             <div>
                 <div className="text-center">
@@ -231,7 +293,42 @@ class BusinessInfo extends Component {
                 </div>
                 {editModal}
                 <hr/>
-                <ProductDetails userId={this.state.userId} items={this.state.items}/>
+                <div>
+                    <Container fluid>
+                        <Row><Col size="md-12">
+                        <button className="btn btn-primary addBtn" data-toggle="collapse"
+                                data-target="#addProductDiv"><i className="fa fa-plus"></i>&nbsp;Add Product</button>
+                        </Col></Row>
+                        <Row><Col size="md-6">
+                            <div className="collapse" id="addProductDiv">
+                                <form>
+                                    <ImageUpload />
+                                    <InputLog
+                                        value={this.state.itemName}
+                                        onChange={this.handleInputChange}
+                                        name="itemName"
+                                        placeholder="Item Name"
+                                    />
+                                
+                                    <InputLog
+                                        value={this.state.itemSummary}
+                                        onChange={this.handleInputChange}
+                                        name="itemSummary"
+                                        placeholder="Item Summary"
+                                    />
+                                    <div>
+                                    <button className="btn btn-primary" onClick={_addItem}>Add Item</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </Col></Row>
+                        <hr />
+                        <Row><Col size="md-12">
+                            {displayProduct}                       
+                        </Col></Row>
+                    </Container>
+                </div>
             </div>
         );
     }

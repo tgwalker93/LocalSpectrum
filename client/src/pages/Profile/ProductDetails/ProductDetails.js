@@ -17,6 +17,11 @@ class ProductDetails extends Component {
 
             }
         }
+        console.log(this.state.items.length);
+        this.state.items.map(item => {
+            console.log(item.itemName);
+            console.log(item.itemSummary);
+        });
     }
 
     handleInputChange = event => {
@@ -27,7 +32,10 @@ class ProductDetails extends Component {
     };
 
     render() {
-        console.log(this.state.items);
+        const items = this.props.items; 
+        const userId = this.props.userId;
+        // console.log("UserID (ProductDetails render()): " + userId)
+        // console.log("Items (ProductDetails render()): " +items);
         let displayProduct = (
             <div className="card">
                 <img className="card-img-top .img-responsive" src="http://localhost:3000/assets/img/map3.png" alt="Card image" />   
