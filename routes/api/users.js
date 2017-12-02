@@ -13,7 +13,6 @@ var cheerio = require("cheerio");
 //models 
 var User = require("../../models/User.js");
 
-const router = require("express").Router();
 
 
 

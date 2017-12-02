@@ -135,12 +135,14 @@ class Profile extends Component {
     render() {
         return (
             <div>
-
+{/* 
                 {this.state.isLoggedIn ? (
                     <NavAfter username={this.state.username} />
                 ) : (
                         <Nav />
-                    )}
+                    )} */}
+
+                <NavAfter username={this.state.username} />
             
             
             <Container fluid >

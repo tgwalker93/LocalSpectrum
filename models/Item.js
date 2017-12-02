@@ -36,6 +36,9 @@ var ItemSchema = new Schema({
     }
 });
 
+// ItemSchema.index({ itemName: 'text', itemSummary: 'text' });
+ItemSchema.index({ '$**': 'text' });
+
 var Item = mongoose.model("Item", ItemSchema);
 
 module.exports = Item;

@@ -40,5 +40,8 @@ export default {
   },
   getItemReviews: function(item) {
     return axios.get("/api/profile/getItemReviews", item)
+  },
+  search: function(searchObj) {
+    return axios.get("/api/home/search/" + searchObj.search);
   }
 };

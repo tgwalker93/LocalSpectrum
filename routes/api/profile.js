@@ -14,7 +14,6 @@ var cheerio = require("cheerio");
 var User = require("../../models/User.js");
 var Item = require("../../models/Item.js");
 
-const router = require("express").Router();
 
 
 

@@ -5,7 +5,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import Nav from "../../components/Nav";
 import API from "../../utils/API";
-
+import { BusContainer, BusItem } from "../../components/BusImage";
 
 
 
@@ -13,7 +13,8 @@ class Home extends Component {
     // Setting our component's initial state
     state = {
         search: "",
-        location: ""
+        location: "",
+        items: []
     };
 
     // When the component mounts, load all books and save them to this.state.books
@@ -32,16 +33,22 @@ class Home extends Component {
     // Then reload books from the database
     handleFormSubmit = event => {
         event.preventDefault();
-        //HANDLE API WORK HERE
-        // if (this.state.title && this.state.author) {
-        //     API.saveBook({
-        //         title: this.state.title,
-        //         author: this.state.author,
-        //         synopsis: this.state.synopsis
-        //     })
-        //         .then(res => this.loadBooks())
-        //         .catch(err => console.log(err));
-        // }
+        console.log("i'm in handle form submit");
+
+        if (this.state.search) {
+            API.search({
+                search: this.state.search,
+                location: this.state.location
+            })
+                .then(res => {
+                    console.log("I'm in the call back of save item in API SEARCH!!!")
+                    console.log(res.data);
+                    this.setState({
+                        items: res.data
+                    });
+                })
+                .catch(err => console.log(err));
+        }
     };
 
     render() {
@@ -91,9 +98,25 @@ class Home extends Component {
                           
                     </div>
 
-                    <div className="row text-center">
-                        <h1 className="subheading">Search Result</h1>
-                    </div>
+                    {this.state.items.length ? (
+                        <BusContainer>
+                            <div>
+                                {this.state.items.map((item, i) => {
+                                    return (
+
+                                        <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
+
+                                    );
+                                })}
+                            </div>
+                        </BusContainer>
+                    ) : (
+                            <div className="row text-center">
+                                <h1 className="subheading">Search Result</h1>
+                            </div>
+                        )} 
+
+
                     
             </Container>
             </div>
