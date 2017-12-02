@@ -9,17 +9,29 @@ class UserProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "Prathibha",
+            username: "",
             userId: this.props.match.params.id,
-            isProfileExists: true // To validate if profile exists
+            businessName: ""
         }
+    }
+
+    componentDidMount = () => {
+        this.loadUserProfile(); 
+    }
+
+    loadUserProfile = () => {
+        API.getProfileInfo(this.state.userId)
+            .then(data => {
+                this.setState({username: data.data.username, businessName: data.data.business_name});
+            })
+            .catch(err => console.log(err));
     }
 
     render() {
         let displayBusinessInfo = null;
         const profileExists = this.state.isProfileExists; 
         
-        if(profileExists) {
+        if(this.state.businessName) {
             displayBusinessInfo = <BusinessInfo userId={this.state.userId}/>;
         } else {
             displayBusinessInfo = <BusinessCard userId={this.state.userId}/>;
@@ -31,9 +43,9 @@ class UserProfile extends Component {
                 <div className="businessCard">
                     {displayBusinessInfo}
                 </div>
-                <div className="productDetails">
+                {/* <div className="productDetails"> */}
                     {/* <ProductDetails /> */}
-                </div>
+                {/* </div> */}
             </div>
         );
     }

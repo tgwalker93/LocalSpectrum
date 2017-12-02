@@ -60,7 +60,11 @@ const UserSchema = new Schema({
         type: String,
         required: false
     },
-    business_imgurl: {
+    business_img: {
+        type: Buffer,
+        required: false
+    },
+    business_img_contentType: {
         type: String,
         required: false
     },

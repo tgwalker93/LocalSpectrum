@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import Modal from 'react-bootstrap-modal';
+// import Modal from 'react-bootstrap-modal';
+import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import './BusinessCard.css';
 import {ItemContainer, ItemPanel} from '../../../components/ItemContainer';
 import {InputLog, TextArea} from '../../../components/LoginItem';
@@ -26,6 +29,7 @@ class BusinessCard extends Component {
             faxNo: ""
         };
         this._handleClick = this._handleClick.bind(this);
+        console.log("BusinessCard Constructor: " + this.props);
     }
 
     _handleClick = () => {
@@ -48,16 +52,21 @@ class BusinessCard extends Component {
             formData[field] = this.state[field]; 
         }
         console.log(formData);
-        API.saveProfile(formData);
+        API.saveProfile(formData)
+        .then(res => {
+            this.setState({user: res.data});
+            this.routeToProfile(this.state.user._id);
+        });
         // this.setState({showModal: false});
     }; 
 
-    render() {
-        // let _closeModal = () => {
-        //     // this.setState({showModal: false});
-        //     document.getElementById("addProfileDiv").collapse();
-        // }; 
+    routeToProfile(id) {
+        console.log("Inside routeToProfile in BusinessCard: " + id);
+        this.props.history.push("../profile/"+id);
+    }
 
+    render() {
+        const {history} = this.props;
         return (
             <div>
                 <span>
@@ -167,125 +176,13 @@ class BusinessCard extends Component {
                             <hr />
                             <Row><Col size="md-10">
                                 <button className="btn btn-primary pull-right" onClick={this._saveAndClose}>Save</button>
-                                {/* <button className="btn btn-default pull-right" onClick={this._closeModal}>Cancel</button> */}
                             </Col></Row>
                         </Container>
                     </form>
                 </div>
-                {/* <Modal show={this.state.showModal} onHide={_closeModal}> */}
-                    {/* <Modal.Header>
-                        <Modal.Title>
-                            Provide details to Create Profile
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <form onSubmit={this._saveAndClose}>
-                            <Container fluid>
-                                <Row>
-                                    <Col size="md-12">
-                                        <ImageUpload />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col size="md-10">
-                                        <InputLog
-                                            value={this.state.BusinessTitle}
-                                            onChange={this._handleInputChange}
-                                            name="businessName"
-                                            placeholder="Business Name"
-                                            id="inputLogBusinessTitle"
-                                        />
-                                    </Col>
-                                    <Col size="md-2">                                        
-                                        <span className="glyphicon glyphicon-asterisk"></span>
-                                    </Col>
-                                </Row> 
-                            <Row><Col size="md-10">
-                                <TextArea
-                                    value={this.state.AddressLine1}
-                                    onChange={this._handleInputChange}
-                                    name="businessAddress"
-                                    placeholder="Business Address"
-                                    id="txtAreaBusinessAddress"
-                                />
-                            </Col></Row>
-                            <Row>
-                                <Col size="md-10">
-                                <InputLog
-                                    value={this.state.ZipCode}
-                                    onChange={this._handleInputChange}
-                                    name="zipcode"
-                                    placeholder="ZipCode"
-                                    id="inputLogZipCode"
-                                />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col size="md-10">
-                                <InputLog
-                                    value={this.state.FacebookLink}
-                                    onChange={this._handleInputChange}
-                                    name="facebook"
-                                    placeholder="Facebook Link"
-                                    id="inputLogFacebookLink"
-                                />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col size="md-10">
-                                <InputLog
-                                    value={this.state.Instagram}
-                                    onChange={this._handleInputChange}
-                                    name="instagram"
-                                    placeholder="Instagram UserName"
-                                    id="inputLogInstagram"
-                                />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col size="md-10">
-                                <InputLog
-                                    value={this.state.Email}
-                                    onChange={this._handleInputChange}
-                                    name="email"
-                                    placeholder="Email Id"
-                                    id="inputLogEmail"
-                                />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col size="md-10">
-                                <InputLog
-                                    value={this.state.PhoneNo}
-                                    onChange={this._handleInputChange}
-                                    name="phoneNo"
-                                    placeholder="Phone No."
-                                    id="inputLogPhoneNo"
-                                />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col size="md-10">
-                                <InputLog
-                                    value={this.state.FaxNo}
-                                    onChange={this._handleInputChange}
-                                    name="faxNo"
-                                    placeholder="Fax No."
-                                    id="inputLogFaxNo"
-                                />
-                                </Col>
-                            </Row>
-                            </Container>
-                        </form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Modal.Dismiss className="btn btn-default">Cancel</Modal.Dismiss>
-                        <button className="btn btn-primary" onClick={this._saveAndClose}>Save</button>
-                    </Modal.Footer> */}
-                {/* </Modal> */}
             </div>
         );
     }
 }
 
-export default BusinessCard; 
+export default withRouter(BusinessCard); 

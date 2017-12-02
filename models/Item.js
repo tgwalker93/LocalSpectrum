@@ -14,6 +14,16 @@ var ItemSchema = new Schema({
         type: String,
         required: false
     },
+    /**
+     * Added by Prathibha for storing the image as binary object in Mongo
+     */
+    imgData: {
+        type: Buffer,
+        required: false
+    },
+    /**
+     * Added by Prathibha for storing the image as binary object in Mongo
+     */
     price: {
         type: Number,
         required: false

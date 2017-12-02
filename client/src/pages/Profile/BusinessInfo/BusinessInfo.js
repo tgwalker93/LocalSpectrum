@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-bootstrap-modal';
+import fs from 'fs';
 import './BusinessInfo.css';
 import ProductDetails from '../ProductDetails/ProductDetails';
 import ImageUpload from '../BusinessCard/ImageUpload';
@@ -31,7 +32,9 @@ class BusinessInfo extends Component {
             itemSummary:"",
             product: {
 
-            }
+            },
+            imgURL: "",
+            imgData:""
         };
         // this._handleInputChange = this._handleInputChange.bind(this);
     }
@@ -73,6 +76,15 @@ class BusinessInfo extends Component {
         });
     };
 
+    _handleImageChange = event => {
+        event.preventDefault(); 
+        const imgURL = event.target.files[0]; 
+        this.setState({imgURL: imgURL});
+        const imgData = fs.readFileSync(imgURL);
+        this.setState({imgData: imgData});
+        console.log("Image Path: " + event.target.files[0].name);
+    }
+
     render() {
         const userName = this.state.userName; 
         const businessName = this.state.businessName;
@@ -101,9 +113,12 @@ class BusinessInfo extends Component {
             for (const field in this.state) {
                 formData[field] = this.state[field]; 
             }
-            console.log(formData);
-            API.saveProfile(formData);
-            this.setState({showModal: false});
+            // console.log(formData);
+            API.saveProfile(formData)
+            .then(res => {
+                console.log("Form Data for profile is successfully saved!");
+            });
+            // this.setState({showModal: false});
         }
         
         let editModal = (
@@ -248,6 +263,7 @@ class BusinessInfo extends Component {
                         userId: this.state.userId,
                         product: {
                             itemObj: {
+                                itemImage: this.state.imgURL,
                                 itemName: this.state.itemName,
                                 itemSummary: this.state.itemSummary
                             }
@@ -302,7 +318,9 @@ class BusinessInfo extends Component {
                         <Row><Col size="md-6">
                             <div className="collapse" id="addProductDiv">
                                 <form>
-                                    <ImageUpload />
+                                    {/* <ImageUpload /> */}
+                                    <input className="fileInput" type="file"
+                                        onChange={(e)=>this._handleImageChange(e)} />
                                     <InputLog
                                         value={this.state.itemName}
                                         onChange={this.handleInputChange}
