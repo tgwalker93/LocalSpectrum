@@ -29,6 +29,7 @@ app.get("/search/:search", function (req, res) {
         .limit(10)
 
         .exec(function (err, results) { 
+            
             console.log(results)
             res.json(results) 
         });

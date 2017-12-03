@@ -99,17 +99,17 @@ class Home extends Component {
                     </div>
 
                     {this.state.items.length ? (
-                        <BusContainer>
+                        <CusContainer>
                             <div>
                                 {this.state.items.map((item, i) => {
                                     return (
 
-                                        <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
+                                        <CusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
 
                                     );
                                 })}
                             </div>
-                        </BusContainer>
+                        </CusContainer>
                     ) : (
                             <div className="row text-center">
                                 <h1 className="subheading">Search Result</h1>
