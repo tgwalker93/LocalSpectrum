@@ -12,15 +12,12 @@ import {TextArea} from '../../components/Form';
 import {ReviewBtn} from '../../components/ReviewBtn';
 
 import API from "../../utils/API";
-// import ImageUpload from './ImageUpload';
-// import BusinessInfo from '../BusinessInfo/BusinessInfo';
 
 class AddProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
             id: this.props.userId,
-            // showModal: false,
             username:this.props.userName,
             business_name: "",
             business_address: "",
@@ -33,11 +30,9 @@ class AddProfile extends Component {
             business_logo: ""
         };
         this._handleClick = this._handleClick.bind(this);
-        // console.log("BusinessCard Constructor: " + this.props);
     }
 
     _handleClick = () => {
-        // this.setState({showModal: true});
     };
 
     _handleInputChange = event => {
@@ -60,12 +55,16 @@ class AddProfile extends Component {
         .then(res => {
             this.setState({user: res.data});
             this.routeToProfile(this.state.user._id);
+        })
+        .catch(err => {
+            console.log(err);
         });
     }; 
 
     routeToProfile(id) {
         console.log("Inside routeToProfile in BusinessCard: " + id);
-        // this.props.history.push("../profile/"+id);
+        // this.props.history.push("/profile/"+id);
+        window.location.reload(); 
     }
 
     _updateItemImage = (event) => {
@@ -80,7 +79,7 @@ class AddProfile extends Component {
     }
 
     render() {
-        const {history} = this.props;
+        const redirectURI = "/profile/" + this.state.id;
         return (
             <div>
                 <span>
@@ -189,8 +188,10 @@ class AddProfile extends Component {
                             </Row>
                             <hr />
                             <Row><Col size="md-10">
-                                <button className="btn btn-primary pull-right" onClick={this._saveAndClose}>Save</button>
-                                {/* <ReviewBtn class="btn btn-primary pull-right" onClick={this._saveAndClose}>Save</ReviewBtn> */}
+                                <button className="btn btn-primary pull-right addBtn" onClick={this._saveAndClose}><i className="glyphicon glyphicon-save"></i>&nbsp;Save</button>
+                                {/* <a href={redirectURI} className="btn btn-Primary addBtn pull-right" onClick={this._saveAndClose}>
+                                    <i className="glyphicon glyphicon-save">Save</i>
+                                </a> */}
                             </Col></Row>
                         </Container>
                     </form>
@@ -200,4 +201,5 @@ class AddProfile extends Component {
     }
 }
 
-export default AddProfile; 
+// export default withRouter(AddProfile); 
+export default AddProfile;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Modal from 'react-modal';
 import * as fs from 'fs';
-import { browserHistory } from 'react-router';
+import { withRouter } from 'react-router';
 import Jumbotron from "../../components/Jumbotron";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
@@ -14,6 +14,8 @@ import { BusContainer, BusItem} from "../../components/BusImage";
 import { CusContainer, CusItem} from "../../components/CustomerImage";
 import Hero from "../../components/Hero";
 import AddProfile from './AddProfile';
+import './AddProfile.css';
+import './ProfileValidations';
 import UploadImage from './UploadImage';
 
 
@@ -144,7 +146,7 @@ class Profile extends Component {
         this.setState({editModal: false});
     }
 
-    _saveAndClose = event => {
+    _saveProfile = event => {
         event.preventDefault(); 
         
         const formData = {
@@ -168,6 +170,15 @@ class Profile extends Component {
         .catch(err => {
             console.log("Error in saving profile: " + err);
         });
+    }
+
+    _saveAndRedirect = event => {
+        this._saveProfile(event);
+        this.props.history("/profile/"+this.state.userId);
+    }
+
+    _updateAndClose = event => {
+        this._saveProfile(event);
         this.closeModal();
     }
 
@@ -329,24 +340,27 @@ class Profile extends Component {
                                                 </Row>
                                                 <hr />
                                                 <Row><Col size="md-10">
-                                                    <button className="btn btn-primary pull-right" onClick={this._saveAndClose}>Save</button>
+                                                    <button className="btn btn-primary pull-right" onClick={this._updateAndClose}>Save</button>
                                                 </Col></Row>
                                             </Container>
                                         </form>
                                     </Modal>
                                 </div>
                             </Hero>
-                            <Col size="md-12">
+                            <Col size="md-12"><p>
                                 <Row><Col size="md-12">
-                                    <div className="col-sm-2 pull-right"><i className="fa fa-address-card-o pull-left">&nbsp;{this.state.business_address}</i></div>
-                                    <div className="col-sm-2 pull-right"><i className="fa fa-user-circle-o pull-left">&nbsp;{this.state.business_name}</i></div>
-                                </Col></Row>
-                                {/* <br/> */}
+                                    <div className="col-sm-2 pull-right text"><a href={this.state.business_facebook} target="_blank" ><i className = "fa fa-facebook-square"></i></a></div>
+                                    {/* <div className="col-sm-2 pull-right text"></div> */}
+                                    <div className="col-sm-3 pull-right text"><i className="fa fa-address-card-o pull-left">&nbsp;{this.state.business_address}</i></div>
+                                    <div className="col-sm-3 pull-right text"><i className="fa fa-user-circle-o pull-left">&nbsp;{this.state.business_name}</i></div>
+                                </Col></Row></p>
+                                {/* <br/> */}<p>
                                 <Row><Col size="md-12"> 
-                                    <div className="col-sm-2 pull-right"><i className="fa fa-phone-square pull-left">&nbsp;{this.state.business_phone}</i></div>
-                                    <div className="col-sm-2 pull-right"><i className="fa fa-fax pull-left">&nbsp;{this.state.business_fax}</i></div>
-                                    <div className="col-sm-2 pull-right"><i className="fa fa-envelope-o pull-left">&nbsp;{this.state.business_email}</i></div>
-                                </Col></Row>
+                                    <div className="col-sm-2 pull-right text"><a href="#"><i className = "fa fa-instagram"></i></a></div>
+                                    <div className="col-sm-3 pull-right text"><i className="fa fa-phone-square pull-left">&nbsp;{this.state.business_phone}</i></div>
+                                    <div className="col-sm-3 pull-right text"><i className="fa fa-fax pull-left">&nbsp;{this.state.business_fax}</i></div>
+                                    <div className="col-sm-3 pull-right text"><i className="fa fa-envelope-o pull-left">&nbsp;{this.state.business_email}</i></div>
+                                </Col></Row></p>
                             </Col>
                         </Row>
                     </Container>
@@ -391,9 +405,7 @@ class Profile extends Component {
                                     <div>
                                         {this.state.items.map((item, i) => {
                                             return (
-                                                
                                                 <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
-                                                
                                             );
                                         })}
                                     </div>
@@ -413,7 +425,7 @@ class Profile extends Component {
             </div>):
                 (
                     <div>
-                        <AddProfile userId={this.state.userId} userName={this.state.username} test={this.loadUserProfile}/>
+                        <AddProfile userId={this.state.userId} userName={this.state.username} test={this.loadUserProfile}/>                        
                     </div>
                 )}
             </div>
@@ -421,7 +433,5 @@ class Profile extends Component {
 
     }
 }
-
-
 
 export default Profile;

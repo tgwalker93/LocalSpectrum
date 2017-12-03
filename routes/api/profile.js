@@ -17,7 +17,7 @@ var Item = require("../../models/Item.js");
 //getItemIds
 app.get("/getUserData/:id", function (req, res) {
     console.log("I'm in profile api js /getUserData/:id")
-    console.log(req.params.id);
+    // console.log(req.params.id);
     User.findById(req.params.id)
     .populate("items")
     .then( function (doc, error) {
@@ -29,7 +29,7 @@ app.get("/getUserData/:id", function (req, res) {
         // Or send the doc to the browser as a json object
         else {
             console.log("getUserData back-end was successful!");
-            console.log(doc);
+            // console.log(doc);
             res.json(doc);
         }
     });
