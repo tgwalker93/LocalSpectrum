@@ -9,6 +9,10 @@ const UserSchema = new Schema({
         type: String, 
         required: true 
     },
+    user_image: {
+        type: String,
+        required: false
+    },
     user_address: {
         type: String,
         required: false

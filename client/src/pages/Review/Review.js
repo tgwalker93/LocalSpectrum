@@ -5,20 +5,19 @@ import { Input, FormBtn } from "../../components/Form";
 import { InputLog} from "../../components/LoginItem";
 import NavAfter  from "../../components/NavAfter";
 import Panel from "../../components/Panel";
-import ImageUploader from 'react-images-upload';
-import ImageUpload from './ImageUpload.js';
+import UploadImg from "./UploadImg.js";
 import API from "../../utils/API";
 import { BusContainer, BusItem} from "../../components/BusImage";
 import { CusContainer, CusItem} from "../../components/CustomerImage";
 
 
-class Profile extends Component {
+class Review extends Component {
     // Setting our component's initial state
     state = {
         search: "",
         itemName: "",
         itemSummary:"",
-        itemImage:"test",
+        itemImage:"",
         username: "",
         location:"", //search Location
         logo:"",//Business Logo
@@ -39,48 +38,8 @@ class Profile extends Component {
     
     };
 
-
-// ================ function to upload image locally ===========================
-    _handleImageChange(e) {
-         e.preventDefault(); 
- 
-        let reader = new FileReader();
-        //  let file = e.target.files[0];
-
-        console.log(e.target)
-        console.log(e.target.files)
-
-        var input = e.target;
-         
- 
-        reader.onloadend = () => {
-            //  this.setState({
-            //      itemImage: {
-            //      file: input.files[0],
-            //      imagePreviewURL: reader.result
-            //      }
-            //  });
-
-             this.setState({
-                 itemImage: reader.result
-               
-             });
-            console.log(`itemImage ${input.files[0]}`)
-            console.log("WE'RE IN HANDLEIMAGECHANGE, BELOW IS imagePreviewURL");
-            // console.log(`this is reader.result: ${reader.result}`)
-            console.log(`this is type of reader.result: ${typeof reader.result}`)
-            // this.state.itemImage.imagePreviewURL = "test";
-            // this.state.itemImage.imagePreviewURL = reader.result
-         }
-         reader.readAsDataURL(input.files[0]);
-     }
-
-   
+    // When the component mounts, load all books and save them to this.state.books
     componentDidMount() {
-        // ================ Do this to show the image upload locally ===========================
-        this._handleImageChange = this._handleImageChange.bind(this);
-        // ================ Do this to show the image upload locally ===========================
-
         this.loadUserProfile() 
     }
 
@@ -93,17 +52,19 @@ class Profile extends Component {
     };
 
 
-    
-
     loadUserProfile() {
-        // this._handleImageChange = this._handleImageChange.bind(this);
-        console.log("i successfully entered load user profile")
-        console.log(this.state.items);
         API.getUserData(this.state.userId)
             .then(data =>
                 {
                 console.log("API.getUserData on the front-end WAS SUCCESSFUL, i'm in the .then");
                 console.log(data.data)
+
+                //WORKING ON GETTING ITEM DETAILS FROM ITEM IDs-----------------------------------------------------------------------------------
+                // this.setState({ itemIds: data.data.items, username: data.data.username, userProfile: data.data }, () => {
+                //     console.log("Before I call getUserItemsByItemId");
+                //     console.log(this.state.itemIds);
+                //     this.getUserItemsByItemId(this.state.itemIds);
+                // })
 
                 this.setState({ items: data.data.items, username: data.data.username, userProfile: data.data });
 
@@ -127,8 +88,6 @@ class Profile extends Component {
     //         .catch(err => console.log(err));
 
     // };
-
-
     // Then reload books from the database
     handleFormSubmit = event => {
         event.preventDefault();
@@ -148,11 +107,7 @@ class Profile extends Component {
     
     if (this.state.itemName) {
 
-    console.log("I SUCCESSSFULY ENTERED ADDITEM, below is item image");
-
     //Save Current Item
-    console.log(this.state.itemImage);
-
         this.setState({
             currentItem: {
                 userId: this.state.userId,
@@ -160,7 +115,6 @@ class Profile extends Component {
                     itemName: this.state.itemName,
                     itemSummary: this.state.itemSummary,
                     // itemImage: this.pictures
-                    itemImage: this.state.itemImage
                 }
             }
         }, () => {
@@ -182,14 +136,14 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                {/* 
+{/* 
                 {this.state.isLoggedIn ? (
                     <NavAfter username={this.state.username} />
                 ) : (
                         <Nav />
                     )} */}
 
-            <NavAfter username={this.state.username} />
+                <NavAfter username={this.state.username} />
             
             
             <Container fluid >
@@ -198,15 +152,8 @@ class Profile extends Component {
                 <Row>
                     <Col size="md-12">
                     
-                   
+                    <UploadImg />
                         <form>
-                            {/* ======= upload Image button =======*/}
-                            <div>
-                                <input className="fileInput" type="file"
-                                 onChange={this._handleImageChange} />
-                            </div>
-                            {/* ======= upload Image button =======*/}
-                            
                             <p>Item Name</p>
                             <InputLog
                                 value={this.state.itemName}
@@ -235,15 +182,13 @@ class Profile extends Component {
                 </div>
                 <Row> 
                 <Col size="md-12">
-                        {console.log("I just rendered!")}
-                        {console.log(this.state.items)}
                         {this.state.items.length ? (
                             <BusContainer>
                                 <div>
                                     {this.state.items.map((item, i) => {
                                         return (
                                             
-                                            <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
+                                            <CusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
                                             
                                         );
                                     })}
@@ -269,4 +214,4 @@ class Profile extends Component {
 
 
 
-export default Profile;
+export default Review;

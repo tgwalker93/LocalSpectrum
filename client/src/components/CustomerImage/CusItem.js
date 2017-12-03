@@ -11,7 +11,7 @@ export const CusItem = props => (
         <div className='card'>
             <div className="img-container">
                 <img alt={props.itemName} src={props.itemImage} />
-                {props.children}
+                {/* {props.children} */}
                 
             </div>
             {/* <DeleteBtn /> */}
@@ -29,7 +29,8 @@ export const CusItem = props => (
             </div>
             {/* <span onClick={() => props.removeItem(props.id)} className="remove">𝘅</span> */}
             
-            <ReviewBtn /> 
+            {/* <ReviewBtn />  */}
+            {props.children}
             {/* <EditBtn />  */}
         </div>
     </div>

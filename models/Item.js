@@ -10,10 +10,6 @@ var ItemSchema = new Schema({
         type: String,
         required: false
     },
-    itemImage: {
-        type: String,
-        required: false
-    },
     price: {
         type: Number,
         required: false
@@ -22,18 +18,22 @@ var ItemSchema = new Schema({
         type: Number,
         required: false
     },
-    itemReviews: {
+    itemImage: {
+        type: String,
+        required: false
+    },
+    itemReviews: [{
         type: [Schema.Types.ObjectId],
         ref: "ItemReview"
-    },
-    itemCategory: {
+    }],
+    itemCategory: [{
         type: [Schema.Types.ObjectId],
         ref: "ItemCategory"
-    },
-    itemTag: {
+    }],
+    itemTag: [{
         type: [Schema.Types.ObjectId],
         ref: "ItemTag"
-    }
+    }]
 });
 
 // ItemSchema.index({ itemName: 'text', itemSummary: 'text' });

@@ -35,7 +35,8 @@ app.get("/getUserData/:id", function (req, res) {
         // Or send the doc to the browser as a json object
         else {
             console.log("getUserData back-end was successful!");
-            console.log(doc);
+            //// below console log log out the long query of imageUpload
+            // console.log(doc);
             res.json(doc);
         }
     });
@@ -80,7 +81,7 @@ app.get("/getUserData/:id", function (req, res) {
 app.post("/saveItem", function (req, res) {
         console.log("I'm IN THE BACKEND /saveItem route api/profile")
         var result = req.body;
-        console.log(result);
+        // console.log(result);
         // Using our Article model, create a new entry
         // This effectively passes the result object to the entry (and the title and link)
         // Create a new note and pass the req.body to the entry
