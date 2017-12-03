@@ -9,6 +9,8 @@ var passport = require('passport');
 var bcrypt = require('bcrypt-nodejs');
 const LocalStrategy = require('passport-local').Strategy
 
+bodyParser.json({limit: '100mb'});
+
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

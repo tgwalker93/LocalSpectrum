@@ -51,6 +51,18 @@ class Home extends Component {
         }
     };
 
+    /**
+     * Default callback function for google maps API that we are using for location autocomplete
+     */
+    intiMap = () => {
+
+    }
+
+    // autocomplete = () => {
+    //     let autocomplete = new google.maps.places.Autocomplete((document.getElementById('location')),
+    //                {types:['geocode']});
+    // }
+    
     render() {
         return (
             <div>
@@ -83,6 +95,7 @@ class Home extends Component {
                                     value={this.state.location}
                                     onChange={this.handleInputChange}
                                     name="location"
+                                    id="location"
                                     placeholder=" &#xf041; Enter location"
                                 />
                             </form>

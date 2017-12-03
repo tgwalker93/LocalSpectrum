@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     },
     password: { 
         type: String, 
-        required: true 
+        required: false 
     },
     user_address: {
         type: String,
@@ -42,6 +42,22 @@ const UserSchema = new Schema({
         required: false
     },
     business_phone: {
+        type: Number,
+        required: false
+    },
+    business_facebook: {
+        type: String,
+        required:false
+    },
+    business_instagram: {
+        type: String,
+        required: false
+    },
+    business_fax: {
+        type: Number,
+        required: false
+    },
+    business_logo: {
         type: String,
         required: false
     },

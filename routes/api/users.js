@@ -9,18 +9,11 @@ var LocalStrategy = require('passport-local').Strategy;
 var request = require("request");
 var cheerio = require("cheerio");
 
-
 //models 
 var User = require("../../models/User.js");
 
-
-
-
-
-
 // Routes
 //==========================
-
 
 //SAVE ARTICLE FOR WHEN USER CLICKS SAVE
 app.post("/saveUser", function (req, res) {

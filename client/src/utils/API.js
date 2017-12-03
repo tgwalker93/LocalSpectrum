@@ -43,5 +43,13 @@ export default {
   },
   search: function(searchObj) {
     return axios.get("/api/home/search/" + searchObj.search);
-  }
+  },
+
+  /**
+   * 
+   */
+  saveProfile: function(data) {
+    // console.log(data);
+    return axios.post("/api/profile/saveProfile", data);
+  },
 };
