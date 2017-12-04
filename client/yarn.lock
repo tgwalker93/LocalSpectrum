@@ -5170,10 +5170,6 @@ react-flip-move@^2.9.14:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-2.10.0.tgz#70978ed2ca4a6b94d01fe7a230970460f9127b67"
 
-react-google-login-component@^0.9.2:
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/react-google-login-component/-/react-google-login-component-0.9.2.tgz#c4edf72c0dad55b4f11215e358a5e31b42e55acd"
-
 react-images-upload@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-images-upload/-/react-images-upload-1.1.1.tgz#fd7ace49df43b414326cfc0ff7535665226a71f5"

@@ -142,7 +142,6 @@ class Home extends Component {
                             <h3> There are no saved notes! </h3>
                         )} */}
                 </Modal>
-                <Nav />
                 <Container fluid>
                     <Row>
                         {/* <Hero backgroundImage="https://media.giphy.com/media/3o6gbchrcNIt4Ma8Tu/giphy.gif"> */}

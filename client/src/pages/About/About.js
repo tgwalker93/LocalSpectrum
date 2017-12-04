@@ -6,15 +6,11 @@ import API from "../../utils/API";
 import "./About.css";
 import { Link } from "react-router-dom";
 
-
-
-
 class About extends Component {
 
     render() {
         return (
             <div>
-                <Nav />
                 <Container fluid>
                     <Row>
                         {/* <Hero backgroundImage="https://media.giphy.com/media/3o6gbchrcNIt4Ma8Tu/giphy.gif"> */}

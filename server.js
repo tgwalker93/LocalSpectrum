@@ -1,36 +1,59 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const routes = require("./routes");
-const app = express();
-const PORT = process.env.PORT || 3001;
+// Loading evnironmental variables here
+if (process.env.NODE_ENV !== 'production') {
+	console.log('loading dev environments')
+	require('dotenv').config()
+}
+require('dotenv').config()
 
-var passport = require('passport');
-var bcrypt = require('bcrypt-nodejs');
-const LocalStrategy = require('passport-local').Strategy
+const express = require('express')
+const bodyParser = require('body-parser')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const dbConnection = require('./db') // loads our connection to the mongo database
+const passport = require('./passport')
+const app = express()
+const PORT = process.env.PORT || 3001
 
-// Configure body parser for AJAX requests
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json({limit:'50mb'}));
-// Serve up static assets
-app.use(express.static("client/build"));
-// Add routes, both API and view
-app.use(routes);
+// ===== Middleware ====
+app.use(
+	bodyParser.urlencoded({
+		extended: false
+	})
+)
+app.use(bodyParser.json())
+app.use(
+	session({
+		secret: process.env.APP_SECRET || 'this is the default passphrase',
+		store: new MongoStore({ mongooseConnection: dbConnection }),
+		resave: false,
+		saveUninitialized: false
+	})
+)
 
-app.use(passport.initialize());
-app.use(passport.session());
+// ===== Passport ====
+app.use(passport.initialize())
+app.use(passport.session()) // will call the deserializeUser
 
-// Set up promises with mongoose
-mongoose.Promise = global.Promise;
-// Connect to the Mongo DB
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/SearchList",
-  {
-    useMongoClient: true
-  }
-);
 
-// Start the API server
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
+	const path = require('path')
+	console.log('YOU ARE IN THE PRODUCTION ENV')
+	app.use('/static', express.static(path.join(__dirname, '../build/static')))
+	app.get('/', (req, res) => {
+		res.sendFile(path.join(__dirname, '../build/index.html'))
+	})
+// }
+
+/* Express app ROUTING */
+app.use('/auth', require('./auth'))
+
+// ====== Error handler ====
+app.use(function(err, req, res, next) {
+	console.log('====== ERROR =======')
+	console.error(err.stack)
+	res.status(500)
+})
+
+// ==== Starting Server =====
+app.listen(PORT, () => {
+	console.log(`App listening on PORT: ${PORT}`)
+})

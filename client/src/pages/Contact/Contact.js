@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import GoogleButton from '../../components/GoogleButton'
 import { Row, Container } from "../../components/Grid";
-import Nav from "../../components/Nav";
 import { TextLog, InputLog } from "../../components/LoginItem";
 import API from "../../utils/API";
 import "./Contact.css";
@@ -15,11 +13,6 @@ class Contact extends Component {
         comment: ""
     };
 
-    // When the component mounts, load all books and save them to this.state.books
-    componentDidMount() {
-
-    }
-
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -28,28 +21,9 @@ class Contact extends Component {
         });
     };
 
-    // login = event => {
-
-    // }
-
-    // // Then reload books from the database
-    // createAccount = event => {
-    //     console.log("i'm in handleFormSubmit")
-    //     event.preventDefault();
-    //     if (this.state.username && this.state.password) {
-    //         API.saveUser({
-    //             username: this.state.username,
-    //             password: this.state.password
-    //         })
-    //             .then(res => console.log(res + "SUCESSFUL HANDLEFORM SUBMIT"))
-    //             .catch(err => console.log(err));
-    //     }
-    // };
-
     render() {
         return (
             <div>
-                <Nav />
                 <Container>
                    
                         <Row>
@@ -64,8 +38,7 @@ class Contact extends Component {
 
                             <div className="col-sm-7 contactRight">
                                 <div className="row">
-                                    <div className="col-sm-6">
-                                        
+                                    <div className="col-sm-6">   
                                         <InputLog
                                             value={this.state.name}
                                             onChange={this.handleInputChange}
