@@ -2,20 +2,13 @@ var path = require('path');
 var request = require("request");
 var express = require("express");
 var app = express.Router();
-
-
-//scraping tools
-var request = require("request");
-var cheerio = require("cheerio");
+const mongoose = require("mongoose");
 
 
 //models 
 // var Note = require("../../models/Note.js");
-var User = require("../../models/User.js");
+var User = mongoose.model('User');
 var Item = require("../../models/Item.js");
-
-
-
 
 
 // Routes

@@ -21,7 +21,12 @@ export default {
     return axios.post("/api/users/saveUser", userData)
   },
   loginUser: function(userData) {
+    console.log("axios login user")
     return axios.post("/api/users/loginUser", userData)
+  },
+  getUser: function() {
+    console.log("axios get user")
+    return axios.get("/api/users/user")
   },
   //Get user data once on the profile page
   getUserData: function(id) {

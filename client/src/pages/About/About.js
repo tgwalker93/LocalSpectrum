@@ -2,19 +2,15 @@ import React, { Component } from "react";
 import Hero from "../../components/Hero";
 import { Col, Row, Container } from "../../components/Grid";
 import Nav from "../../components/Nav";
+import NavAfter from "../../components/NavAfter";
 import API from "../../utils/API";
 import "./About.css";
 import { Link } from "react-router-dom";
 
-
-
-
-class About extends Component {
-
-    render() {
+const About = props => {
         return (
             <div>
-                <Nav />
+                <NavAfter username={props.user.username}/>
                 <Container fluid>
                     <Row>
                         {/* <Hero backgroundImage="https://media.giphy.com/media/3o6gbchrcNIt4Ma8Tu/giphy.gif"> */}
@@ -183,18 +179,9 @@ class About extends Component {
                             <div className="col-sm-1"></div>
                         </div>
                         </div>
-                 
-
-
-
-
-
-
-
                 </Container>
             </div>
         );
-    }
 }
 
 export default About;

@@ -10,131 +10,224 @@ import { BusContainer, BusItem} from "../../components/BusImage";
 import { CusContainer, CusItem} from "../../components/CustomerImage";
 
 
-class Profile extends Component {
-    // Setting our component's initial state
-    state = {
-        search: "",
-        itemName: "",
-        itemSummary:"",
-        itemImage:"",
-        username: "",
-        location:"", //search Location
-        logo:"",//Business Logo
-        businessDetails:"",//Business Details
-        userId: this.props.match.params.id,
-        userProfile: [],
-        currentItem: {
-            // userId: this.state.userId,
-            // itemObj: {
-            //     itemName: this.state.itemName
-            // }
-        },
+// class Profile extends Component {
+//     // Setting our component's initial state
+//     state = {
+//         test: "",
+//         search: "",
+//         itemName: "",
+//         itemSummary:"",
+//         itemImage:"",
+//         username: "",
+//         location:"", //search Location
+//         logo:"",//Business Logo
+//         businessDetails:"",//Business Details
+//         //userId: this.props.match.params.id,
+//         userProfile: [],
+//         currentItem: {
+//             // userId: this.state.userId,
+//             // itemObj: {
+//             //     itemName: this.state.itemName
+//             // }
+//         },
     
-        itemIds: [],
-        items: [],
-        isLoggedIn: false,
-        userSearch: ""
+//         itemIds: [],
+//         items: [],
+//         isLoggedIn: false,
+//         userSearch: ""
     
-    };
+//     };
 
-    // When the component mounts, load all books and save them to this.state.books
-    componentDidMount() {
-        this.loadUserProfile() 
-    }
+//     // When the component mounts, load all books and save them to this.state.books
+//     componentDidMount() {
+//        // this.loadUserProfile() 
+//        console.log("test");
+//        console.log(this.state.user)
+//        console.log(this.props)
+//     }
 
-    // Handles updating component state when the user types into the input field
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-            [name]: value
-        });
-    };
+//     // Handles updating component state when the user types into the input field
+//     handleInputChange = event => {
+//         const { name, value } = event.target;
+//         this.setState({
+//             [name]: value
+//         });
+//     };
 
 
-    loadUserProfile() {
-        API.getUserData(this.state.userId)
-            .then(data =>
-                {
-                console.log("API.getUserData on the front-end WAS SUCCESSFUL, i'm in the .then");
-                console.log(data.data)
+//     loadUserProfile() {
+//         API.getUserData(this.state.test)
+//             .then(data =>
+//                 {
+//                 console.log(this.state)
+//                 console.log("API.getUserData on the front-end WAS SUCCESSFUL, i'm in the .then");
+//                 console.log(data.data)
 
-                //WORKING ON GETTING ITEM DETAILS FROM ITEM IDs-----------------------------------------------------------------------------------
-                // this.setState({ itemIds: data.data.items, username: data.data.username, userProfile: data.data }, () => {
-                //     console.log("Before I call getUserItemsByItemId");
-                //     console.log(this.state.itemIds);
-                //     this.getUserItemsByItemId(this.state.itemIds);
-                // })
+//                 //WORKING ON GETTING ITEM DETAILS FROM ITEM IDs-----------------------------------------------------------------------------------
+//                 // this.setState({ itemIds: data.data.items, username: data.data.username, userProfile: data.data }, () => {
+//                 //     console.log("Before I call getUserItemsByItemId");
+//                 //     console.log(this.state.itemIds);
+//                 //     this.getUserItemsByItemId(this.state.itemIds);
+//                 // })
 
-                this.setState({ items: data.data.items, username: data.data.username, userProfile: data.data });
+//                 this.setState({ items: data.data.items, username: data.data.username, userProfile: data.data });
 
-                })
+//                 })
 
-            .catch(err => console.log(err));
+//             .catch(err => console.log(err));
         
-    };
+//     };
 
-    // getUserItemsByItemId(itemIds) {
-    //     API.getItems(itemIds)
-    //         .then(data => {
-    //             console.log("After API.getItems is done in profile")
-    //             console.log(data.data)
-    //             this.setState({ items: data.data.items}, () => {
+//     // getUserItemsByItemId(itemIds) {
+//     //     API.getItems(itemIds)
+//     //         .then(data => {
+//     //             console.log("After API.getItems is done in profile")
+//     //             console.log(data.data)
+//     //             this.setState({ items: data.data.items}, () => {
 
-    //             })
+//     //             })
 
-    //         })
+//     //         })
 
-    //         .catch(err => console.log(err));
+//     //         .catch(err => console.log(err));
 
-    // };
-    // Then reload books from the database
-    handleFormSubmit = event => {
-        event.preventDefault();
-        //HANDLE API WORK HERE
-        // if (this.state.title && this.state.author) {
-        //     API.saveBook({
-        //         title: this.state.title,
-        //         author: this.state.author,
-        //         synopsis: this.state.synopsis
-        //     })
-        //         .then(res => this.loadBooks())
-        //         .catch(err => console.log(err));
-        // }
-    };
-    addItem = event => {
-    event.preventDefault();
+//     // };
+//     // Then reload books from the database
+//     handleFormSubmit = event => {
+//         event.preventDefault();
+//         //HANDLE API WORK HERE
+//         // if (this.state.title && this.state.author) {
+//         //     API.saveBook({
+//         //         title: this.state.title,
+//         //         author: this.state.author,
+//         //         synopsis: this.state.synopsis
+//         //     })
+//         //         .then(res => this.loadBooks())
+//         //         .catch(err => console.log(err));
+//         // }
+//     };
+//     addItem = event => {
+//     event.preventDefault();
     
-    if (this.state.itemName) {
+//     if (this.state.itemName) {
 
-    //Save Current Item
-        this.setState({
-            currentItem: {
-                userId: this.state.userId,
-                itemObj: {
-                    itemName: this.state.itemName,
-                    itemSummary: this.state.itemSummary,
-                    itemImage: "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Spongebob-squarepants.svg/666px-Spongebob-squarepants.svg.png"
-                }
-            }
-        }, () => {
-        //Call Save Item route!
-            console.log("Set currentItem is done, this is before I call API.saveItem");
-            API.saveItem({
-                item: this.state.currentItem
-            })
-                .then(res => {
-                    console.log("I'm in the call back of save item in addItem!!!")
-                    this.loadUserProfile()
-                })
-                .catch(err => console.log(err));
-        });   
-    }
+//     //Save Current Item
+//         this.setState({
+//             currentItem: {
+//                 userId: this.state.userId,
+//                 itemObj: {
+//                     itemName: this.state.itemName,
+//                     itemSummary: this.state.itemSummary,
+//                     itemImage: "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Spongebob-squarepants.svg/666px-Spongebob-squarepants.svg.png"
+//                 }
+//             }
+//         }, () => {
+//         //Call Save Item route!
+//             console.log("Set currentItem is done, this is before I call API.saveItem");
+//             API.saveItem({
+//                 item: this.state.currentItem
+//             })
+//                 .then(res => {
+//                     console.log("I'm in the call back of save item in addItem!!!")
+//                     this.loadUserProfile()
+//                 })
+//                 .catch(err => console.log(err));
+//         });   
+//     }
 
-}
+// }
 
-    render() {
-        return (
+//     render() {
+//         return (
+//             <div>
+// {/* 
+//                 {this.state.isLoggedIn ? (
+//                     <NavAfter username={this.state.username} />
+//                 ) : (
+//                         <Nav />
+//                     )} */}
+
+//                 <NavAfter user={this.state.user} />
+            
+            
+//             <Container fluid >
+           
+//             <div style={{marginLeft: 20, marginRight: 20}}>
+//                 <Row>
+//                     <Col size="md-12">
+//                         {/* <Jumbotron>
+//                             <h1>Welcome, {this.state.username}</h1>
+//                         </Jumbotron> */}
+//                         <form>
+//                             <p>Item Name</p>
+//                             <InputLog
+//                                 value={this.state.itemName}
+//                                 onChange={this.handleInputChange}
+//                                 name="itemName"
+//                                 placeholder="Add your item"
+//                             />
+//                             <p>Item Summary</p>
+//                             <InputLog
+//                                 value={this.state.itemSummary}
+//                                 onChange={this.handleInputChange}
+//                                 name="itemSummary"
+//                                 placeholder="Short summary of your item"
+//                             />
+//                             <div>
+//                             <button className="btn btn-warning addBtn"
+//                                 onClick={this.addItem}
+//                             >
+//                                 Add Item
+//                             </button>
+
+//                             </div>
+//                         </form>
+//                     </Col>
+//                 </Row>
+//                 </div>
+//                 <Row> 
+//                 <Col size="md-12">
+//                         {this.state.items.length ? (
+//                             <BusContainer>
+//                                 <div>
+//                                     {this.state.items.map((item, i) => {
+//                                         return (
+                                            
+//                                             <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
+                                            
+//                                         );
+//                                     })}
+//                                 </div>
+//                             </BusContainer>
+//                         ) : (
+//                                 <h3> No Results to Display </h3>
+//                             )} 
+//                 </Col>
+//                 </Row>
+//                 <Row>
+//                     <Col size="md-12">
+                    
+//                     </Col>
+//                 </Row>
+//             </Container>
+//         {/* Tyler Code Do not Touch This Part */}
+//         </div>
+//         );
+
+//     }
+// }
+
+
+
+//export default Profile;
+
+const Profile = props => {
+	if (props.user) {
+		return (
             <div>
+                				<code>
+					{JSON.stringify(props)}
+				</code>
 {/* 
                 {this.state.isLoggedIn ? (
                     <NavAfter username={this.state.username} />
@@ -142,7 +235,7 @@ class Profile extends Component {
                         <Nav />
                     )} */}
 
-                <NavAfter username={this.state.username} />
+                <NavAfter username={props.user.username} />
             
             
             <Container fluid >
@@ -156,21 +249,15 @@ class Profile extends Component {
                         <form>
                             <p>Item Name</p>
                             <InputLog
-                                value={this.state.itemName}
-                                onChange={this.handleInputChange}
-                                name="itemName"
-                                placeholder="Add your item"
+
                             />
                             <p>Item Summary</p>
                             <InputLog
-                                value={this.state.itemSummary}
-                                onChange={this.handleInputChange}
-                                name="itemSummary"
-                                placeholder="Short summary of your item"
+ 
                             />
                             <div>
                             <button className="btn btn-warning addBtn"
-                                onClick={this.addItem}
+
                             >
                                 Add Item
                             </button>
@@ -182,19 +269,7 @@ class Profile extends Component {
                 </div>
                 <Row> 
                 <Col size="md-12">
-                        {this.state.items.length ? (
-                            <BusContainer>
-                                <div>
-                                    {this.state.items.map((item, i) => {
-                                        return (
-                                            
-                                            <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
-                                            
-                                        );
-                                    })}
-                                </div>
-                            </BusContainer>
-                        ) : (
+                {(
                                 <h3> No Results to Display </h3>
                             )} 
                 </Col>
@@ -207,11 +282,17 @@ class Profile extends Component {
             </Container>
         {/* Tyler Code Do not Touch This Part */}
         </div>
-        );
-
-    }
+		)
+	} else {
+		return (
+			<div className="Login">
+				<p>Current User:</p>
+				<code>
+					{JSON.stringify(props)}
+				</code>
+			</div>
+		)
+	}
 }
 
-
-
-export default Profile;
+export default Profile
