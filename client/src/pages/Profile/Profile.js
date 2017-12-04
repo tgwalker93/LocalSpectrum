@@ -12,9 +12,12 @@ import { BusContainer, BusItem} from "../../components/BusImage";
 import { CusContainer, CusItem} from "../../components/CustomerImage";
 import axios from 'axios'
 
+
 class Profile extends Component {
     // Setting our component's initial state
     state = {
+        loggedIn: false,
+        render: true,
         search: "",
         itemName: "",
         itemSummary:"",
@@ -75,14 +78,20 @@ class Profile extends Component {
          reader.readAsDataURL(input.files[0]);
      }
 
-   
     componentDidMount() {
+        console.log("--------componentdidmount---------")
+        console.log(this.props)
+        console.log("------------------------")
         // ================ Do this to show the image upload locally ===========================
         this._handleImageChange = this._handleImageChange.bind(this);
         // ================ Do this to show the image upload locally ===========================
 
         // this.loadUserProfile() 
     }
+
+    // componentDidUpdate() {
+    //     this.loadItems();
+    // }
 
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
@@ -92,12 +101,12 @@ class Profile extends Component {
         });
     };
 
-    loadItems(){
+    loadItems() {
         console.log("-------loadItems--------")
         console.log(this.props)
         console.log("----------------------")
         console.log(this.props.user.items)
-        this.setState({ items: this.props.user.items, username: this.props.user.local.username });
+        this.setState({ items: this.props.user.items });
     }
 
     
@@ -180,83 +189,86 @@ class Profile extends Component {
 }
 
     render() {
-        return (
-            <div>
-
-            
-            
-            <Container fluid >
-           
-            <div style={{marginLeft: 20, marginRight: 20}}>
-                <Row>
-                    <Col size="md-12">
-                    
-                   
-                        <form>
-                            {/* ======= upload Image button =======*/}
+        if(this.state.render){
+            return (
+                
                             <div>
-                                <input className="fileInput" type="file"
-                                 onChange={this._handleImageChange} />
-                            </div>
-                            {/* ======= upload Image button =======*/}
+                
                             
-                            <p>Item Name</p>
-                            <InputLog
-                                value={this.state.itemName}
-                                onChange={this.handleInputChange}
-                                name="itemName"
-                                placeholder="Add your item"
-                            />
-                            <p>Item Summary</p>
-                            <InputLog
-                                value={this.state.itemSummary}
-                                onChange={this.handleInputChange}
-                                name="itemSummary"
-                                placeholder="Short summary of your item"
-                            />
-                            <div>
-                            <button className="btn btn-warning addBtn"
-                                onClick={this.addItem}
-                            >
-                                Add Item
-                            </button>
-
-                            </div>
-                        </form>
-                    </Col>
-                </Row>
-                </div>
-                <Row> 
-                <Col size="md-12">
-                        {console.log("I just rendered!")}
-                        {console.log(this.state.items)}
-                        {this.state.items.length ? (
-                            <BusContainer>
-                                <div>
-                                    {this.state.items.map((item, i) => {
-                                        return (
+                            
+                            <Container fluid >
+                           
+                            <div style={{marginLeft: 20, marginRight: 20}}>
+                                <Row>
+                                    <Col size="md-12">
+                                    
+                                   
+                                        <form>
+                                            {/* ======= upload Image button =======*/}
+                                            <div>
+                                                <input className="fileInput" type="file"
+                                                 onChange={this._handleImageChange} />
+                                            </div>
+                                            {/* ======= upload Image button =======*/}
                                             
-                                            <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
-                                            
-                                        );
-                                    })}
+                                            <p>Item Name</p>
+                                            <InputLog
+                                                value={this.state.itemName}
+                                                onChange={this.handleInputChange}
+                                                name="itemName"
+                                                placeholder="Add your item"
+                                            />
+                                            <p>Item Summary</p>
+                                            <InputLog
+                                                value={this.state.itemSummary}
+                                                onChange={this.handleInputChange}
+                                                name="itemSummary"
+                                                placeholder="Short summary of your item"
+                                            />
+                                            <div>
+                                            <button className="btn btn-warning addBtn"
+                                                onClick={this.addItem}
+                                            >
+                                                Add Item
+                                            </button>
+                
+                                            </div>
+                                        </form>
+                                    </Col>
+                                </Row>
                                 </div>
-                            </BusContainer>
-                        ) : (
-                                <h3> No Results to Display </h3>
-                            )} 
-                </Col>
-                </Row>
-                <Row>
-                    <Col size="md-12">
-                    
-                    </Col>
-                </Row>
-            </Container>
-        {/* Tyler Code Do not Touch This Part */}
-        </div>
-        );
-
+                                <Row> 
+                                <Col size="md-12">
+                                        {console.log("I just rendered!")}
+                                        {console.log(this.props.user)}
+            
+                                        {this.state.items.length ? (
+                                            <BusContainer>
+                                                <div>
+                                                    {this.state.items.map((item, i) => {
+                                                        return (
+                                                            
+                                                            <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
+                                                            
+                                                        );
+                                                    })}
+                                                </div>
+                                            </BusContainer>
+                                        ) : (
+                                                <h3> No Results to Display </h3>
+                                            )} 
+                                </Col>
+                                </Row>
+                                <Row>
+                                    <Col size="md-12">
+                                    
+                                    </Col>
+                                </Row>
+                            </Container>
+                        {/* Tyler Code Do not Touch This Part */}
+                        </div>
+                        );
+        }
     }
 }
 
