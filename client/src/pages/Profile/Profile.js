@@ -10,7 +10,7 @@ import ImageUpload from './ImageUpload.js';
 import API from "../../utils/API";
 import { BusContainer, BusItem} from "../../components/BusImage";
 import { CusContainer, CusItem} from "../../components/CustomerImage";
-
+import axios from 'axios'
 
 class Profile extends Component {
     // Setting our component's initial state
@@ -23,7 +23,7 @@ class Profile extends Component {
         location:"", //search Location
         logo:"",//Business Logo
         businessDetails:"",//Business Details
-        userId: this.props._id,
+        userId: this.props.user,
         userProfile: [],
         currentItem: {
             // userId: this.state.userId,
@@ -92,6 +92,13 @@ class Profile extends Component {
         });
     };
 
+    loadItems(){
+        console.log("-------loadItems--------")
+        console.log(this.props)
+        console.log("----------------------")
+        console.log(this.props.user.items)
+        this.setState({ items: this.props.user.items, username: this.props.user.local.username });
+    }
 
     
 
@@ -132,22 +139,13 @@ class Profile extends Component {
     // Then reload books from the database
     handleFormSubmit = event => {
         event.preventDefault();
-        //HANDLE API WORK HERE
-        // if (this.state.title && this.state.author) {
-        //     API.saveBook({
-        //         title: this.state.title,
-        //         author: this.state.author,
-        //         synopsis: this.state.synopsis
-        //     })
-        //         .then(res => this.loadBooks())
-        //         .catch(err => console.log(err));
-        // }
     };
     addItem = event => {
     event.preventDefault();
     
     if (this.state.itemName) {
-
+    console.log("useridadditem: " + this.props.user._id)
+    console.log(this.state.itemName)
     console.log("I SUCCESSSFULY ENTERED ADDITEM, below is item image");
 
     //Save Current Item
@@ -155,7 +153,7 @@ class Profile extends Component {
 
         this.setState({
             currentItem: {
-                userId: this.state.userId,
+                userId: this.props.user._id,
                 itemObj: {
                     itemName: this.state.itemName,
                     itemSummary: this.state.itemSummary,
@@ -165,13 +163,15 @@ class Profile extends Component {
             }
         }, () => {
         //Call Save Item route!
+            console.log(this.state.currentItem)
             console.log("Set currentItem is done, this is before I call API.saveItem");
-            API.saveItem({
+            axios
+			.post("/auth/saveItem", {
                 item: this.state.currentItem
-            })
+			})
                 .then(res => {
                     console.log("I'm in the call back of save item in addItem!!!")
-                    this.loadUserProfile()
+                    this.loadItems()
                 })
                 .catch(err => console.log(err));
         });   
@@ -182,12 +182,6 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                {/* 
-                {this.state.isLoggedIn ? (
-                    <NavAfter username={this.state.username} />
-                ) : (
-                        <Nav />
-                    )} */}
 
             
             

@@ -34,13 +34,13 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session()) // will call the deserializeUser
 
-
-	const path = require('path')
-	console.log('YOU ARE IN THE PRODUCTION ENV')
-	app.use('/static', express.static(path.join(__dirname, '../build/static')))
-	app.get('/', (req, res) => {
-		res.sendFile(path.join(__dirname, '../build/index.html'))
-	})
+app.use(express.static("client/build"));
+	// const path = require('path')
+	// console.log('YOU ARE IN THE PRODUCTION ENV')
+	// app.use('/static', express.static(path.join(__dirname, '../build/static')))
+	// app.get('/', (req, res) => {
+	// 	res.sendFile(path.join(__dirname, '../build/index.html'))
+	// })
 // }
 
 /* Express app ROUTING */
