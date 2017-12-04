@@ -22,6 +22,14 @@ var ItemSchema = new Schema({
         type: String,
         required: false
     },
+    // ItemLocation: {
+    //     type: String,
+    //     required: false
+    // },
+    // ItemLocation: {
+    //     type: [Schema.Types.ObjectId],
+    //     ref: "ItemLocation"
+    // },
     itemReviews: [{
         type: [Schema.Types.ObjectId],
         ref: "ItemReview"
@@ -36,8 +44,8 @@ var ItemSchema = new Schema({
     }]
 });
 
-// ItemSchema.index({ itemName: 'text', itemSummary: 'text' });
-ItemSchema.index({ '$**': 'text' });
+ItemSchema.index({ itemName: 'text', itemSummary: 'text' });
+// ItemSchema.index({ '$**': 'text' });
 
 var Item = mongoose.model("Item", ItemSchema);
 

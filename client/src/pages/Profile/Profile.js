@@ -105,7 +105,7 @@ class Profile extends Component {
                 console.log("API.getUserData on the front-end WAS SUCCESSFUL, i'm in the .then");
                 console.log(data.data)
 
-                this.setState({ items: data.data.items, username: data.data.username, userProfile: data.data });
+                this.setState({ items: data.data.properties.items, username: data.data.properties.username, userProfile: data.data.properties });
 
                 })
 
@@ -143,6 +143,7 @@ class Profile extends Component {
         //         .catch(err => console.log(err));
         // }
     };
+    
     addItem = event => {
     event.preventDefault();
     

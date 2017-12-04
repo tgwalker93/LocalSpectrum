@@ -14,6 +14,14 @@ class Register extends Component {
         search: "",
         username: "",
         password: "",
+        address: "",
+        city: "",
+        state: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        businessName: "",
+        zip: "",
         confirmPassword: ""
     };
 
@@ -38,15 +46,25 @@ class Register extends Component {
     createAccount = event => {
         console.log("i'm in Create Account function!")
         event.preventDefault();
+        // this.state.username && this.state.password && this.state.address && this.state.city && this.state.state && this.state.zip
         if (this.state.username && this.state.password) {
-            API.saveUser({
+            let userObj = {
                 username: this.state.username,
-                password: this.state.password
-            }).then( res => 
+                password: this.state.password,
+                user_email: this.state.email,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                user_address: this.state.address,
+                user_city: this.state.city,
+                user_state: this.state.state,
+                user_zip: this.state.zip
+            }
+            API.saveUser(userObj).then( res => 
                     {
                     console.log("After save user is done");
+                    console.log(res);
                     this.setState({ user: res.data })
-                    this.routeToProfile(this.state.user._id)
+                    this.routeToProfile(this.state.user.doc._id)
 
                     }
             
@@ -76,6 +94,13 @@ class Register extends Component {
                                 name="username"
                                 placeholder="&#xf007; USERNAME"
                             />
+                            <p>Email</p>
+                            <InputLog
+                                value={this.state.email}
+                                onChange={this.handleInputChange}
+                                name="email"
+                                placeholder="email"
+                            />
                             <p>Password</p>
                             <InputLog
                                 value={this.state.password}
@@ -92,6 +117,55 @@ class Register extends Component {
                                 type="password"
                                 placeholder="&#xf023; CONFIRM PASSWORD"
                             /> 
+                            <p>First Name</p>
+                            <InputLog
+                                value={this.state.firstName}
+                                onChange={this.handleInputChange}
+                                name="firstName"
+                                placeholder="&#xf007; First Name"
+                            />
+                            <p>Last Name</p>
+                            <InputLog
+                                value={this.state.lastName}
+                                onChange={this.handleInputChange}
+                                name="lastName"
+                                placeholder="&#xf007; Last Name"
+                            />
+                            <p>Business Name (if applicable)</p>
+                            <InputLog
+                                value={this.state.businessName}
+                                onChange={this.handleInputChange}
+                                name="businessName"
+                                placeholder="&#xf007; businessName"
+                            />
+                            <p> Address </p>
+                            <InputLog
+                                value={this.state.address}
+                                onChange={this.handleInputChange}
+                                name="address"
+                                placeholder="101 Cool Street"
+                            />
+                            <p> City</p>
+                            <InputLog
+                                value={this.state.city}
+                                onChange={this.handleInputChange}
+                                name="city"
+                                placeholder="Irvine"
+                            />
+                            <p> State</p>
+                            <InputLog
+                                value={this.state.state}
+                                onChange={this.handleInputChange}
+                                name="state"
+                                placeholder="California"
+                            />
+                            <p> Zip</p>
+                            <InputLog
+                                value={this.state.zip}
+                                onChange={this.handleInputChange}
+                                name="zip"
+                                placeholder="12345"
+                            />
                             <button className="btn btn-warning loginBtn"
                                 onClick={this.login}
                             >
