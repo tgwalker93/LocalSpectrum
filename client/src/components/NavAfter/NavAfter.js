@@ -1,11 +1,98 @@
-import React from "react";
+import React, { Component } from 'react'
 import { Link } from "react-router-dom";
+import Redirect from "react-router"
 import "./NavAfter.css";
+import axios from 'axios'
+import { withRouter } from 'react-router-dom'
 
-const NavAfter = (props) =>
+
+// _logout(event) {
+//   event.preventDefault()
+//   console.log('logging out')
+//   axios.post('/auth/logout').then(response => {
+//     console.log(response.data)
+//     if (response.status === 200) {
+//       this.setState({
+//         loggedIn: false,
+//         user: null
+//       })
+//       //{<Redirect to="/"/>}
+//       RouterProps.history.push('/')
+//     } 
+//   })
+// }
+// const NavAfter = (props) =>
+
+class NavAfter extends Component {
+  // Setting our component's initial state
+  state = {
+    user: {
+
+    },
+    loggedIn: false,
+    props: {
+
+    }
+  }
+
+  componentDidMount() {
+    this.getUserProfile();
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+    console.log("I JUST ENTERED COMPONENT WILL RECEIVE PROPS BELOW IS LOGGED IN");
+    console.log(this.state.loggedIn)
+    if(this.state.loggedIn){
+    this.setState({user: nextProps.user, loggedIn: nextProps.loggedIn, props: nextProps})
+    }
+  
+  }
+
+
+  getUserProfile() {
+    console.log("Im in get user profile111");
+    console.log(this.state.user)
+  }
+
+  _logout(event) {
+  event.preventDefault()
+  console.log('logging out')
+  axios.post('/auth/logout').then(response => {
+    console.log("I'M IN LOGOUT");
+    console.log(response.data)
+    if (response.status === 200) {
+      this.setState({
+        loggedIn: false,
+        user: null
+      }, () => {
+        //SEND THE USER PACKING HOME BYE
+        this.props.history.push('/');
+        window.location.reload(); 
+      })
+
+      
+      console.log("-----------this.props---------")
+      console.log(this.props)
+      console.log("------------------------------")
+      // {<Redirect to="/"/>}
+    
+      // this.state.props.history.push("/")
+      // hashHistory.push("/")
+      }
+    
+  })
+
+
+  }
+
+
+  render() {
+  let boundNav = this._logout.bind(this);
+  return (
   <nav className="navbar navbar-inverse">
   <div>
-  {JSON.stringify(props)}
+  {JSON.stringify(this.props)}
   </div>
     <div className="container-fluid">
       <div className="navbar-header">
@@ -22,12 +109,22 @@ const NavAfter = (props) =>
         <li className={window.location.pathname === "/about" ? "active" : ""}><Link className="log" to="/about"><span className="glyphicon glyphicon-globe"></span> About</Link></li>
         <li className={window.location.pathname === "/" ? "active" : ""}><Link className="log" to="/"><span className="glyphicon glyphicon-search iconOnly"></span> Search</Link></li>
         <li className={window.location.pathname === "/contact" ? "active" : ""}><Link className="log" to="/contact"><span className="glyphicon glyphicon-earphone"></span> Contact</Link></li>
-        <li className={window.location.pathname === "/login" ? "active" : ""}><Link className="log" to="/login"><span className="glyphicon glyphicon-user"></span> Welcome {props.user.local.username}</Link></li>
-        <li className={window.location.pathname === "/Home" ? "active" : ""}><Link to="/register" onClick={props._logout} className="log" ><span className="glyphicon glyphicon-log-out"></span> Logout</Link></li>
+        {/* {this.state.user.local.username} */}
+        <li className={window.location.pathname === "/login" ? "active" : ""}><Link className="log" to="/login"><span className="glyphicon glyphicon-user">Welcome {this.props.user.local.username}</span> 
+        
 
+         
+         
+         </Link></li>
+        <li className={window.location.pathname === "/" ? "active" : ""}><Link to="/"  onClick={boundNav} className="log" ><span className="glyphicon glyphicon-log-out"></span> Logout</Link></li>
+        
         </ul>
       </div>
     </div>
   </nav>
+  )
+  };
 
-export default NavAfter;
+}
+
+export default withRouter( NavAfter );

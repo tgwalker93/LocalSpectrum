@@ -1,5 +1,6 @@
 // import React from "react";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+ import { BrowserRouter as Router, Switch } from "react-router-dom";
+ import {Redirect, RouterProps} from "react-router";
 // import Books from "./pages/Books";
 import NavAfter from "./components/NavAfter";
 import Nav from "./components/Nav";
@@ -35,7 +36,7 @@ class App extends Component {
 			loggedIn: false,
 			user: null
 		}
-		this._logout = this._logout.bind(this)
+		// this._logout = this._logout.bind(this)
 		this._login = this._login.bind(this)
 	}
 	componentDidMount() {
@@ -56,19 +57,21 @@ class App extends Component {
 		})
 	}
 
-	_logout(event) {
-		event.preventDefault()
-		console.log('logging out')
-		axios.post('/auth/logout').then(response => {
-			console.log(response.data)
-			if (response.status === 200) {
-				this.setState({
-					loggedIn: false,
-					user: null
-				})
-			}
-		})
-	}
+	// _logout(event) {
+	// 	event.preventDefault()
+	// 	console.log('logging out')
+	// 	axios.post('/auth/logout').then(response => {
+	// 		console.log(response.data)
+	// 		if (response.status === 200) {
+	// 			this.setState({
+	// 				loggedIn: false,
+	// 				user: null
+	// 			})
+	// 			//{<Redirect to="/"/>}
+	// 			RouterProps.history.push('/')
+	// 		} 
+	// 	})
+	// }
 
 	_login(username, password) {
 		axios

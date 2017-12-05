@@ -16,7 +16,7 @@ import axios from 'axios'
 class Profile extends Component {
     // Setting our component's initial state
     state = {
-        loggedIn: false,
+        loggedIn: "",
         render: true,
         search: "",
         itemName: "",
@@ -85,13 +85,17 @@ class Profile extends Component {
         // ================ Do this to show the image upload locally ===========================
         this._handleImageChange = this._handleImageChange.bind(this);
         // ================ Do this to show the image upload locally ===========================
-
+        this.setState({ loggedIn: false });
         // this.loadUserProfile() 
+        this.loadItems
     }
 
-    // componentDidUpdate() {
-    //     this.loadItems();
-    // }
+    componentWillReceiveProps(nextProps){
+
+        if(nextProps.user){
+            this.setState({items: nextProps.user.items})
+        }
+    }
 
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
@@ -100,6 +104,7 @@ class Profile extends Component {
             [name]: value
         });
     };
+
 
     loadItems() {
         console.log("-------loadItems--------")
@@ -191,11 +196,7 @@ class Profile extends Component {
     render() {
         if(this.state.render){
             return (
-                
                             <div>
-                
-                            
-                            
                             <Container fluid >
                            
                             <div style={{marginLeft: 20, marginRight: 20}}>
@@ -240,7 +241,7 @@ class Profile extends Component {
                                 <Row> 
                                 <Col size="md-12">
                                         {console.log("I just rendered!")}
-                                        {console.log(this.props.user)}
+                                        {console.log(this.props)}
             
                                         {this.state.items.length ? (
                                             <BusContainer>
