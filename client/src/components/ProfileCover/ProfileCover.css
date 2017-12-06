@@ -2,13 +2,7 @@
 /* #0090F4, #6c38d9, #C12B9C */
 /* #FF1F9A, #FF7E19, #FED92A */
 
-.hero {
-  height: 500px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position:  center;
-  position: relative;
-}
+
 
 .profileCover {
   height: 500px;
@@ -17,19 +11,8 @@
   background-position:  center;
   position: relative;
 }
-/* .hero:after {
-  content: "";
-  display: block;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-} */
 
-.hero * {
+.profileCover * {
   position: relative;
   z-index: 2;
 }
@@ -37,7 +20,7 @@
 
 
 
-.hero h2{
+/* .hero h2{
   color: #FF7E19;
   font-size:20px!important;
   font-weight:350;
@@ -55,11 +38,11 @@
 .glyphicon-heart {
   font-size: 30px!important;
   color:#FED92A;
-}
+} */
 
 
 @media (max-width: 548px) {
-  .hero {
+  .profileCover {
     height: 200px;
     background-size: contain;
     background-repeat: no-repeat;

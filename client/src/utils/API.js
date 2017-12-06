@@ -52,4 +52,12 @@ export default {
     // console.log(data);
     return axios.post("/api/profile/saveProfile", data);
   },
+
+  getItem: function(itemId) {
+    return axios.get("/api/profile/getItem/" + itemId);
+  },
+
+  updateItem: function(itemId) {
+    return axios.post("/api/profile/updateItem/"+itemId);
+  }
 };

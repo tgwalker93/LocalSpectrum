@@ -5,8 +5,8 @@ import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import Nav from "../../components/Nav";
 import API from "../../utils/API";
-import { BusContainer, BusItem } from "../../components/BusImage";
-
+import { BusContainer } from "../../components/BusImage";
+import BusItem from '../../components/BusImage/BusItem';
 
 
 class Home extends Component {

@@ -129,7 +129,10 @@ app.post("/saveProfile", function(req, res) {
                                                             "business_email":req.body.business_email,
                                                             "business_facebook":req.body.business_facebook,
                                                             "business_instagram":req.body.business_instagram,
-                                                            "business_logo":req.body.business_logo} },
+                                                            "business_logo":req.body.business_logo,
+                                                            // "business_profile":req.body.business_profile,
+                                                            "business_description":req.body.business_description,
+                                                        } },
                         { multi: true, upsert: false })
     .exec(function (err, doc) {
         // Log any errors
@@ -143,5 +146,31 @@ app.post("/saveProfile", function(req, res) {
         }
     });
 });
+
+/**
+ * Get Item for a given ItemId
+ */
+app.get("/getItem/:id", function(req, res) {
+    // console.log("Server: " + req.params.id);
+    Item.findById(req.params.id)
+    .then(function(doc, err) {
+        if(err) {
+            console.log("Error encountered while retrieving Item details for id: " + id);
+            console.log("/n" + err);
+        } else {
+            res.json(doc);
+        }
+    })
+});
+
+/**
+ * Update Item details for a given Item Id
+ */
+app.post("/updateItem/:id", function(req, res) {
+    Item.findByIdAndUpdate(req.params.id)
+    .then()
+});
+
+app.post()
 
 module.exports = app;

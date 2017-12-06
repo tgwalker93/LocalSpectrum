@@ -9,7 +9,9 @@
   top: 289px;
   right: 15px;
   cursor: pointer;
-  transform: scale(0.8)
+  transform: scale(0.8);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 18px;
 }
 
 .edit-btn:hover {

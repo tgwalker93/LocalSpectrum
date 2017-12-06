@@ -13,3 +13,19 @@ button {
     color: blue;   
     letter-spacing: 0.1em; 
 }
+.descriptionTitle{
+text-align: left;
+}
+.descriptionInfo{
+    text-align: left;
+    font-family: 'FontAwesome', sans-serif!important;
+    font-size: 15px;
+    color: blue;   
+    letter-spacing: 0.1em;
+}
+.itemImage{
+    text-align: left;
+}
+.logo{
+    color:orange;
+}

@@ -53,11 +53,19 @@ const UserSchema = new Schema({
         type: String,
         required: false
     },
+    business_description:{
+        type:String,
+        required:false
+    },
     business_fax: {
         type: Number,
         required: false
     },
     business_logo: {
+        type: String,
+        required: false
+    },
+    business_profile:{
         type: String,
         required: false
     },

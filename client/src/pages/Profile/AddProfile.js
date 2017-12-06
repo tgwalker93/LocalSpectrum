@@ -27,7 +27,9 @@ class AddProfile extends Component {
             business_email: "",
             business_phone: "",
             business_fax: "",
-            business_logo: ""
+            business_logo: "",
+            business_profile:"",
+            // business_description:""
         };
         this._handleClick = this._handleClick.bind(this);
     }
@@ -77,6 +79,16 @@ class AddProfile extends Component {
         }
         reader.readAsDataURL(filePath);
     }
+    _updateProfileImage = (event) => {
+        event.preventDefault(); 
+        let filePath = event.target.files[0];
+     
+        let reader = new FileReader(); 
+        reader.onloadend = () => {
+            this.setState({business_profile: reader.result});
+        }
+        reader.readAsDataURL(filePath);
+    }
 
     render() {
         const redirectURI = "/profile/" + this.state.id;
@@ -97,11 +109,21 @@ class AddProfile extends Component {
                         <Container fluid>
                             <Row>
                                 <Col size="md-10">
+                                    <p className="logo">Upload Business Logo Image</p>
                                     <UploadImage getImagePath={this._updateItemImage}/>
                                 </Col>
                             </Row>
+                            <br/>
+                            {/* <Row>
+                                <Col size="md-10">
+                                    <p className="logo">Upload Profile Image</p>
+                                    <UploadImage getImagePath={this._updateProfileImage}/>
+                                </Col>
+                            </Row> */}
+                            <br/>
                             <Row>
                                 <Col size="md-10">
+                                    <p className="titles">Business Name&nbsp;<i className="fa fa-asterisk" aria-hidden="true"></i></p>
                                     <InputLog
                                         value={this.state.business_name}
                                         onChange={this._handleInputChange}
@@ -112,6 +134,7 @@ class AddProfile extends Component {
                                 </Col>
                             </Row>
                             <Row><Col size="md-10">
+                                <p className="titles">Business Address&nbsp;<i className="fa fa-asterisk" aria-hidden="true"></i></p>
                                 <TextArea
                                     value={this.state.business_address}
                                     onChange={this._handleInputChange}
@@ -120,8 +143,18 @@ class AddProfile extends Component {
                                     id="txtAreaBusinessAddress"
                                 />
                             </Col></Row>
+                            {/* <Row><Col size="md-10">
+                                <TextArea
+                                    value={this.state.business_description}
+                                    onChange={this._handleInputChange}
+                                    name="business_description"
+                                    placeholder="Business Description"
+                                    id="txtAreaBusinessDescription"
+                                />
+                            </Col></Row> */}
                             <Row>
                                 <Col size="md-10">
+                                <p className="titles">ZipCode&nbsp;<i className="fa fa-asterisk" aria-hidden="true"></i></p>
                                 <InputLog
                                     value={this.state.business_zip}
                                     onChange={this._handleInputChange}
@@ -133,6 +166,7 @@ class AddProfile extends Component {
                             </Row>
                             <Row>
                                 <Col size="md-10">
+                                <p className="titles">Facebook</p>
                                 <InputLog
                                     value={this.state.business_facebook}
                                     onChange={this._handleInputChange}
@@ -144,6 +178,7 @@ class AddProfile extends Component {
                             </Row>
                             <Row>
                                 <Col size="md-10">
+                                <p className="titles">Instagram Link</p>
                                 <InputLog
                                     value={this.state.business_instagram}
                                     onChange={this._handleInputChange}
@@ -155,6 +190,7 @@ class AddProfile extends Component {
                             </Row>
                             <Row>
                                 <Col size="md-10">
+                                <p className="titles">Email&nbsp;<i className="fa fa-asterisk" aria-hidden="true"></i></p>
                                 <InputLog
                                     value={this.state.business_email}
                                     onChange={this._handleInputChange}
@@ -166,6 +202,7 @@ class AddProfile extends Component {
                             </Row>
                             <Row>
                                 <Col size="md-10">
+                                <p className="titles">Phone Number&nbsp;<i className="fa fa-asterisk" aria-hidden="true"></i></p>
                                 <InputLog
                                     value={this.state.business_phone}
                                     onChange={this._handleInputChange}
@@ -177,6 +214,7 @@ class AddProfile extends Component {
                             </Row>
                             <Row>
                                 <Col size="md-10">
+                                <p className="titles">Fax</p>
                                 <InputLog
                                     value={this.state.business_fax}
                                     onChange={this._handleInputChange}

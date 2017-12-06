@@ -10,9 +10,10 @@ import {TextArea} from '../../components/Form';
 import NavAfter  from "../../components/NavAfter";
 import Panel from "../../components/Panel";
 import API from "../../utils/API";
-import { BusContainer, BusItem} from "../../components/BusImage";
+import { BusContainer } from "../../components/BusImage";
+import BusItem from '../../components/BusImage/BusItem';
 import { CusContainer, CusItem} from "../../components/CustomerImage";
-import Hero from "../../components/Hero";
+import ProfileCover from "../../components/ProfileCover";
 import AddProfile from './AddProfile';
 import './AddProfile.css';
 import './ProfileValidations';
@@ -43,6 +44,8 @@ class Profile extends Component {
         business_fax:"",
         business_logo:"",
         business_zip: "",
+        business_description:"",
+        business_profile:"",
         /**
          * Business profile information additional state elements ends here
          */
@@ -60,7 +63,8 @@ class Profile extends Component {
         isLoggedIn: false,
         userSearch: "",
         
-        editModal: false
+        editModal: false,
+        isItemUpdate: false // Flag to check if this is "edit" of item of "save" of item
     };
 
     // When the component mounts, load all books and save them to this.state.books
@@ -88,7 +92,8 @@ class Profile extends Component {
                                 business_phone: data.data.business_phone, business_email: data.data.business_email,
                                 business_facebook: data.data.business_facebook, business_instagram: data.data.business_instagram,
                                 business_fax: data.data.business_fax, business_logo: data.data.business_logo,
-                                business_zip: data.data.business_zip });
+                                business_zip: data.data.business_zip,business_description:data.data.business_description,
+                                business_profile:data.data.business_profile });
 
                 })
 
@@ -99,6 +104,7 @@ class Profile extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
     };
+
     addItem = event => {
         event.preventDefault();
         
@@ -159,6 +165,8 @@ class Profile extends Component {
             business_fax:this.state.business_fax,
             business_logo:this.state.business_logo,
             business_zip: this.state.business_zip,
+            business_profile:this.state.business_profile,
+            business_description:this.state.business_description,
             id: this.state.userId
         };
         
@@ -198,7 +206,17 @@ class Profile extends Component {
             this.setState({business_logo: reader.result});
         }
         reader.readAsDataURL(filePath);
-    }
+    };
+    // _updateProfileImage = (event) => {
+    //     event.preventDefault(); 
+    //     let filePath = event.target.files[0];
+     
+    //     let reader = new FileReader(); 
+    //     reader.onloadend = () => {
+    //         this.setState({business_profile: reader.result});
+    //     }
+    //     reader.readAsDataURL(filePath);
+    // };
   
     /**
      * Section complete for the Modal window to edit profile
@@ -218,16 +236,66 @@ class Profile extends Component {
         reader.readAsDataURL(filePath);
     }
 
+    /**
+     * Edit Item callback method to handle editing of the item details
+     */
+    _editItem(itemId) {
+        console.log("Profile: callback from Edit button!");
+        // console.log("Item ID: " + itemId);
+        API.getItem(itemId)
+        .then(data => {
+            this.setState({
+                itemName: data.data.itemName,
+                itemSummary: data.data.itemSummary,
+                isItemUpdate: true 
+            });
+        });
+    }
+
+    /**
+     * updateItem function is called with the "Save" button is clicked for updating the item details
+     * @param {*} itemId 
+     */
+    updateItem(itemId) {
+        console.log("On Save updateItem clicked!");
+        API.updateItem(itemId);
+    }
+    
     render() {
         const customStyles = {
-            content : {
-                top                   : '50%',
-                left                  : '50%',
-                right                 : 'auto',
-                bottom                : 'auto',
-                marginRight           : '-50%',
-                transform             : 'translate(-50%, -50%)'
-            }
+            // content : {
+            //     top                   : '40%',
+            //     left                  : '50%',
+            //     right                 : 'auto',
+            //     bottom                : 'auto',
+            //     marginRight           : '-50%',
+            //     transform             : 'translate(-50%, -50%)'
+            // }
+            
+                overlay : {
+                  position          : 'fixed',
+                  top               : 0,
+                  left              : 0,
+                  right             : 0,
+                  bottom            : 0,
+                  backgroundColor   : 'rgba(255, 255, 255, 0.75)'
+                },
+                content : {
+                  position                   : 'absolute',
+                  top                        : '40px',
+                  left                       : '40px',
+                  right                      : '40px',
+                  bottom                     : '40px',
+                  border                     : '1px solid #ccc',
+                  background                 : '#fff',
+                  overflow                   : 'auto',
+                  WebkitOverflowScrolling    : 'touch',
+                  borderRadius               : '4px',
+                  outline                    : 'none',
+                  padding                    : '20px'
+              
+                }
+              
         };
         return (
             <div>
@@ -237,7 +305,7 @@ class Profile extends Component {
                     <div className="text-center">
                     <Container fluid>
                         <Row>
-                            <Hero backgroundImage={this.state.business_logo}>
+                            <ProfileCover backgroundImage={this.state.business_logo}>
                                 <button className="btn btn-default pull-right" onClick={this._editProfile}><i className="fa fa-pencil"></i></button>
                                 <div>
                                     <Modal 
@@ -249,9 +317,18 @@ class Profile extends Component {
                                             <Container fluid>
                                                 <Row>
                                                     <Col size="md-10">
+                                                        <p className="logo">Upload Business Logo Image</p>
                                                         <UploadImage getImagePath={this._updateBusinessImage}/>
                                                     </Col>
                                                 </Row>
+                                                <br/>
+                                                {/* <Row>
+                                                    <Col size="md-10">
+                                                        <p className="logo">Upload Profile Image</p>
+                                                        <UploadImage getImagePath={this._updateProfileImage}/>
+                                                    </Col>
+                                                </Row> */}
+                                                <br/>
                                                 <Row>
                                                     <Col size="md-10">
                                                         <InputLog
@@ -272,6 +349,15 @@ class Profile extends Component {
                                                         id="txtAreaBusinessAddress"
                                                     />
                                                 </Col></Row>
+                                                {/* <Row><Col size="md-10">
+                                                    <TextArea
+                                                        value={this.state.business_description}
+                                                        onChange={this._handleInputChange}
+                                                        name="business_description"
+                                                        placeholder="Business Description"
+                                                        id="txtAreaBusinessDescription"
+                                                    />
+                                                </Col></Row> */}
                                                 <Row>
                                                     <Col size="md-10">
                                                     <InputLog
@@ -300,7 +386,7 @@ class Profile extends Component {
                                                         value={this.state.business_instagram}
                                                         onChange={this._handleInputChange}
                                                         name="business_instagram"
-                                                        placeholder="Instagram UserName"
+                                                        placeholder="Instagram Link"
                                                         id="inputLogInstagram"
                                                     />
                                                     </Col>
@@ -346,9 +432,10 @@ class Profile extends Component {
                                         </form>
                                     </Modal>
                                 </div>
-                            </Hero>
+                            </ProfileCover>
                             <Col size="md-12"><p>
                                 <Row><Col size="md-12">
+                                <img src={this.state.business_profile} className="rounded float-left" alt="Profile Image"/>
                                     <div className="col-sm-2 pull-right text"><a href={this.state.business_facebook} target="_blank" ><i className = "fa fa-facebook-square"></i></a></div>
                                     {/* <div className="col-sm-2 pull-right text"></div> */}
                                     <div className="col-sm-3 pull-right text"><i className="fa fa-address-card-o pull-left">&nbsp;{this.state.business_address}</i></div>
@@ -362,6 +449,10 @@ class Profile extends Component {
                                     <div className="col-sm-3 pull-right text"><i className="fa fa-envelope-o pull-left">&nbsp;{this.state.business_email}</i></div>
                                 </Col></Row></p>
                             </Col>
+                            <Row><Col size="md-12">
+                            <div className="descriptionInfo"><h2 className="descriptionTitle">Business Description</h2>{this.state.business_description}</div>
+                            </Col>
+                            </Row>
                         </Row>
                     </Container>
                     </div>
@@ -370,16 +461,16 @@ class Profile extends Component {
                     <Row>
                         <Col size="md-12">
                             <form>
-                                <p>Item Image</p>
+                                <p className="logo">Item Image</p>
                                     <UploadImage getImagePath={this._updateItemImage}/>
-                                <p>Item Name</p>
+                                <p className="titles">Item Name</p>
                                 <InputLog
                                     value={this.state.itemName}
                                     onChange={this.handleInputChange}
                                     name="itemName"
                                     placeholder="Add your item"
                                 />
-                                <p>Item Summary</p>
+                                <p className="titles">Item Summary</p>
                                 <InputLog
                                     value={this.state.itemSummary}
                                     onChange={this.handleInputChange}
@@ -388,7 +479,7 @@ class Profile extends Component {
                                 />
                                 <div>
                                 <button className="btn btn-warning addBtn"
-                                    onClick={this.addItem}
+                                    onClick={this.state.isItemUpdate ? this.updateItem : this.addItem}
                                 >
                                     Add Item
                                 </button>
@@ -405,7 +496,13 @@ class Profile extends Component {
                                     <div>
                                         {this.state.items.map((item, i) => {
                                             return (
-                                                <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
+                                                <BusItem key={item.itemName} 
+                                                                itemName={item.itemName} 
+                                                                itemSummary={item.itemSummary} 
+                                                                itemImage={item.itemImage} 
+                                                                index={i} 
+                                                                itemId={item._id}
+                                                                editItem={(itemId) => this._editItem(itemId)}/> 
                                             );
                                         })}
                                     </div>
