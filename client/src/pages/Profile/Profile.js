@@ -161,7 +161,8 @@ class Profile extends Component {
                     itemName: this.state.itemName,
                     itemSummary: this.state.itemSummary,
                     // itemImage: this.pictures
-                    itemImage: this.state.itemImage
+                    itemImage: this.state.itemImage,
+                    userProfile: this.state.userProfile
                 }
             }
         }, () => {
@@ -236,8 +237,6 @@ class Profile extends Component {
                 </div>
                 <Row> 
                 <Col size="md-12">
-                        {console.log("I just rendered!")}
-                        {console.log(this.state.items)}
                         {this.state.items.length ? (
                             <BusContainer>
                                 <div>
@@ -247,7 +246,11 @@ class Profile extends Component {
                                             <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
                                             
                                         );
-                                    })}
+                                 }
+                                
+
+                                  )}
+                              
                                 </div>
                             </BusContainer>
                         ) : (

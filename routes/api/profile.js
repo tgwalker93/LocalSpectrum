@@ -80,7 +80,15 @@ app.get("/getUserData/:id", function (req, res) {
 //SAVE ITEM EVERYTIME SOMEONE CLICKS ADD ITEM
 app.post("/saveItem", function (req, res) {
         console.log("I'm IN THE BACKEND /saveItem route api/profile")
-        var resultObj = req.body;
+        var resultObj = {
+            properties: {
+                itemName: req.body.item.itemObj.itemName,
+                itemSummary: req.body.item.itemObj.itemSummary,
+                itemImage: req.body.item.itemObj.itemImage
+            },
+        geometry: {}
+    };
+        var userProfile = req.body.item.itemObj.userProfile
         // console.log(result);
         // Using our Article model, create a new entry
         // This effectively passes the result object to the entry (and the title and link)
@@ -102,10 +110,26 @@ app.post("/saveItem", function (req, res) {
         //     }
 
         // });
-
-
-        var newItem = new Item(req.body.item.itemObj);
-
+    console.log("BEFORE I REQUEST GOOGLE API");
+    console.log(userProfile);
+    var apiKey = "AIzaSyBIG5ox_iGJBmdS5y1vyuaGEZUb9eBWe6U"
+    var query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + userProfile.user_address + "+" + userProfile.user_city + "+" + userProfile.user_state + "&key=" + apiKey;
+    // var query2 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + req.params.location + "&destinations=&key=" + apiKey;
+    console.log(query);
+    request(query, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            console.log("I've requested the registered user's access, google api, below is googleLocation")
+            let googledLocation = JSON.parse(body).results[0];
+            console.log("test")
+            console.log(googledLocation)
+            
+            // resultObj.location = body
+            let coordinateString = googledLocation.geometry.location.lng + "," + googledLocation.geometry.location.lat;
+            resultObj.geometry = {
+                coordinates: coordinateString.split(',').map(Number)
+            }
+            resultObj.user_formatted_address = googledLocation.formatted_address;
+            var newItem = new Item(resultObj);
         // And save the new note the db
         newItem.save(function (error, doc) {
             // Log any errors
@@ -136,6 +160,8 @@ app.post("/saveItem", function (req, res) {
                     });
             }
         });
+    }
+    })
 
     });
 });

@@ -42,6 +42,8 @@ export default {
     return axios.get("/api/profile/getItemReviews", item)
   },
   search: function(searchObj) {
+    console.log("I'M IN AXiOS SEARCH FRONT ENT UTILS/API")
+    console.log(searchObj)
     return axios.get("/api/home/search/search=" + searchObj.search + "&location=" + searchObj.location);
   }
 };

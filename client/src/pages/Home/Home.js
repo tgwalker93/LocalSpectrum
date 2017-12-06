@@ -76,7 +76,7 @@ class Home extends Component {
     // Then reload books from the database
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("i'm in handle form submit");
+        console.log("BEGIN SEARCH");
 
         if (this.state.search) {
             API.search({
@@ -84,8 +84,8 @@ class Home extends Component {
                 location: this.state.location
             })
                 .then(res => {
-                    console.log("I'm in the call back of save item in API SEARCH!!!")
-                    console.log(res.data);
+                    console.log("API.Search has completed, see below")
+                    console.log(res);
                     this.setState({
                         items: res.data
                     });
@@ -185,6 +185,9 @@ class Home extends Component {
                         <Col size="sm-1"></Col>
 
                     </div>
+                    {console.log("I just rendered!")}
+                    {console.log(this.state.items)}
+                    {typeof (this.state.items === Array) ? (console.log("correct")) : (this.state.items = [])}
 
                     {this.state.items.length ? (
                         <CusContainer>

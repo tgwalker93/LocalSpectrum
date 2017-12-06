@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ItemSchema = new Schema({
+properties: {
     itemName: {
         type: String,
         required: true
@@ -42,6 +43,11 @@ var ItemSchema = new Schema({
         type: [Schema.Types.ObjectId],
         ref: "ItemTag"
     }]
+}, geometry: {
+        coordinates: {
+            type: [Number], index: '2dsphere'
+        }
+    }
 });
 
 ItemSchema.index({ itemName: 'text', itemSummary: 'text' });
