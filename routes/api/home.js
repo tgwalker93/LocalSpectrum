@@ -47,13 +47,12 @@ app.get("/search/search=:search&location=:location?", function (req, res) {
                     
                     Item.find({ 
                         // $text: { $search: req.params.search }, 
-                        'geometry.coordinates': {
-                            $geoWithin: {
-                                $center: [[geo.lng, geo.lat], 500]
-                                }
-                                
-                            }
-                    
+                        'geometry.coordinates': { 
+                                $geoWithin: {
+                                        $center: [[geo.lng, geo.lat], 500]
+                                        }
+                                        
+                                    }
                     })
                         // .skip(20)
                 .limit(10)
