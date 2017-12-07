@@ -45,6 +45,7 @@ properties: {
     }]
 }, geometry: {
         coordinates: {
+            // type: [Number], index: '2dsphere'
             type: [Number], index: '2dsphere'
         }
     }

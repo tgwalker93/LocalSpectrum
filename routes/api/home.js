@@ -41,19 +41,15 @@ app.get("/search/search=:search&location=:location?", function (req, res) {
                  resultObj.location = JSON.parse(body).results;
                 // resultObj.location = body
                     var geo = resultObj.location[0].geometry.location
-
-
+                    console.log("I requested google maps api");
+                    console.log(geo);
                     // $near: [geo.lat, geo.lng]
                     
                     Item.find({ 
-                        $text: { $search: req.params.search }, 
-                        loc: {
+                        // $text: { $search: req.params.search }, 
+                        'geometry.coordinates': {
                             $geoWithin: {
-                                $geometry: {
-                                    type: "Polygon",
-                                    coordinates: [[[geo.lat, geo.lng], [3, 6], [6, 1], [0, 0]] ]
-                                
-                                }
+                                $center: [[geo.lng, geo.lat], 500]
                                 }
                                 
                             }
