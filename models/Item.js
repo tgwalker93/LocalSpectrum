@@ -51,7 +51,7 @@ properties: {
     }
 });
 
-ItemSchema.index({ itemName: 'text', itemSummary: 'text' });
+ItemSchema.index({ 'properties.itemName': 'text', 'properties.itemSummary': 'text' });
 // ItemSchema.index({ '$**': 'text' });
 
 var Item = mongoose.model("Item", ItemSchema);
