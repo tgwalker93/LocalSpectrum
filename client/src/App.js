@@ -20,7 +20,7 @@ import { Route, Link } from 'react-router-dom'
 const DisplayLinks = props => {
 	if (props.loggedIn) {
 		return (	
-      <NavAfter user={props.user} _logout={props._logout} />
+      <NavAfter user={props} _logout={props._logout} />
 		)
 	} else {
 		return (

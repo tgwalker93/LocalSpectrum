@@ -20,12 +20,12 @@ class Profile extends Component {
         render: true,
         search: "",
         itemName: "",
-        itemSummary:"",
-        itemImage:"test",
+        itemSummary: "",
+        itemImage: "test",
         username: "",
-        location:"", //search Location
-        logo:"",//Business Logo
-        businessDetails:"",//Business Details
+        location: "", //search Location
+        logo: "",//Business Logo
+        businessDetails: "",//Business Details
         userId: this.props.user,
         userProfile: [],
         currentItem: {
@@ -34,7 +34,7 @@ class Profile extends Component {
             //     itemName: this.state.itemName
             // }
         },
-    
+
         itemIds: [],
         items: [],
         isLoggedIn: false,
@@ -93,7 +93,7 @@ class Profile extends Component {
     componentWillReceiveProps(nextProps){
 
         if(nextProps.user){
-            this.setState({items: nextProps.user.items})
+            this.setState({items: nextProps.user.properties.items, username: nextProps.user.properties.username, userProfile: nextProps.user})
         }
     }
 
@@ -155,119 +155,127 @@ class Profile extends Component {
         event.preventDefault();
     };
     addItem = event => {
-    event.preventDefault();
-    
-    if (this.state.itemName) {
-    console.log("useridadditem: " + this.props.user._id)
-    console.log(this.state.itemName)
-    console.log("I SUCCESSSFULY ENTERED ADDITEM, below is item image");
+        event.preventDefault();
+        console.log("Before add item");
 
-    //Save Current Item
-    console.log(this.state.itemImage);
+        if (this.state.itemName) {
 
-        this.setState({
-            currentItem: {
-                userId: this.props.user._id,
-                itemObj: {
-                    itemName: this.state.itemName,
-                    itemSummary: this.state.itemSummary,
-                    // itemImage: this.pictures
-                    itemImage: this.state.itemImage
+            console.log("I SUCCESSSFULY ENTERED ADDITEM, below is item image");
+
+            //Save Current Item
+            console.log(this.state.itemImage);
+
+            this.setState({
+                currentItem: {
+                    userId: this.state.userId,
+                    itemObj: {
+                        itemName: this.state.itemName,
+                        itemSummary: this.state.itemSummary,
+                        // itemImage: this.pictures
+                        itemImage: this.state.itemImage,
+                        userProfile: this.state.userProfile
+                    }
                 }
-            }
-        }, () => {
-        //Call Save Item route!
-            console.log(this.state.currentItem)
-            console.log("Set currentItem is done, this is before I call API.saveItem");
-            axios
-			.post("/auth/saveItem", {
-                item: this.state.currentItem
-			})
-                .then(res => {
-                    console.log("I'm in the call back of save item in addItem!!!")
-                    this.loadItems()
+            }, () => {
+                //Call Save Item route!
+                console.log("Set currentItem is done, this is before I call API.saveItem");
+                API.saveItem({
+                    item: this.state.currentItem
                 })
-                .catch(err => console.log(err));
-        });   
-    }
+                    .then(res => {
+                        console.log("I'm in the call back of save item in addItem!!!")
+                        this.loadUserProfile()
+                    })
+                    .catch(err => console.log(err));
+            });
+        }
 
 }
 
     render() {
         if(this.state.render){
             return (
-                            <div>
-                            <Container fluid >
-                           
-                            <div style={{marginLeft: 20, marginRight: 20}}>
-                                <Row>
-                                    <Col size="md-12">
-                                    
-                                   
-                                        <form>
-                                            {/* ======= upload Image button =======*/}
-                                            <div>
-                                                <input className="fileInput" type="file"
-                                                 onChange={this._handleImageChange} />
-                                            </div>
-                                            {/* ======= upload Image button =======*/}
-                                            
-                                            <p>Item Name</p>
-                                            <InputLog
-                                                value={this.state.itemName}
-                                                onChange={this.handleInputChange}
-                                                name="itemName"
-                                                placeholder="Add your item"
-                                            />
-                                            <p>Item Summary</p>
-                                            <InputLog
-                                                value={this.state.itemSummary}
-                                                onChange={this.handleInputChange}
-                                                name="itemSummary"
-                                                placeholder="Short summary of your item"
-                                            />
-                                            <div>
+                <div>
+                    {/* 
+                {this.state.isLoggedIn ? (
+                    <NavAfter username={this.state.username} />
+                ) : (
+                        <Nav />
+                    )} */}
+
+
+                    <Container fluid >
+
+                        <div style={{ marginLeft: 20, marginRight: 20 }}>
+                            <Row>
+                                <Col size="md-12">
+
+
+                                    <form>
+                                        {/* ======= upload Image button =======*/}
+                                        <div>
+                                            <input className="fileInput" type="file"
+                                                onChange={this._handleImageChange} />
+                                        </div>
+                                        {/* ======= upload Image button =======*/}
+
+                                        <p>Item Name</p>
+                                        <InputLog
+                                            value={this.state.itemName}
+                                            onChange={this.handleInputChange}
+                                            name="itemName"
+                                            placeholder="Add your item"
+                                        />
+                                        <p>Item Summary</p>
+                                        <InputLog
+                                            value={this.state.itemSummary}
+                                            onChange={this.handleInputChange}
+                                            name="itemSummary"
+                                            placeholder="Short summary of your item"
+                                        />
+                                        <div>
                                             <button className="btn btn-warning addBtn"
                                                 onClick={this.addItem}
                                             >
                                                 Add Item
-                                            </button>
-                
-                                            </div>
-                                        </form>
-                                    </Col>
-                                </Row>
-                                </div>
-                                <Row> 
-                                <Col size="md-12">
-                                        {console.log("I just rendered!")}
-                                        {console.log(this.props)}
-            
-                                        {this.state.items.length ? (
-                                            <BusContainer>
-                                                <div>
-                                                    {this.state.items.map((item, i) => {
-                                                        return (
-                                                            
-                                                            <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
-                                                            
-                                                        );
-                                                    })}
-                                                </div>
-                                            </BusContainer>
-                                        ) : (
-                                                <h3> No Results to Display </h3>
-                                            )} 
+                            </button>
+
+                                        </div>
+                                    </form>
                                 </Col>
-                                </Row>
-                                <Row>
-                                    <Col size="md-12">
-                                    
-                                    </Col>
-                                </Row>
-                            </Container>
-                        {/* Tyler Code Do not Touch This Part */}
+                            </Row>
                         </div>
+                        <Row>
+                            <Col size="md-12">
+                                {this.state.items.length ? (
+                                    <BusContainer>
+                                        <div>
+                                            {this.state.items.map((item, i) => {
+                                                return (
+
+                                                    <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
+
+                                                );
+                                            }
+
+
+                                            )}
+
+                                        </div>
+                                    </BusContainer>
+                                ) : (
+                                        <h3> No Results to Display </h3>
+                                    )}
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col size="md-12">
+
+                            </Col>
+                        </Row>
+                    </Container>
+                    {/* Tyler Code Do not Touch This Part */}
+                </div>
                         );
         }
     }
