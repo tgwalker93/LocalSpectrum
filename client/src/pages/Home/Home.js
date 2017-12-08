@@ -47,6 +47,7 @@ class Home extends Component {
         search: "",
         location: "",
         items: [],
+        geoResults: [],
         isModalOpen: false
     };
 
@@ -73,6 +74,31 @@ class Home extends Component {
         });
     };
 
+    //This function will loop through data returned from db within range and find anything relevant to search term.
+    findText(res, search) {
+        console.log("i'm in findText!!!, below is res.data");
+        console.log(res.data)
+        let geoResults = res.data.geoResults
+        let searchResults = [];
+        this.setState({
+            geoResults: geoResults
+        });
+        geoResults.forEach(function (returnedItem) {
+            console.log(returnedItem);
+            console.log(search);
+            if(returnedItem.properties.itemName===search){
+                console.log("SUCCESS");
+                searchResults.push(returnedItem);
+            }
+        });
+
+        console.log("COMPLETED FOR LOOP, SETTING STATE");
+        this.setState({
+            items: searchResults
+        })
+
+    }
+
     // Then reload books from the database
     handleFormSubmit = event => {
         event.preventDefault();
@@ -86,14 +112,16 @@ class Home extends Component {
                 .then(res => {
                     console.log("API.Search has completed, see below")
                     console.log(res);
-                    this.setState({
-                        items: res.data
-                    });
+                    // this.setState({
+                    //     items: res.data
+                    // });
+                    this.findText(res, this.state.search);
                 })
                 .catch(err => console.log(err));
         }
     };
 
+    
     render() {
         return (
             <div>
@@ -171,7 +199,7 @@ class Home extends Component {
                                     value={this.state.location}
                                     onChange={this.handleInputChange}
                                     name="location"
-                                    placeholder=" &#xf041; Enter location"
+                                    placeholder=" &#xf041; Enter city"
                                 />
                             </form>
                         </Col>
@@ -196,7 +224,7 @@ class Home extends Component {
                                     let boundItemClick = this.openModal.bind(this, item);
                                     return (
 
-                                        <CusItem  key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} >
+                                        <CusItem  key={item._id} itemName={item.properties.itemName} itemSummary={item.properties.itemSummary} itemImage={item.properties.itemImage} index={i} >
                                         
 
                                         <ReviewBtn onClick={boundItemClick} />

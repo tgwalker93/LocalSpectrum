@@ -53,20 +53,29 @@ app.get("/search/search=:search&location=:location?", function (req, res) {
                                         }
                                         
                                     }
+            
+                     
+                        
                     })
                         // .skip(20)
-                .limit(10)
+                .limit(5000)
 
                 .exec(function (err, results) {
 
                     if(err){
                         console.log("searching users by location was not successful");
                         console.log(err);
+                        res.json({failedLocation: "This location does not exist"})
                     }else{
                     console.log("ive successfully searched users by location, below is results");
                     console.log(err)
                     console.log(results);
-                        resultObj.results = results
+                        resultObj.geoResults = results
+                        resultObj.finalResults = [];
+                        console.log(results.length);
+                        console.log("We finished searching for the final results!, please see below");
+                        console.log(resultObj.finalResults);
+                        res.json(resultObj)
                     }
                     });
 
