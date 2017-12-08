@@ -5,13 +5,8 @@ var app = express.Router();
 var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
 
-//scraping tools
-var request = require("request");
-var cheerio = require("cheerio");
-
-
 //models 
-var User = require("../../models/User.js");
+var User = require("../../db/models/User.js");
 
 
 
