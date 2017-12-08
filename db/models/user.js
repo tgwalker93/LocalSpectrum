@@ -1,5 +1,7 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const bcrypt = require('bcryptjs')
+mongoose.promise = Promise
 
 const UserSchema = new Schema({
     properties: {
@@ -80,6 +82,29 @@ const UserSchema = new Schema({
         }
     }
 });
+
+// Define schema methods
+UserSchema.methods = {
+	checkPassword: function(inputPassword) {
+		return bcrypt.compareSync(inputPassword, this.properties.password)
+	},
+	hashPassword: plainTextPassword => {
+		return bcrypt.hashSync(plainTextPassword, 10)
+	}
+}
+
+// Define hooks for pre-saving
+UserSchema.pre('save', function(next) {
+	if (!this.properties.password) {
+		console.log('=======NO PASSWORD PROVIDED=======')
+		next()
+	} else {
+		this.properties.password = this.hashPassword(this.properties.password)
+		next()
+	}
+	// this.password = this.hashPassword(this.password)
+	// next()
+})
 
 // UserSchema.index({ items: 'text' });
 // UserSchema.index({ 'properties.items': 'text' });

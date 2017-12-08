@@ -8,7 +8,9 @@ var LocalStrategy = require('passport-local').Strategy;
 //models 
 var User = require("../../db/models/User.js");
 
-
+//scraping tools
+var request = require("request");
+var cheerio = require("cheerio");
 
 
 
@@ -92,14 +94,14 @@ app.post("/saveUser", function (req, res) {
 
 });
 
-app.post('/loginUser',
-    passport.authenticate('local', { session: false }),
-    function (req, res) {
-        console.log("user authenticated..account.routes.js ", req.user.username, req.user.password);
-        res.cookie("userid", req.user._id, { domain: "localhost", maxAge: 365 * 24 * 60 * 60 * 1000 });
-        res.json({ username: req.user.username, password: req.user.password, id: req.user._id });
-        console.log("userid: " + req.user._id);
-    });
+// app.post('/loginUser',
+//     passport.authenticate('local', { session: false }),
+//     function (req, res) {
+//         console.log("user authenticated..account.routes.js ", req.user.username, req.user.password);
+//         res.cookie("userid", req.user._id, { domain: "localhost", maxAge: 365 * 24 * 60 * 60 * 1000 });
+//         res.json({ username: req.user.username, password: req.user.password, id: req.user._id });
+//         console.log("userid: " + req.user._id);
+//     });
 
 passport.use(new LocalStrategy(
     function (username, password, done) {

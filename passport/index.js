@@ -15,7 +15,7 @@ passport.deserializeUser((id, done) => {
 	User.findOne(
 		{ _id: id },
 		// Specify which database items to retrieve from user
-		'items itemReview local.username',
+		'items itemReview properties.username',
 		(err, user) => {
 			console.log('======= DESERILAIZE USER CALLED ======')
 			console.log(user)

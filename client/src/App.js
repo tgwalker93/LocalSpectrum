@@ -74,6 +74,7 @@ class App extends Component {
 	// }
 
 	_login(username, password) {
+		console.log("attempting login of: " + username + " : " + password)
 		axios
 			.post('/auth/login', {
 				username,
