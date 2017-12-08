@@ -26,7 +26,7 @@ class Profile extends Component {
         location:"", //search Location
         logo:"",//Business Logo
         businessDetails:"",//Business Details
-        userId: this.props.user,
+        userId: " ",
         userProfile: [],
         currentItem: {
             // userId: this.state.userId,
@@ -93,7 +93,7 @@ class Profile extends Component {
     componentWillReceiveProps(nextProps){
 
         if(nextProps.user){
-            this.setState({items: nextProps.user.items})
+            this.setState({items: nextProps.user.items, userId: nextProps.user._id })
         }
     }
 
@@ -111,7 +111,7 @@ class Profile extends Component {
         console.log(this.props)
         console.log("----------------------")
         console.log(this.props.user.items)
-        this.setState({ items: this.props.user.items });
+        this.setState({ items: this.props.user.items })
     }
 
     

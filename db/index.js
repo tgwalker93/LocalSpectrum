@@ -4,7 +4,7 @@
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 let MONGO_URL
-const MONGO_LOCAL_URL = 'mongodb://localhost/local-spectrum'
+const MONGO_LOCAL_URL = 'mongodb://dbuserconnect:passwerd@ds044907.mlab.com:44907/osolisdb'
 
 if (process.env.MONGODB_URI) {
 	mongoose.connect(process.env.MONGODB_URI)
