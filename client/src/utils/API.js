@@ -35,7 +35,7 @@ export default {
   // },
   saveItem: function(item) {
     console.log("i'm in save item");
-    console.log(item);
+    // console.log(item);
     return axios.post("/api/profile/saveItem", item)
   },
   getItemReviews: function(item) {
@@ -44,6 +44,12 @@ export default {
   search: function(searchObj) {
     return axios.get("/api/home/search/" + searchObj.search);
   },
+  
+  // deleteCard : function(id)  {
+  //   API.deleteCard(id)
+  //     .then(res => this.loadBooks())
+  //     .catch(err => console.log(err));
+  // },
 
   /**
    * 
@@ -59,5 +65,9 @@ export default {
 
   updateItem: function(itemId) {
     return axios.post("/api/profile/updateItem/"+itemId);
+  },
+
+  deleteItem: function(itemId) {
+    return axios.delete("/api/profile/deleteItem/"+itemId);
   }
 };

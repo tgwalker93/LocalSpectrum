@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import fs from 'fs';
-// import './BusinessCard.css'
 
 class ImageUpload extends Component {
     constructor(props) {

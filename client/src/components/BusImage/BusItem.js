@@ -20,7 +20,9 @@ class BusItem extends Component {
                         {this.props.children}
                         
                     </div>
-                    <DeleteBtn />
+                    <DeleteBtn deleteItem={() => 
+                        {this.props.deleteItem(this.props.itemId)}
+                     } />
                     <div className="content">
                         <ul>
                             <li className="itemTittle">
@@ -33,13 +35,10 @@ class BusItem extends Component {
                         <hr />
                     <Rating index={this.props.index} />
                     </div>
-                    {/* <span onClick={() => props.removeItem(props.id)} className="remove">𝘅</span> */}
-                    
-                    {/* <ReviewBtn />  */}
-                    <EditBtn editItem={() => {
+                    {/* <EditBtn editItem={() => {
                         console.log("BusItem: editbutton event called!");
                         this.props.editItem(this.props.itemId);
-                    }}/> 
+                    }}/>  */}
                 </div>
             </div>
         )}    

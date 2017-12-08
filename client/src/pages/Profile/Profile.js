@@ -207,16 +207,17 @@ class Profile extends Component {
         }
         reader.readAsDataURL(filePath);
     };
-    // _updateProfileImage = (event) => {
-    //     event.preventDefault(); 
-    //     let filePath = event.target.files[0];
+    
+    _updateProfileImage = (event) => {
+        event.preventDefault(); 
+        let filePath = event.target.files[0];
      
-    //     let reader = new FileReader(); 
-    //     reader.onloadend = () => {
-    //         this.setState({business_profile: reader.result});
-    //     }
-    //     reader.readAsDataURL(filePath);
-    // };
+        let reader = new FileReader(); 
+        reader.onloadend = () => {
+            this.setState({business_profile: reader.result});
+        }
+        reader.readAsDataURL(filePath);
+    };
   
     /**
      * Section complete for the Modal window to edit profile
@@ -241,7 +242,6 @@ class Profile extends Component {
      */
     _editItem(itemId) {
         console.log("Profile: callback from Edit button!");
-        // console.log("Item ID: " + itemId);
         API.getItem(itemId)
         .then(data => {
             this.setState({
@@ -253,24 +253,34 @@ class Profile extends Component {
     }
 
     /**
+     * Delete Item callback method to handle delete of the item
+     * @param {*} itemId 
+     */
+    _deleteItem(itemId) {
+        console.log("Profile: callback from Delete button!");
+        API.deleteItem(itemId);
+        window.location.reload();
+    }
+
+    /**
      * updateItem function is called with the "Save" button is clicked for updating the item details
      * @param {*} itemId 
      */
     updateItem(itemId) {
-        console.log("On Save updateItem clicked!");
-        API.updateItem(itemId);
+        console.log("Profile: UpdateItem!");
+        // API.updateItem(itemId);
+        API.deleteItem(itemId);
+        API.saveItem({
+            itemName: this.state.itemName,
+            itemSummary: this.state.itemSummary,
+            itemImage: this.state.itemImage
+        })
+        window.location.reload();
     }
     
     render() {
         const customStyles = {
-            // content : {
-            //     top                   : '40%',
-            //     left                  : '50%',
-            //     right                 : 'auto',
-            //     bottom                : 'auto',
-            //     marginRight           : '-50%',
-            //     transform             : 'translate(-50%, -50%)'
-            // }
+            
             
                 overlay : {
                   position          : 'fixed',
@@ -286,7 +296,7 @@ class Profile extends Component {
                   left                       : '40px',
                   right                      : '40px',
                   bottom                     : '40px',
-                  border                     : '1px solid #ccc',
+                  border                     : '4px solid orange',
                   background                 : '#fff',
                   overflow                   : 'auto',
                   WebkitOverflowScrolling    : 'touch',
@@ -322,12 +332,12 @@ class Profile extends Component {
                                                     </Col>
                                                 </Row>
                                                 <br/>
-                                                {/* <Row>
+                                                <Row>
                                                     <Col size="md-10">
                                                         <p className="logo">Upload Profile Image</p>
                                                         <UploadImage getImagePath={this._updateProfileImage}/>
                                                     </Col>
-                                                </Row> */}
+                                                </Row>
                                                 <br/>
                                                 <Row>
                                                     <Col size="md-10">
@@ -349,7 +359,7 @@ class Profile extends Component {
                                                         id="txtAreaBusinessAddress"
                                                     />
                                                 </Col></Row>
-                                                {/* <Row><Col size="md-10">
+                                                <Row><Col size="md-10">
                                                     <TextArea
                                                         value={this.state.business_description}
                                                         onChange={this._handleInputChange}
@@ -357,7 +367,7 @@ class Profile extends Component {
                                                         placeholder="Business Description"
                                                         id="txtAreaBusinessDescription"
                                                     />
-                                                </Col></Row> */}
+                                                </Col></Row>
                                                 <Row>
                                                     <Col size="md-10">
                                                     <InputLog
@@ -426,28 +436,30 @@ class Profile extends Component {
                                                 </Row>
                                                 <hr />
                                                 <Row><Col size="md-10">
-                                                    <button className="btn btn-primary pull-right" onClick={this._updateAndClose}>Save</button>
+                                                    <button className="btn btn-primary pull-right loginBtn" onClick={this._updateAndClose}>Save</button>
                                                 </Col></Row>
                                             </Container>
                                         </form>
                                     </Modal>
                                 </div>
                             </ProfileCover>
-                            <Col size="md-12"><p>
+                            <Col size="md-12">
                                 <Row><Col size="md-12">
                                 <img src={this.state.business_profile} className="rounded float-left" alt="Profile Image"/>
-                                    <div className="col-sm-2 pull-right text"><a href={this.state.business_facebook} target="_blank" ><i className = "fa fa-facebook-square"></i></a></div>
+                                    <div className="col-sm-2 pull-right text"><a href={this.state.business_facebook} target="_blank" ><i className = "fa fa-facebook-square icon"></i></a></div>
                                     {/* <div className="col-sm-2 pull-right text"></div> */}
-                                    <div className="col-sm-3 pull-right text"><i className="fa fa-address-card-o pull-left">&nbsp;{this.state.business_address}</i></div>
-                                    <div className="col-sm-3 pull-right text"><i className="fa fa-user-circle-o pull-left">&nbsp;{this.state.business_name}</i></div>
-                                </Col></Row></p>
-                                {/* <br/> */}<p>
+                                    <div className="col-sm-2 pull-right text"><a href={this.state.business_instagram} target="_blank"><i className = "fa fa-instagram icon"></i></a></div>
+
+                                    <div className="col-sm-3 pull-right text"><i className="fa fa-address-card-o icon"></i>&nbsp;{this.state.business_address}</div>
+                                    <div className="col-sm-3 pull-right text"><i className="fa fa-user-circle-o icon"></i>&nbsp;{this.state.business_name}</div>
+                                </Col></Row>
+                                {/* <br/> */}
                                 <Row><Col size="md-12"> 
-                                    <div className="col-sm-2 pull-right text"><a href="#"><i className = "fa fa-instagram"></i></a></div>
-                                    <div className="col-sm-3 pull-right text"><i className="fa fa-phone-square pull-left">&nbsp;{this.state.business_phone}</i></div>
-                                    <div className="col-sm-3 pull-right text"><i className="fa fa-fax pull-left">&nbsp;{this.state.business_fax}</i></div>
-                                    <div className="col-sm-3 pull-right text"><i className="fa fa-envelope-o pull-left">&nbsp;{this.state.business_email}</i></div>
-                                </Col></Row></p>
+                                    {/* <div className="col-sm-2 pull-right text2"><a href={this.state.business_instagram} target="_blank"><i className = "fa fa-instagram icon"></i></a></div> */}
+                                    <div className="col-sm-3 pull-right text2"><i className="fa fa-phone-square icon"></i>&nbsp;{this.state.business_phone}</div>
+                                    <div className="col-sm-3 pull-right text2"><i className="fa fa-fax icon"></i>&nbsp;{this.state.business_fax}</div>
+                                    <div className="col-sm-3 pull-right text2"><i className="fa fa-envelope-o icon"></i>&nbsp;{this.state.business_email}</div>
+                                </Col></Row>
                             </Col>
                             <Row><Col size="md-12">
                             <div className="descriptionInfo"><h2 className="descriptionTitle">Business Description</h2>{this.state.business_description}</div>
@@ -479,7 +491,7 @@ class Profile extends Component {
                                 />
                                 <div>
                                 <button className="btn btn-warning addBtn"
-                                    onClick={this.state.isItemUpdate ? this.updateItem : this.addItem}
+                                    onClick={this.addItem}
                                 >
                                     Add Item
                                 </button>
@@ -502,7 +514,8 @@ class Profile extends Component {
                                                                 itemImage={item.itemImage} 
                                                                 index={i} 
                                                                 itemId={item._id}
-                                                                editItem={(itemId) => this._editItem(itemId)}/> 
+                                                                editItem={(itemId) => this._editItem(itemId)}
+                                                                deleteItem={(itemId) => this._deleteItem(itemId)}/> 
                                             );
                                         })}
                                     </div>

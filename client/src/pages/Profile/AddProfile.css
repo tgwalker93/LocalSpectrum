@@ -5,22 +5,34 @@
 button {
     margin: 5px;
 }
-
+.icon{
+    color:#FF1F99;
+    font-size: 20px;
+    
+}
 
 .text {
-    font-family: 'FontAwesome', sans-serif!important;
-    font-size: 15px;
-    color: blue;   
-    letter-spacing: 0.1em; 
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: black; 
+    margin-top:20px;
+    
+}
+.text2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: black; 
+    margin-top:-20px;   
+
 }
 .descriptionTitle{
 text-align: left;
 }
 .descriptionInfo{
     text-align: left;
-    font-family: 'FontAwesome', sans-serif!important;
-    font-size: 15px;
-    color: blue;   
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: black;   
     letter-spacing: 0.1em;
 }
 .itemImage{
@@ -29,3 +41,51 @@ text-align: left;
 .logo{
     color:orange;
 }
+/* Profile Image Styling */
+
+.rounded{
+    width:200px;
+    height: 200px;
+    z-index:99;
+    margin-top:-110px;
+    border-radius: 50%;
+    border: 5px solid #FF7D18;
+}
+@media (min-width: 548px) and (max-width: 768px){
+    .text {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 18px;
+        color: black; 
+        margin-top:20px;
+    }
+    .text2 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 18px;
+        color: black; 
+        margin-top:10px;   
+    
+    }
+    .rounded{
+        width:150px;
+        height: 150px;
+        z-index:99;
+        margin-top:-110px;
+        border-radius: 50%;
+        border: 5px solid #FF7D18;
+    }
+  }
+  @media (min-width: 448px) and (max-width: 548px){
+    .text {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 18px;
+        color: black; 
+        margin-top:20px;
+    }
+    .text2 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 18px;
+        color: black; 
+        margin-top:10px;   
+    
+    }
+  }

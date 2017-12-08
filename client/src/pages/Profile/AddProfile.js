@@ -29,7 +29,7 @@ class AddProfile extends Component {
             business_fax: "",
             business_logo: "",
             business_profile:"",
-            // business_description:""
+            business_description:""
         };
         this._handleClick = this._handleClick.bind(this);
     }
@@ -114,12 +114,12 @@ class AddProfile extends Component {
                                 </Col>
                             </Row>
                             <br/>
-                            {/* <Row>
+                            <Row>
                                 <Col size="md-10">
                                     <p className="logo">Upload Profile Image</p>
                                     <UploadImage getImagePath={this._updateProfileImage}/>
                                 </Col>
-                            </Row> */}
+                            </Row>
                             <br/>
                             <Row>
                                 <Col size="md-10">
@@ -143,7 +143,7 @@ class AddProfile extends Component {
                                     id="txtAreaBusinessAddress"
                                 />
                             </Col></Row>
-                            {/* <Row><Col size="md-10">
+                            <Row><Col size="md-10">
                                 <TextArea
                                     value={this.state.business_description}
                                     onChange={this._handleInputChange}
@@ -151,7 +151,7 @@ class AddProfile extends Component {
                                     placeholder="Business Description"
                                     id="txtAreaBusinessDescription"
                                 />
-                            </Col></Row> */}
+                            </Col></Row>
                             <Row>
                                 <Col size="md-10">
                                 <p className="titles">ZipCode&nbsp;<i className="fa fa-asterisk" aria-hidden="true"></i></p>

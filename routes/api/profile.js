@@ -130,7 +130,7 @@ app.post("/saveProfile", function(req, res) {
                                                             "business_facebook":req.body.business_facebook,
                                                             "business_instagram":req.body.business_instagram,
                                                             "business_logo":req.body.business_logo,
-                                                            // "business_profile":req.body.business_profile,
+                                                            "business_profile":req.body.business_profile,
                                                             "business_description":req.body.business_description,
                                                         } },
                         { multi: true, upsert: false })
@@ -141,7 +141,7 @@ app.post("/saveProfile", function(req, res) {
         }
         else {
             // Or send the document to the browser
-            console.log(doc);
+            // console.log(doc);
             res.json(doc);
         }
     });
@@ -167,10 +167,25 @@ app.get("/getItem/:id", function(req, res) {
  * Update Item details for a given Item Id
  */
 app.post("/updateItem/:id", function(req, res) {
-    Item.findByIdAndUpdate(req.params.id)
-    .then()
+    Item.findByIdAndUpdate(req.params.id,
+    {$set: {
+        itemName: req.body.itemName,
+        itemSummary: req.body.itemSummary
+    }}, {new: true}, function(err, event) {
+        if(err) {
+            throw err;
+        }
+        res.send(event);
+    })
 });
-
-app.post()
+app.delete("/deleteItem/:id",function(req,res){
+    console.log(req.params.id);
+    Item.findByIdAndRemove(req.params.id, function(err, obj) {
+        if(err) {
+            throw err;
+        }
+        res.send(obj);
+    });
+})
 
 module.exports = app;
