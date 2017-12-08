@@ -84,18 +84,22 @@ app.get("/search/search=:search&location=:location?", function (req, res) {
 
                                         for(i=0; i<resultObj.textResults.length; i++) {
                                             console.log("geo results -- -- - - - - ")
-                                            console.log(resultObj.geoResults[i].properties.itemName)
+                                            console.log(resultObj.geoResults[i]._id)
                                             console.log("text results ---- - - - - - -- - - ")
-                                            console.log(resultObj.textResults[i])
-                                            if (resultObj.geoResults[i].properties.itemName === resultObj.textResults[i].itemName) {
-                                                let combineObj = {
-                                                    geoResults: resultObj.geoResults[i],
-                                                    textResults: resultObj.textResults[i]
+                                            console.log(resultObj.textResults[i]._id);
+                                            for(j=0; j<resultObj.geoResults.length; j++) {
+                                                if (resultObj.geoResults[j]._id === resultObj.textResults[i]._id) {
+                                                    let combineObj = {
+                                                        geoResults: resultObj.geoResults[i],
+                                                        textResults: resultObj.textResults[i].itemName
+                                                    }
+                                                    resultObj.finalResults.push(combineObj)
+                                                    console.log("*******************************************************below is combineObj, a search item that matches distance*****************");
+                                                    console.log(combineObj);
                                                 }
-                                                resultObj.finalResults.push(combineObj)
-                                                console.log("*******************************************************below is combineObj, a search item that matches distance*****************");
-                                                console.log(combineObj);
+
                                             }
+
                                         }
                                         console.log("THE END BELOW IS FINAL RESULTS -----------------------------")
                                         console.log(resultObj.finalResults)
