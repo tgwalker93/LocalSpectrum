@@ -11,8 +11,8 @@ var cheerio = require("cheerio");
 
 //models 
 // var Note = require("../../models/Note.js");
-var User = require("../../models/User.js");
-var Item = require("../../models/Item.js");
+var User = require("../../db/models/User.js");
+var Item = require("../../db/models/Item.js");
 
 
 
