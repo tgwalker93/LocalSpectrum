@@ -26,8 +26,9 @@ class Profile extends Component {
         location: "", //search Location
         logo: "",//Business Logo
         businessDetails: "",//Business Details
-        userId: this.props.user,
-        userProfile: [],
+        userId: this.props.userId,
+        geometry: "this.props.geometry",
+        userProfile: "unchanged",
         currentItem: {
             // userId: this.state.userId,
             // itemObj: {
@@ -92,9 +93,17 @@ class Profile extends Component {
 
     componentWillReceiveProps(nextProps){
         console.log("COMPONENT RECEIVED PROPS )0)))) ) ) ) )")
-        console.log(nextProps.user);
+        console.log(nextProps);
+        console.log(nextProps.coordinates)
+        console.log("-----nextProps.user-----")
+        console.log(nextProps.user)
+        console.log("------------------------")
         if(nextProps.user){
-            this.setState({items: nextProps.user.items, username: nextProps.user.username, userProfile: nextProps.user, userId: nextProps._id})
+            this.setState({items: nextProps.user.items, username: nextProps.user.username, userProfile: nextProps.user, userId: nextProps.userId})
+            console.log("------this.state.userId------")
+            console.log(this.state.userId)
+            console.log(this.state.username)
+            console.log("/------this.state.Id------")
         }
     }
 
@@ -156,6 +165,13 @@ class Profile extends Component {
         event.preventDefault();
     };
     addItem = event => {
+        console.log("--additem--this.state.userId---")
+        console.log(this.state.userId)
+
+        console.log("------geometry------")
+        console.log(this.state.geometry)
+        console.log("--------------------")
+
         event.preventDefault();
         console.log("Before add item");
 
@@ -182,6 +198,9 @@ class Profile extends Component {
                 }
             }, () => {
                 //Call Save Item route!
+                console.log("------this.state.userProfile------")
+                console.log(this.state.userProfile)
+                console.log("/------this.state.userProfile------")
                 console.log("Set currentItem is done, this is before I call API.saveItem");
                 API.saveItem({
                     item: this.state.currentItem
