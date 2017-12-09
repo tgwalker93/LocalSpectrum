@@ -154,11 +154,7 @@ var Item = require("../../db/models/Item.js");
                         coordinates: coordinateString.split(',').map(Number)
                     }
                     resultObj.user_formatted_address = googledLocation.formatted_address;
-                } else {
-                    errorResponse = "Sorry, that address is incorrect!";
-                    res.json(errorResponse);
                 }
-               
                
                
                 var newItem = new Item(resultObj);
@@ -194,9 +190,7 @@ var Item = require("../../db/models/Item.js");
                             });
                     }
                 });
-            } else {
-                res.json({errorResponse: "Sorry, that username is already taken!"})
-            }
+            } 
         })
 
     });
