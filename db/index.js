@@ -1,8 +1,7 @@
 /* Mongo Database
 * - this is where we set up our connection to the mongo database
 */
-const mongoose = require('mongoose')
-mongoose.Promise = global.Promise
+const mongoose = require('mongoose');
 let MONGO_URL
 const MONGO_LOCAL_URL = 'mongodb://localhost/local-spectrum'
 
