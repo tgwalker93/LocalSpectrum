@@ -4,6 +4,7 @@ import Rating  from "../../components/Rating";
 // import ReviewBtn from "../../components/ReviewBtn";
 import EditBtn from "../../components/EditBtn";
 import DeleteBtn from "../../components/DeleteBtn";
+import { Link } from "react-router-dom";
 
 
 export const BusItem = props => (
@@ -26,12 +27,13 @@ export const BusItem = props => (
                     </li>
                 </ul>
                 <hr />
-               <Rating index={props.index} />
+               {/* <Rating index={props.index} /> */}
+                <Link to={"/itemPage/" + props.itemId}><button> See Reviews </button> </Link>
             </div>
             {/* <span onClick={() => props.removeItem(props.id)} className="remove">𝘅</span> */}
             
             {/* <ReviewBtn />  */}
-            <EditBtn /> 
+            {/* <EditBtn />  */}
         </div>
     </div>
 );

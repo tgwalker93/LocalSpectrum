@@ -11,7 +11,7 @@ export const CusItem = props => (
     <div className="col-sm-4">
         <div className='card'>
             <div className="img-container">
-                <img alt={props.itemName} src={props.itemImage} />
+                <img alt={"No Image"} src={props.itemImage} />
                 {/* {props.children} */}
                 
             </div>
@@ -26,7 +26,8 @@ export const CusItem = props => (
                     </li>
                 </ul>
                 <hr />
-               <Rating index={props.index} />
+               {/* <Rating index={props.index} /> */}
+               <p> Average Rating: {props.averageRating} </p>
             </div>
             {/* <span onClick={() => props.removeItem(props.id)} className="remove">𝘅</span> */}
             

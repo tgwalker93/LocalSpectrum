@@ -44,11 +44,10 @@ app.post("/postReview", function(req, res) {
     console.log(req.body)
 
     let reviewObj = req.body;
-    if(reviewObj.user.properties) {
+    let usernameOfReviewer = null;
+    if(reviewObj.user) {
         let usernameOfReviewer = reviewObj.user.properties.username
-    } else {
-        let usernameOfReviewer = null
-    }
+    } 
 
     let review = {
         rating: reviewObj.rating,
@@ -114,19 +113,21 @@ app.get("/search/search=:search&location=:location?", function (req, res) {
     if (req.params.location) {
 
 
-        var apiKey = "AIzaSyBIG5ox_iGJBmdS5y1vyuaGEZUb9eBWe6U"
+        var apiKey = "AIzaSyBejz2PGLk2-SG6MI6FCEmyaCQG-7pPuuw"
         var query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + req.params.location + "&key=" + apiKey;
         var query2 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + req.params.location + "&destinations=&key=" + apiKey;
         request(query, function (error, response, body) {
             if (!error && response.statusCode === 200) {
                 // console.log(results)
-
-                resultObj.location = JSON.parse(body).results;
-                // resultObj.location = body
-                var geo = resultObj.location[0].geometry.location
-                console.log("I requested google maps api");
-                console.log(geo);
+             
+                    resultObj.location = JSON.parse(body).results;
+                    // resultObj.location = body
+                    var geo = resultObj.location[0].geometry.location
+                    console.log("I requested google maps api");
+                    console.log(geo);
                 // $near: [geo.lat, geo.lng]
+               
+
 
                 Item.find({
                     // $text: { $search: req.params.search }, 
@@ -140,6 +141,7 @@ app.get("/search/search=:search&location=:location?", function (req, res) {
 
 
                 })
+                    .populate('properties.itemReviews')
                     // .skip(20)
                     .limit(5000)
 
@@ -162,14 +164,14 @@ app.get("/search/search=:search&location=:location?", function (req, res) {
                         }
                     });
 
-            } else {
-                resultObj.results = "Google Maps API was not successful!"
-            }
+                } else {
+                    res.json({ error: "There was an error with your address" });
+                }
 
 
         });
 
-
+        
 
     } else {
         res.json(resultObj);

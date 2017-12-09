@@ -129,13 +129,15 @@ var Item = require("../../db/models/Item.js");
             },
             geometry: {}
         };
+        let errorResponse = "";
         var userProfile = req.body.item.itemObj.userProfile;
-        resultObj.userProfile.properties.username;
+        resultObj.properties.username = userProfile.properties.username;
+    
         console.log("BEFORE I REQUEST GOOGLE API");
         console.log(userProfile);
 
-        var apiKey = "AIzaSyBIG5ox_iGJBmdS5y1vyuaGEZUb9eBWe6U"
-        var query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + userProfile.properties.user_address + "+" + userProfile.properties.user_city + "+" + userProfile.properties.user_state + "&key=" + apiKey;
+        var apiKey = "AIzaSyBejz2PGLk2-SG6MI6FCEmyaCQG-7pPuuw"
+        var query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + userProfile.properties.user_city + "+" + userProfile.properties.user_state + "&key=" + apiKey;
         // var query2 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + req.params.location + "&destinations=&key=" + apiKey;
         console.log(query);
         request(query, function (error, response, body) {
@@ -146,11 +148,19 @@ var Item = require("../../db/models/Item.js");
                 console.log(googledLocation)
 
                 // resultObj.location = body
-                let coordinateString = googledLocation.geometry.location.lng + "," + googledLocation.geometry.location.lat;
-                resultObj.geometry = {
-                    coordinates: coordinateString.split(',').map(Number)
+                if(googledLocation){
+                    let coordinateString = googledLocation.geometry.location.lng + "," + googledLocation.geometry.location.lat;
+                    resultObj.geometry = {
+                        coordinates: coordinateString.split(',').map(Number)
+                    }
+                    resultObj.user_formatted_address = googledLocation.formatted_address;
+                } else {
+                    errorResponse = "Sorry, that address is incorrect!";
+                    res.json(errorResponse);
                 }
-                resultObj.user_formatted_address = googledLocation.formatted_address;
+               
+               
+               
                 var newItem = new Item(resultObj);
                 // And save the new note the db
                 newItem.save(function (error, doc) {
@@ -184,6 +194,8 @@ var Item = require("../../db/models/Item.js");
                             });
                     }
                 });
+            } else {
+                res.json({errorResponse: "Sorry, that username is already taken!"})
             }
         })
 

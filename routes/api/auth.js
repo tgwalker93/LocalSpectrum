@@ -89,7 +89,7 @@ app.post('/signup', (req, res) => {
 		//get cordinates from Google Maps API
 		// if(resultObj.properties.user_address) {
 	
-		var apiKey = "AIzaSyBIG5ox_iGJBmdS5y1vyuaGEZUb9eBWe6U"
+		var apiKey = "AIzaSyBejz2PGLk2-SG6MI6FCEmyaCQG-7pPuuw"
 		var query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + resultObj.properties.user_address + "+" + resultObj.properties.user_city + "+" + resultObj.properties.user_state + "&key=" + apiKey;
 		// var query2 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + req.params.location + "&destinations=&key=" + apiKey;
 	   console.log(query);
@@ -179,7 +179,7 @@ app.post("/saveItem", function (req, res) {
         // });
     console.log("BEFORE I REQUEST GOOGLE API");
     console.log(userProfile);
-    var apiKey = "AIzaSyBIG5ox_iGJBmdS5y1vyuaGEZUb9eBWe6U"
+		var apiKey = "AIzaSyBejz2PGLk2-SG6MI6FCEmyaCQG-7pPuuw"
     var query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + userProfile.user_address + "+" + userProfile.user_city + "+" + userProfile.user_state + "&key=" + apiKey;
     // var query2 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + req.params.location + "&destinations=&key=" + apiKey;
     console.log(query);

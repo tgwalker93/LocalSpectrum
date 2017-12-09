@@ -160,7 +160,7 @@ class About extends Component {
                                     <div className="col-xs-3"></div>
                                 </div>
                             </div>
-                            <div className="col-sm-2 iconBox five">
+                            {/* <div className="col-sm-2 iconBox five">
                                 <img src="/assets/img/matthew.jpg" className="img-circle img-responsive " alt="Prathiha" width="90%" height="90%" />
                                 <h3 style={{ color: "#36ECFF" }}>Matthew Belanic</h3>
                                 <p>Back-end | Data Developer</p>
@@ -175,7 +175,7 @@ class About extends Component {
                                     </div>
                                     <div className="col-xs-3"></div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="col-sm-1"></div>
                         </div>
                         </div>

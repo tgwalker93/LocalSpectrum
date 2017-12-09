@@ -133,39 +133,6 @@ class Profile extends Component {
 
     
 
-    // loadUserProfile() {
-    //     // this._handleImageChange = this._handleImageChange.bind(this);
-    //     console.log("i successfully entered load user profile")
-    //     console.log(this.state.items);
-    //     API.getUserData(this.state.userId)
-    //         .then(data =>
-    //             {
-    //             console.log("API.getUserData on the front-end WAS SUCCESSFUL, i'm in the .then");
-    //             console.log(data.data)
-
-    //             this.setState({ items: data.data.items, username: data.data.username, userProfile: data.data });
-
-    //             })
-
-    //         .catch(err => console.log(err));
-        
-    // };
-
-    // getUserItemsByItemId(itemIds) {
-    //     API.getItems(itemIds)
-    //         .then(data => {
-    //             console.log("After API.getItems is done in profile")
-    //             console.log(data.data)
-    //             this.setState({ items: data.data.items}, () => {
-
-    //             })
-
-    //         })
-
-    //         .catch(err => console.log(err));
-
-    // };
-
 
     // Then reload books from the database
     handleFormSubmit = event => {
@@ -227,13 +194,7 @@ class Profile extends Component {
         if(this.state.render){
             return (
                 <div>
-                    {/* 
-                {this.state.isLoggedIn ? (
-                    <NavAfter username={this.state.username} />
-                ) : (
-                        <Nav />
-                    )} */}
-
+  
 
                     <Container fluid >
 
@@ -284,7 +245,7 @@ class Profile extends Component {
                                             {this.state.items.map((item, i) => {
                                                 return (
 
-                                                    <BusItem key={item.properties.itemName} itemName={item.properties.itemName} itemSummary={item.properties.itemSummary} itemImage={item.properties.itemImage} index={i} />
+                                                    <BusItem key={item._id} itemId={item._id} itemName={item.properties.itemName} itemSummary={item.properties.itemSummary} itemImage={item.properties.itemImage} index={i} />
 
                                                 );
                                             }

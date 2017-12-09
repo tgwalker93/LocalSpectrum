@@ -65,7 +65,8 @@ class Home extends Component {
         currentItem: null,
         isModalOpen: false,
         rating_empty_initial: 0,
-        rating: 0
+        rating: 0,
+        averageRating: 0
     };
 
     // When the component mounts, load all books and save them to this.state.books
@@ -137,7 +138,8 @@ class Home extends Component {
         let geoResults = res.data.geoResults
         let searchResults = [];
         this.setState({
-            geoResults: geoResults
+            geoResults: geoResults,
+            
         });
         geoResults.forEach(function (returnedItem) {
             console.log(returnedItem);
@@ -147,6 +149,23 @@ class Home extends Component {
                 searchResults.push(returnedItem);
             }
         });
+
+
+        
+        searchResults.forEach(function(returnedItem, i){
+            let total = 0;
+            let avg = 0;
+            let count = 0;
+            returnedItem.properties.itemReviews.forEach(function(review){
+                if(review.rating){
+                    count += 1;
+                    total+= review.rating;
+                }
+            })
+            avg = total/count
+            searchResults[i].averageRating = avg;
+            
+        })
 
         console.log("COMPLETED FOR LOOP, SETTING STATE");
         this.setState({
@@ -270,7 +289,7 @@ class Home extends Component {
                                     {console.log(item)}
                                     return (
                                         
-                                        <CusItem  key={item._id} itemId={item._id} itemName={item.properties.itemName} itemSummary={item.properties.itemSummary} itemImage={item.properties.itemImage} index={i} >
+                                        <CusItem  key={item._id} itemId={item._id} itemName={item.properties.itemName} itemSummary={item.properties.itemSummary} itemImage={item.properties.itemImage} averageRating={item.averageRating} index={i} >
                                         
 
                                         <ReviewBtn onClick={boundItemClick} />
