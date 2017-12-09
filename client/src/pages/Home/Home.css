@@ -1,0 +1,77 @@
+.item-name{
+    background: linear-gradient(20deg,#FF1F99, #FF7D18, #FED829); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+button.postReview {
+    margin-top: 25px;
+    color: #fff;
+    padding: 10px 20px;
+    border:0;
+    border-radius: 100px;
+    background: linear-gradient(-30deg,#FF1F99, #FF7D18, #FED829);
+    position: absolute;
+    cursor: pointer;
+    transform: scale(0.8);
+    margin-left:-12px;
+ 
+}
+
+button.postReview:hover,  {
+background: #FF1F99;
+
+
+}
+
+.reviewArea{
+    border:2px solid #09B0FF;
+    border-image-source: linear-gradient(to right,#FF1F99, #FF7D18, #FED829);
+    border-image-slice: 2;
+}
+
+textarea.reviewArea:hover, textarea.reviewArea:focus, textarea.reviewArea:active {
+    outline: none!important;
+    box-shadow: none!important;
+}
+
+.closeModal {
+    float: right;
+    color: #FF1F99;
+    border:0;
+    font-size: 20px;
+    background: transparent;
+}
+
+.closeModal:focus {
+    outline: none!important;
+    box-shadow: none!important;
+}
+
+.modalStyling:focus{
+    outline: none!important;
+    box-shadow: none!important;
+}
+
+
+.modalStyling {
+    height: 400px;
+    width: 600px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    overflow: auto;
+    background-color: rgba(255,255,255,0.8);
+    border: 1.5px solid #FF1F99;
+    padding: 20px 30px;
+}
+
+@media only screen and (max-width : 480px) {
+    .modalStyling {
+        transform: scale(0.6);
+        top: 25%;
+        left: -25%;
+    }
+}

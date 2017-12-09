@@ -6,7 +6,6 @@ import { TextLog, InputLog } from "../../components/LoginItem";
 import API from "../../utils/API";
 import "./Contact.css";
 
-
 class Contact extends Component {
     // Setting our component's initial state
     state = {
@@ -32,19 +31,25 @@ class Contact extends Component {
 
     // }
 
-    // // Then reload books from the database
-    // createAccount = event => {
-    //     console.log("i'm in handleFormSubmit")
-    //     event.preventDefault();
-    //     if (this.state.username && this.state.password) {
-    //         API.saveUser({
-    //             username: this.state.username,
-    //             password: this.state.password
-    //         })
-    //             .then(res => console.log(res + "SUCESSFUL HANDLEFORM SUBMIT"))
-    //             .catch(err => console.log(err));
-    //     }
-    // };
+    handleFormSubmit = event => {
+        event.preventDefault();
+        console.log("i'm in handle form submit");
+
+        if (this.state.search) {
+            API.search({
+                search: this.state.search,
+                location: this.state.location
+            })
+                .then(res => {
+                    console.log("I'm in the call back of save item in API SEARCH!!!")
+                    console.log(res.data);
+                    this.setState({
+                        items: res.data
+                    });
+                })
+                .catch(err => console.log(err));
+        }
+    };
 
     render() {
         return (
@@ -57,7 +62,7 @@ class Contact extends Component {
                                 <h2>Contact Us</h2>
                                 <p className="subTitle">We will get back to you as soon as possible!!!!</p>
                                 <hr />
-                                <h4><span><i className="fa  fa-map-marker fa-1x contactIcon" aria-hidden="true"></i></span> Irvine, Orang County</h4>
+                                <h4><span><i className="fa  fa-map-marker fa-1x contactIcon" aria-hidden="true"></i></span> Irvine, Orange County</h4>
                                 <h4><span><i className="fa  fa-envelope fa-1x contactIcon" aria-hidden="true"></i></span> localspectrum@mail.com</h4>
                                 <h4><span><i className="fa  fa-volume-control-phone fa-1x contactIcon" aria-hidden="true"></i></span> 888-LocalSpectrum</h4>
                             </div>
@@ -106,6 +111,7 @@ class Contact extends Component {
                         </Row>
                 </Container>
             </div>
+
         );
     }
 }

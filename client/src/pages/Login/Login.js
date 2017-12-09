@@ -77,20 +77,22 @@ class Login extends Component {
                                     name="password"
                                     placeholder="&#xf023; PASSWORD"
                                 />
+                                
                                 <button className="btn btn-warning loginBtn"
                                     onClick={this.login}
                                 >
                                 Log in
                                 </button>
+                               
+                               
+                                {/* <GoogleButton>
+                                </GoogleButton> */}
 
-                                <GoogleButton>
-                                </GoogleButton>
-
-                                <button className="btn btn-warning registerBtn"
+                                {/* <button className="btn btn-warning registerBtn"
                                     onClick={this.createAccount}
                                 >
                                 Register
-                                </button>
+                                </button> */}
                             </form>
                         </div>
                         <div className="col-sm-3 hidden-xs"></div>

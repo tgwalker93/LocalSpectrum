@@ -92,11 +92,11 @@ class Register extends Component {
                                 type="password"
                                 placeholder="&#xf023; CONFIRM PASSWORD"
                             /> 
-                            <button className="btn btn-warning loginBtn"
+                            {/* <button className="btn btn-warning loginBtn"
                                 onClick={this.login}
                             >
                                 Log in
-                            </button>
+                            </button> */}
 
                             <button className="btn btn-warning registerBtn"
                                 onClick={this.createAccount}

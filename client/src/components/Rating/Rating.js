@@ -40,7 +40,7 @@ class StartRating extends React.Component {
 
   render() {
     return (
-      <div>
+      
        <div className="starRating">
           <StarRatingComponent
            name={`star${this.props.index}`}
@@ -48,7 +48,7 @@ class StartRating extends React.Component {
             onStarClick={this.onStarClickEmptyInitial.bind(this)}
           />
         </div>
-      </div>
+     
     );
   }
 }

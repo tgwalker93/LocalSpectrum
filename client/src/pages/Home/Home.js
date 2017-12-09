@@ -4,26 +4,29 @@ import Hero from "../../components/Hero";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import ReviewBtn from "../../components/ReviewBtn";
+import NextBtn from "../../components/NextBtn";
+import PreBtn from "../../components/PreBtn";
 import Nav from "../../components/Nav";
 import API from "../../utils/API";
 import Modal from 'react-modal';
 import { CusContainer, CusItem } from "../../components/CustomerImage";
+import Rating from "../../components/Rating";
+import "./Home.css";
 
 // MODALLLLLLLLLLLLL
 const modalCustomStyles = {
     overlay: {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(255, 255, 255, 0.75)',
-        zIndex: 1000000000000
+        // position: 'fixed',
+        // top: 0,
+        // left: 0,
+        // right: 0,
+        // bottom: 0,
+        // backgroundColor: 'rgba(255, 255, 255, 0.75)',
+        // zIndex: 1000000000000
     },
     content: {
-        //Sample Styles
-        // height: '800px',
-        // width: '800px',
+        // height: '400px',
+        // width: '600px',
         // position: 'fixed',
         // top: '50%',
         // left: '50%',
@@ -33,17 +36,23 @@ const modalCustomStyles = {
         // transform: 'translate(-50%, -50%)',
         // zIndex: '1000',
         // overflow: 'auto',
-        // backgroundColor: '#eb6864'
+        // backgroundColor: 'rgba(255,255,255,0.8)',
+        // border: '1.5px solid #FF1F99',
+      
     }
 };
 
 let testObj = {
-    name: "tessst"
+    name: "test"
 }
 
 class Home extends Component {
     // Setting our component's initial state
     state = {
+        postReviews: [],
+        itemReview: "",
+        currentReview: null,
+        currentItemReview: [],
         search: "",
         location: "",
         items: [],
@@ -56,7 +65,7 @@ class Home extends Component {
     }
 
     ///MODALLLLLLLLLL
-    openModal(article, e) {
+    openModal(review, e) {
         this.setState({isModalOpen: true});
         // this.renderArticleNotes(article)
     }
@@ -94,36 +103,44 @@ class Home extends Component {
         }
     };
 
+
+    postReview() {
+        let currentReview = this.state.currentReview;
+        currentReview.itemReview = this.state.itemReview;
+        if (this.state.itemReview) {
+            API.postReview(currentReview)
+                .then(res => this.renderArticleNotes(this.state.currentReview))
+                .catch(err => console.log(err));
+        }
+
+    };
+
     render() {
         return (
             <div>
-                <Modal
-                    style={modalCustomStyles}
+                <Modal className="modalStyling"
                     isOpen={this.state.isModalOpen}
                 >
-
-
                 
-                <button onClick={this.closeModal.bind(this, testObj)}> x </button>
+                <button className='closeModal' onClick={this.closeModal.bind(this, testObj)}> x </button>
 
-                <h1> WE MADE IT </h1>
-                    {/* <div className='container-fluid text-center'>
-                        <h1 className="notesHeader">Notes </h1>
-                        <hr />
-                        <ul className='list-group note-container'>
-                        </ul>
+                <h1 className="item-name"> Item Name {this.state.itemName}</h1>
+                    <div className='containertext-center'>
+                        <div style={{marginLeft:-12, marginBottom: 15}}>
+                        <Rating />
+                        </div>
                         <div>
-                            <textarea placeholder='New Note' rows='4' cols='60'
-                                value={this.state.articleNote}
+                            <textarea className='reviewArea' placeholder=' Your reviews help others to learn more about great local goodies.' rows='6' cols='60' maxLength="5000"
+                                value={this.state.itemReview}
                                 onChange={this.handleInputChange}
-                                name="articleNote">
+                                name="itemReview">
                             </textarea>
                         </div>
-                        <button className='btn btn-success save' onClick={() => this.addArticleNote()}>Save Note</button>
-                        <button className='btn btn-danger note-delete noteModal' onClick={() => this.closeModal()}>X</button>
+                        <button className='postReview' onClick={() => this.postReview()}>Post Review</button>
+                        {/* <button className='btn btn-danger note-delete noteModal' onClick={() => this.closeModal()}>X</button> */}
 
                     </div>
-                    {this.state.currentArticleNotes.length ? (
+                    {/* {this.state.currentArticleNotes.length ? (
                         <NoteContainer>
                             <div className="articleNoteContainer">
                                 {this.state.currentArticleNotes.map(note => {
@@ -137,11 +154,12 @@ class Home extends Component {
                                     );
                                 })}
                             </div>
-                        </NoteContainer> */}
-                    {/* ) : (
+                        </NoteContainer> 
+                     ) : (
                             <h3> There are no saved notes! </h3>
-                        )} */}
+                        )}  */}
                 </Modal>
+
                 <Nav />
                 <Container fluid>
                     <Row>
@@ -197,6 +215,8 @@ class Home extends Component {
                                         
 
                                         <ReviewBtn onClick={boundItemClick} />
+
+                                        {/* <PreBtn style={{marginRight: 20}}/><NextBtn />  */}
                                         
                                         </CusItem>
 
@@ -206,7 +226,7 @@ class Home extends Component {
                         </CusContainer>
                     ) : (
                             <div className="row text-center">
-                                <h1 className="subheading">Search Result</h1>
+                                <h1 className="subheading"></h1>
                             </div>
                         )}
 
