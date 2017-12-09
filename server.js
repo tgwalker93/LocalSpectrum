@@ -8,11 +8,13 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
+const mongoose = require("mongoose");
 const MongoStore = require('connect-mongo')(session)
 const dbConnection = require('./db') // loads our connection to the mongo database
 const passport = require('./passport')
 const app = express()
 const PORT = process.env.PORT || 3001
+
 
 // ===== Middleware ====
 app.use(
