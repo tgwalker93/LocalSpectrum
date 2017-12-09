@@ -26,7 +26,7 @@ class Profile extends Component {
         location: "", //search Location
         logo: "",//Business Logo
         businessDetails: "",//Business Details
-        userId: this.props.user,
+        userId: null,
         userProfile: [],
         currentItem: {
             // userId: this.state.userId,
@@ -86,14 +86,14 @@ class Profile extends Component {
         // ================ Do this to show the image upload locally ===========================
         // this.setState({ loggedIn: false });
         
-        // this.loadUserProfile() 
-        this.loadItems
+        this.loadUserProfile() 
+        // this.loadItems
     }
 
     componentWillReceiveProps(nextProps){
 
         if(nextProps.user){
-            this.setState({items: nextProps.user.properties.items, username: nextProps.user.properties.username, userProfile: nextProps.user})
+            this.setState({items: nextProps.user.properties.items, username: nextProps.user.properties.username, userProfile: nextProps.user, userId: nextProps.user.user.userId})
         }
     }
 
@@ -116,23 +116,23 @@ class Profile extends Component {
 
     
 
-    // loadUserProfile() {
-    //     // this._handleImageChange = this._handleImageChange.bind(this);
-    //     console.log("i successfully entered load user profile")
-    //     console.log(this.state.items);
-    //     API.getUserData(this.state.userId)
-    //         .then(data =>
-    //             {
-    //             console.log("API.getUserData on the front-end WAS SUCCESSFUL, i'm in the .then");
-    //             console.log(data.data)
+    loadUserProfile() {
+        // this._handleImageChange = this._handleImageChange.bind(this);
+        console.log("i successfully entered load user profile ******************************************************")
+        console.log(this.state.items);
+        API.getUserData(this.state.userId)
+            .then(data =>
+                {
+                console.log("API.getUserData on the front-end WAS SUCCESSFUL, i'm in the .then");
+                console.log(data.data)
 
-    //             this.setState({ items: data.data.items, username: data.data.username, userProfile: data.data });
+                this.setState({ items: data.data.items, username: data.data.username, userProfile: data.data });
 
-    //             })
+                })
 
-    //         .catch(err => console.log(err));
+            .catch(err => console.log(err));
         
-    // };
+    };
 
     // getUserItemsByItemId(itemIds) {
     //     API.getItems(itemIds)

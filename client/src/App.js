@@ -110,7 +110,7 @@ class App extends Component {
 							
 						/>}
 				/>
-				<Route exact path="/profile" render={() => <Profile loggedIn={this.state.loggedIn} user={this.state.user} />} />
+				<Route exact path="/profile" render={() => <Profile loggedIn={this.state.loggedIn} user={this.props} />} />
 				<Route exact path="/register"
 				render={() =>
 						<Register
