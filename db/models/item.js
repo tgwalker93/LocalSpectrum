@@ -35,6 +35,10 @@ var ItemSchema = new Schema({
             type: [Schema.Types.ObjectId],
             ref: "ItemReview"
         }],
+        // items: [{
+        //     type: Schema.Types.ObjectId,
+        //     ref: "Item",
+        // }],
         itemCategory: [{
             type: [Schema.Types.ObjectId],
             ref: "ItemCategory"

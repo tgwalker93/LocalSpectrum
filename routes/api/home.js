@@ -13,6 +13,58 @@ var cheerio = require("cheerio");
 // var Note = require("../../models/Note.js");
 var User = require("../../db/models/User.js");
 var Item = require("../../db/models/Item.js");
+var ItemReview = require("../../db/models/ItemReview.js");
+
+app.post("/postReview", function(req, res) {
+    console.log("I'm in the post review backend!!!!! below is req.body!!!!!!");
+    console.log(req.body)
+
+    let reviewObj = req.body;
+
+    let review = {
+        rating: reviewObj.rating,
+        comment: reviewObj.comment
+    }
+    var newReview = new ItemReview(review);
+    // And save the new note the db
+    newReview.save(function (error, doc) {
+        // Log any errors
+        if (error) {
+            console.log(error);
+        }
+        // Otherwise
+        else {
+            console.log("newReview.save was successful in profile route /postReview")
+            console.log("below is doc")
+            console.log(doc._id)
+            console.log(doc);
+            // Use the item id to find and update it's note
+            console.log("TESTING ITEM ID!!!!!!! ")
+            console.log(reviewObj.currentItem);
+            Item.findOneAndUpdate({ "_id": reviewObj.currentItem._id }, { $push: {"properties.itemReviews": doc._id} },
+                { safe: true, upsert: true })
+                // Execute the above query
+                .exec(function (err, doc) {
+                    // Log any errors
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        // Or send the document to the browser
+                        console.log("Item.Find One And Update in POST REVIEW Route is successful. ")
+                        console.log(doc);
+                        res.json(doc);
+                    }
+                });
+
+            }
+        });
+
+});
+
+
+     
+
 
 
 

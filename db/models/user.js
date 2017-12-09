@@ -69,10 +69,10 @@ const UserSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Item",
         }],
-        itemReview: {
-            type: [Schema.Types.ObjectId],
-            ref: "itemReview"
-        },
+        // itemReview: {
+        //     type: [Schema.Types.ObjectId],
+        //     ref: "itemReview"
+        // },
         synopsis: String,
         date: { type: Date, default: Date.now }
     },

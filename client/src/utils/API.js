@@ -55,6 +55,11 @@ export default {
   getItemReviews: function (item) {
     return axios.get("/api/profile/getItemReviews", item)
   },
+  postReview: function(reviewObj) {
+    console.log("I'm in the utils/API front-end postReview, below is the reviewObj that I received");
+    console.log(reviewObj);
+    return axios.post("/api/home/postReview", reviewObj);
+  },
   search: function (searchObj) {
     console.log("I'M IN AXiOS SEARCH FRONT ENT UTILS/API")
     console.log(searchObj)

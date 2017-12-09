@@ -2,22 +2,16 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ItemReviewSchema = new Schema({
+reviews: {
     rating: {
         type: Number,
-        required: true
+        required: false
     },
     comment: {
         type: String,
         required: false
     },
-    stars: {
-        type: Number,
-        required: true
-    },
-    point: {
-        type: Number,
-        required: true
-    }
+}
 });
 
 var ItemReview = mongoose.model("ItemReview", ItemReviewSchema);

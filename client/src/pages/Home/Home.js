@@ -11,6 +11,7 @@ import { CusContainer, CusItem } from "../../components/CustomerImage";
 import NextBtn from "../../components/NextBtn";
 import PreBtn from "../../components/PreBtn";
 import Rating from "../../components/Rating";
+import StarRatingComponent from 'react-star-rating-component';
 import "./Home.css";
 
 // MODALLLLLLLLLLLLL
@@ -45,6 +46,11 @@ let testObj = {
     name: "test"
 }
 
+
+let reviewObj = {
+    comment: "",
+    rating: null
+}
 class Home extends Component {
     // Setting our component's initial state
     state = {
@@ -55,7 +61,10 @@ class Home extends Component {
         search: "",
         location: "",
         items: [],
-        isModalOpen: false
+        currentItem: null,
+        isModalOpen: false,
+        rating_empty_initial: 0,
+        rating: 0
     };
 
     // When the component mounts, load all books and save them to this.state.books
@@ -64,14 +73,16 @@ class Home extends Component {
     }
 
     ///MODALLLLLLLLLL
-    openModal(article, e) {
-        this.setState({ isModalOpen: true });
+    openModal(item, e) {
+        console.log("below is current item");
+        this.setState({ isModalOpen: true, currentItem: item });
         // this.renderArticleNotes(article)
     }
     closeModal(testObj) {
         console.log(testObj)
         this.setState({ isModalOpen: false });
     }
+
 
     // Handles updating component state when the user types into the input field
     handleInputChange = event => {
@@ -81,6 +92,26 @@ class Home extends Component {
         });
     };
 
+
+    //This will post review
+    postReview(reviewObj) {
+        console.log("I'm in postReview on the front end in home.js!!!! below is the review obj");
+        reviewObj.comment = this.state.itemReview;
+        reviewObj.rating = this.state.rating;
+        reviewObj.currentItem = this.state.currentItem;
+        console.log(reviewObj);
+        API.postReview(reviewObj)
+            .then(res => {
+                console.log("API.postReview is completed below!!!!!!");
+                console.log(res);
+                // this.setState({
+                //     items: res.data
+                // });
+                this.closeModal({});
+                // this.findText(res, this.state.search);
+            })
+            .catch(err => console.log(err));
+    }
     //This function will loop through data returned from db within range and find anything relevant to search term.
     findText(res, search) {
         console.log("i'm in findText!!!, below is res.data");
@@ -104,6 +135,10 @@ class Home extends Component {
             items: searchResults
         })
 
+    }
+    onStarClickEmptyInitial(nextValue, prevValue, name) {
+        console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
+        this.setState({ rating_empty_initial: nextValue, rating: nextValue});
     }
 
     // Then reload books from the database
@@ -137,6 +172,7 @@ class Home extends Component {
             
                     <Modal className="modalStyling"
                         isOpen={this.state.isModalOpen}
+                
                     >
 
                         <button className='closeModal' onClick={this.closeModal.bind(this, testObj)}> x </button>
@@ -144,7 +180,13 @@ class Home extends Component {
                         <h1 className="item-name"> Item Name {this.state.itemName}</h1>
                         <div className='containertext-center'>
                             <div style={{ marginLeft: -12, marginBottom: 15 }}>
-                                <Rating />
+                                <div className="starRating">
+                                    <StarRatingComponent
+                                        name={`star${this.props.index}`}
+                                        value={this.state.rating_empty_initial}
+                                        onStarClick={this.onStarClickEmptyInitial.bind(this)}
+                                    />
+                                </div>
                             </div>
                             <div>
                                 <textarea className='reviewArea' placeholder=' Your reviews help others to learn more about great local goodies.' rows='6' cols='60' maxLength="5000"
@@ -153,7 +195,7 @@ class Home extends Component {
                                     name="itemReview">
                                 </textarea>
                             </div>
-                            <button className='postReview' onClick={() => this.postReview()}>Post Review</button>
+                        <button className='postReview' onClick={this.postReview.bind(this, reviewObj)}>Post Review</button>
                             {/* <button className='btn btn-danger note-delete noteModal' onClick={() => this.closeModal()}>X</button> */}
 
                         </div>
