@@ -10,13 +10,12 @@ import ImageUpload from './ImageUpload.js';
 import API from "../../utils/API";
 import { BusContainer, BusItem} from "../../components/BusImage";
 import { CusContainer, CusItem} from "../../components/CustomerImage";
-import axios from 'axios'
 
 
 class Profile extends Component {
     // Setting our component's initial state
     state = {
-        loggedIn: "",
+        loggedIn: this.props.loggedIn,
         render: true,
         search: "",
         itemName: "",
@@ -88,7 +87,6 @@ class Profile extends Component {
         // this.setState({ loggedIn: false });
         
         // this.loadUserProfile() 
-        this.loadItems
     }
 
     componentWillReceiveProps(nextProps){
@@ -117,10 +115,10 @@ class Profile extends Component {
 
 
     loadItems() {
-        console.log("-------loadItems--------")
-        console.log(this.props)
-        console.log("----------------------")
-        console.log(this.props.user.properties.items)
+        // console.log("-------loadItems--------")
+        // console.log(this.props)
+        // console.log("----------------------")
+        // console.log(this.props.user.properties.items)
         API.getItems({
             user: this.props.user
         })
@@ -307,7 +305,6 @@ class Profile extends Component {
                             </Col>
                         </Row>
                     </Container>
-                    {/* Tyler Code Do not Touch This Part */}
                 </div>
                         );
         }
