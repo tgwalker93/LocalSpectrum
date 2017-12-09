@@ -46,7 +46,7 @@ app.post("/postReview", function(req, res) {
     let reviewObj = req.body;
     let usernameOfReviewer = null;
     if(reviewObj.user) {
-        let usernameOfReviewer = reviewObj.user.properties.username
+        usernameOfReviewer = reviewObj.user.properties.username
     } 
 
     let review = {

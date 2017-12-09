@@ -113,6 +113,7 @@ class Home extends Component {
     //This will post review
     postReview(reviewObj) {
         console.log("I'm in postReview on the front end in home.js!!!! below is the review obj");
+        console.log(reviewObj);
         reviewObj.comment = this.state.itemReview;
         reviewObj.rating = this.state.rating;
         reviewObj.currentItem = this.state.currentItem;
