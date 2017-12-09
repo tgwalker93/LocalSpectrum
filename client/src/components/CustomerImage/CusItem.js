@@ -3,6 +3,7 @@ import Rating  from "../../components/Rating";
 import ReviewBtn from "../../components/ReviewBtn";
 // import DeleteBtn from "../../components/DeleteBtn";
 import "./CusItem.css";
+import { Link } from "react-router-dom";
 
 
 export const CusItem = props => (
@@ -17,9 +18,9 @@ export const CusItem = props => (
             {/* <DeleteBtn /> */}
             <div className="content">
                 <ul>
-                    <li className="itemTittle">
+                    <Link to={"/itemPage/" + props.itemId}> <li className="itemTittle">
                         <strong>{props.itemName}</strong>
-                    </li>
+                    </li> </Link>
                     <li className="itemDes">
                         {props.itemSummary}
                     </li>

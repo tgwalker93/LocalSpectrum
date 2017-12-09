@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import ItemPage from "./pages/ItemPage";
 import API from "./utils/API"
 
 import React, { Component } from 'react'
@@ -127,6 +128,7 @@ class App extends Component {
 						/>} />
         		<Route exact path="/about" component={About} />
 				<Route exact path="/contact" component={Contact} />
+				<Route exact path="/itemPage/:itemId?" component={ItemPage} />
 				{/* <LoginForm _login={this._login} /> */}
 			</div>
 		)

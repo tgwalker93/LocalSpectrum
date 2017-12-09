@@ -97,7 +97,7 @@ var Item = require("../../db/models/Item.js");
     // });
     //getItemIds
     app.get("/getItems/:id", function (req, res) {
-    console.log("I'm in profile api js /getUserData/:id")
+    console.log("I'm in profile api js /getItems/:id")
     console.log(req.params.id);
     User.findById(req.params.id)
         .populate("properties.items")
@@ -124,11 +124,13 @@ var Item = require("../../db/models/Item.js");
             properties: {
                 itemName: req.body.item.itemObj.itemName,
                 itemSummary: req.body.item.itemObj.itemSummary,
-                itemImage: req.body.item.itemObj.itemImage
+                itemImage: req.body.item.itemObj.itemImage,
+                username: ""
             },
             geometry: {}
         };
         var userProfile = req.body.item.itemObj.userProfile;
+        resultObj.userProfile.properties.username;
         console.log("BEFORE I REQUEST GOOGLE API");
         console.log(userProfile);
 

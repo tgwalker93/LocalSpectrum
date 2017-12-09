@@ -52,8 +52,10 @@ export default {
     console.log(user);
     return axios.get("/api/profile/getItems/" + user.user._id);
   },
-  getItemReviews: function (item) {
-    return axios.get("/api/profile/getItemReviews", item)
+  getItemReviews: function (itemId) {
+    console.log("IM SUCCESSFULLY ON THE GET ITEMREVIEWS AXIOS")
+    console.log(itemId);
+    return axios.get("/api/home/getItemReviews/" + itemId)
   },
   postReview: function(reviewObj) {
     console.log("I'm in the utils/API front-end postReview, below is the reviewObj that I received");

@@ -55,6 +55,7 @@ class Home extends Component {
     // Setting our component's initial state
     state = {
         postReviews: [],
+        user: null,
         itemReview: "",
         currentReview: null,
         currentItemReview: [],
@@ -72,6 +73,21 @@ class Home extends Component {
         Modal.setAppElement('body');
     }
 
+
+    componentWillReceiveProps(nextProps) {
+        console.log("COMPONENT RECEIVED PROPS )0)))) ) ) ) )")
+        console.log(nextProps);
+        console.log(nextProps.coordinates)
+        console.log("-----nextProps.user-----")
+        console.log(nextProps.user)
+        console.log("------------------------")
+        if (nextProps.user) {
+            this.setState({ user: nextProps.user })
+            console.log("------this.state.userId------")
+            console.log(this.state.user)
+            console.log("/------this.state.Id------")
+        }
+    }
     ///MODALLLLLLLLLL
     openModal(item, e) {
         console.log("below is current item");
@@ -99,6 +115,8 @@ class Home extends Component {
         reviewObj.comment = this.state.itemReview;
         reviewObj.rating = this.state.rating;
         reviewObj.currentItem = this.state.currentItem;
+        reviewObj.userObj = this.state.user;
+
         console.log(reviewObj);
         API.postReview(reviewObj)
             .then(res => {
@@ -248,9 +266,11 @@ class Home extends Component {
                             <div>
                                 {this.state.items.map((item, i) => {
                                     let boundItemClick = this.openModal.bind(this, item);
+                                    {console.log("I'm RENDERING SEARCHED ITEMS --------------------------------")}
+                                    {console.log(item)}
                                     return (
-
-                                        <CusItem  key={item._id} itemName={item.properties.itemName} itemSummary={item.properties.itemSummary} itemImage={item.properties.itemImage} index={i} >
+                                        
+                                        <CusItem  key={item._id} itemId={item._id} itemName={item.properties.itemName} itemSummary={item.properties.itemSummary} itemImage={item.properties.itemImage} index={i} >
                                         
 
                                         <ReviewBtn onClick={boundItemClick} />

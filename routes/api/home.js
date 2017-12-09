@@ -15,16 +15,47 @@ var User = require("../../db/models/User.js");
 var Item = require("../../db/models/Item.js");
 var ItemReview = require("../../db/models/ItemReview.js");
 
+
+
+
+app.get("/getItemReviews/:itemId", function (req, res) {
+    console.log("I'm in profile api js /getItemReviews/:id")
+    console.log(req.params.itemId);
+    Item.findById(req.params.itemId)
+        .populate("properties.itemReviews")
+        .then(function (doc, error) {
+            // Log any errors
+            if (error) {
+                console.log("getUserData back-end failed!")
+                console.log(error);
+            }
+            // Or send the doc to the browser as a json object
+            else {
+                console.log("getUserData back-end was successful!");
+                //// below console log log out the long query of imageUpload
+                console.log(doc);
+                res.json(doc);
+            }
+        });
+
+});
 app.post("/postReview", function(req, res) {
     console.log("I'm in the post review backend!!!!! below is req.body!!!!!!");
     console.log(req.body)
 
     let reviewObj = req.body;
+    if(reviewObj.user.properties) {
+        let usernameOfReviewer = reviewObj.user.properties.username
+    } else {
+        let usernameOfReviewer = null
+    }
 
     let review = {
         rating: reviewObj.rating,
-        comment: reviewObj.comment
+        comment: reviewObj.comment,
+        usernameOfReviewer: usernameOfReviewer
     }
+    console.log(review);
     var newReview = new ItemReview(review);
     // And save the new note the db
     newReview.save(function (error, doc) {

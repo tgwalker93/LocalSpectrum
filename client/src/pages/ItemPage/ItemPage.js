@@ -5,47 +5,28 @@ import { Input, FormBtn } from "../../components/Form";
 import { InputLog } from "../../components/LoginItem";
 import NavAfter from "../../components/NavAfter";
 import Panel from "../../components/Panel";
-import UploadImg from "./UploadImg.js";
+// import UploadImg from "./UploadImg.js";
 import API from "../../utils/API";
 import { BusContainer, BusItem } from "../../components/BusImage";
 import { CusContainer, CusItem } from "../../components/CustomerImage";
-import { CusContainer, CusItem } from "../../components/CustomerImage";
 import Rating from "../../components/Rating";
+import {UserContainer, UserReview} from "../../components/UserReview"
 
 
 class ItemPage extends Component {
     // Setting our component's initial state
     state = {
-        search: "",
-        itemName: "",
-        itemSummary: "",
-        itemImage: "",
-        username: "",
-        user_image: "",
-        comment: "",
-        stars: "",
-        location: "", //search Location
-        logo: "",//Business Logo
-        businessDetails: "",//Business Details
-        userId: this.props.match.params.id,
-        userProfile: [],
         currentItem: {
-            // userId: this.state.userId,
-            // itemObj: {
-            //     itemName: this.state.itemName
-            // }
+            
         },
+        itemReviews: []
 
-        itemIds: [],
-        items: [],
-        isLoggedIn: false,
-        userSearch: ""
 
     };
 
     // When the component mounts, load all books and save them to this.state.books
     componentDidMount() {
-        this.loadUserProfile()
+        this.loadItemReviews();
     }
 
     // Handles updating component state when the user types into the input field
@@ -57,13 +38,14 @@ class ItemPage extends Component {
     };
 
 
-    loadUserProfile() {
-        API.getUserData(this.state.userId)
+    loadItemReviews() {
+        API.getItemReviews(this.props.match.params.itemId)
             .then(data => {
-                console.log("API.getUserData on the front-end WAS SUCCESSFUL, i'm in the .then");
+                console.log("API.getItemReviews on the front-end WAS SUCCESSFUL, i'm in the .then");
                 console.log(data.data)
+                
 
-                this.setState({ items: data.data.items, username: data.data.username, userProfile: data.data });
+                this.setState({ itemReviews: data.data.properties.itemReviews, itemName: data.data.properties.itemName });
 
             })
 
@@ -129,7 +111,7 @@ class ItemPage extends Component {
         return (
             <div>
 
-                <Nav />
+    
 
 
                 <Container fluid >
@@ -138,29 +120,34 @@ class ItemPage extends Component {
 
 
                         <Row>
-                            <div className="col-sm-6 col-offset-3">
+                            <h1> Reviews For {(this.state.itemName||"Item")} </h1> 
+
+                            {/* <div className="col-sm-6 col-offset-3">
                                 <CusContainer>
                                     <div>
-                                        {this.state.items.map((item, i) => {
-                                            return (
+                            
 
-                                                <CusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
+                             <CusItem key={this.state.currentItem._id} itemName={this.state.currentItem.itemName} itemSummary={this.state.currentItem.itemSummary} itemImage={this.state.currentItem.itemImage} />
 
-                                            );
-                                        })}
+                             
                                     </div>
                                 </CusContainer>
-                            </div>
+                            </div> */}
                         </Row>
                         <hr />
                         <Row>
                             <div className="col-sm-12">
                                 <UserContainer>
                                     <div>
-                                        {this.state.items.map((item, i) => {
+                                        {console.log("I AM BEFORE THE LOOP ----- -- - - - - - -")}
+                                        {console.log(this.state.itemReviews)}
+                                        
+                                        {this.state.itemReviews.map((review, i) => {
+                                            console.log("I LOOPED THROUGH A REVIEW, below is review");
+                                            console.log(review);
                                             return (
 
-                                                <UserReview key={item.username} itemReviews={item.comment} itemRating={item.stars} user_image={item.user_image} index={i} />
+                                                <UserReview key={review._id} username={(review.usernameOfReviewer || "N/A")} comment={(review.comment || "N/A")} rating={(review.rating || "0")}  index={i} />
 
                                             );
                                         })}

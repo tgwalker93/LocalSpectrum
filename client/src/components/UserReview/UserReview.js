@@ -10,27 +10,28 @@ export const UserReview = props => (
     <div className="col-sm-6">
         <div className='usercard'>
             <div className="row">
-                <div className="col-sm-4">
+                {/* <div className="col-sm-4">
                     <div className="imgContainer">
                         <img className="img-responsive" alt={props.username} src={props.user_image} />
-                        {/* {props.children} */}
+                        {props.children}
 
                     </div>
-                </div>
-                <div className="col-sm-8">
+                </div> */}
+                <div className="col-sm-12">
                     <div className="content">
                         <ul>
                             <li className="user-name">
-                                <strong>{props.username}your name</strong>
+                                <strong>Reviewer: {props.username}</strong>
                             </li>
 
                             <hr />
 
                             <li className="item-review">
-                                <p>your comment here {props.comment}</p>
+                                <p> {props.comment}</p>
                             </li>
                             <li className="userRating">
-                                <Rating index={props.index} />
+                                {/* <Rating index={props.index} /> */}
+                                <h1> Rating: {props.rating}/5 </h1>
                             </li>
                         </ul>
                     </div>

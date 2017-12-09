@@ -11,6 +11,10 @@ var ItemSchema = new Schema({
             type: String,
             required: false
         },
+        username: {
+            type: String,
+            required: false,
+        },
         price: {
             type: Number,
             required: false
