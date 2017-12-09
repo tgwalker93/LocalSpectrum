@@ -4,7 +4,7 @@ import Hero from "../../components/Hero";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import ReviewBtn from "../../components/ReviewBtn";
-import Nav from "../../components/Nav";
+// import Nav from "../../components/Nav";
 import API from "../../utils/API";
 import Modal from 'react-modal';
 import { CusContainer, CusItem } from "../../components/CustomerImage";

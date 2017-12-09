@@ -1,6 +1,6 @@
 // import React from "react";
- import { BrowserRouter as Router, Switch } from "react-router-dom";
- import {Redirect, RouterProps} from "react-router";
+//  import { BrowserRouter as Router, Switch } from "react-router-dom";
+//  import {Redirect, RouterProps} from "react-router";
 // import Books from "./pages/Books";
 import NavAfter from "./components/NavAfter";
 import Nav from "./components/Nav";
@@ -15,7 +15,7 @@ import Contact from "./pages/Contact";
 
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 const DisplayLinks = props => {
 	if (props.loggedIn) {
@@ -113,6 +113,8 @@ class App extends Component {
 				<Route exact path="/register" component={Register} />
         		<Route exact path="/about" component={About} />
 				<Route exact path="/contact" component={Contact} />
+				<Route exact path="/profile/:id" component={Profile} />
+						
 				{/* <LoginForm _login={this._login} /> */}
 			</div>
 		)

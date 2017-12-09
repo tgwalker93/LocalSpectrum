@@ -45,5 +45,24 @@ export default {
     console.log("I'M IN AXiOS SEARCH FRONT ENT UTILS/API")
     console.log(searchObj)
     return axios.get("/api/home/search/search=" + searchObj.search + "&location=" + searchObj.location);
+  },
+
+  // Prathibha: For the Profile Page
+  saveProfile: function(data) {
+    // console.log(data);
+    return axios.post("/api/profile/saveProfile", data);
+  },
+
+  getItem: function(itemId) {
+    return axios.get("/api/profile/getItem/" + itemId);
+  },
+
+  updateItem: function(itemId) {
+    return axios.post("/api/profile/updateItem/"+itemId);
+  },
+
+  deleteItem: function(itemId) {
+    return axios.delete("/api/profile/deleteItem/"+itemId);
   }
+
 };

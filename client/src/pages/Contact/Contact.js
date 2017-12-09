@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Container } from "../../components/Grid";
 import { TextLog, InputLog } from "../../components/LoginItem";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 import "./Contact.css";
 
 

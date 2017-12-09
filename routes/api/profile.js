@@ -166,4 +166,82 @@ app.get("/getUserData/:id", function (req, res) {
     });
 });
 
+
+/**
+ * SaveProfile function for updating the profile information against the user
+ */
+app.post("/saveProfile", function(req, res) {
+    console.log("server log: saveProfile function called");
+    var result = req.body;
+    console.log(req.body.businessName);
+    
+    User.findOneAndUpdate({ "_id": req.body.id }, { $set: { "business_name": req.body.business_name, 
+                                                            "business_address":req.body.business_address, 
+                                                            "business_zip":req.body.business_zip, 
+                                                            "business_phone":req.body.business_phone,
+                                                            "business_fax":req.body.business_fax,
+                                                            "business_email":req.body.business_email,
+                                                            "business_facebook":req.body.business_facebook,
+                                                            "business_instagram":req.body.business_instagram,
+                                                            "business_logo":req.body.business_logo,
+                                                            "business_profile":req.body.business_profile,
+                                                            "business_description":req.body.business_description,
+                                                        } },
+                        { multi: true, upsert: false })
+    .exec(function (err, doc) {
+        // Log any errors
+        if (err) {
+            console.log(err);
+        }
+        else {
+            // Or send the document to the browser
+            // console.log(doc);
+            res.json(doc);
+        }
+    });
+});
+
+/**
+ * Get Item for a given ItemId
+ */
+app.get("/getItem/:id", function(req, res) {
+    // console.log("Server: " + req.params.id);
+    Item.findById(req.params.id)
+    .then(function(doc, err) {
+        if(err) {
+            console.log("Error encountered while retrieving Item details for id: " + id);
+            console.log("/n" + err);
+        } else {
+            res.json(doc);
+        }
+    })
+});
+
+/**
+ * Update Item details for a given Item Id
+ */
+app.post("/updateItem/:id", function(req, res) {
+    Item.findByIdAndUpdate(req.params.id,
+    {$set: {
+        itemName: req.body.itemName,
+        itemSummary: req.body.itemSummary
+    }}, {new: true}, function(err, event) {
+        if(err) {
+            throw err;
+        }
+        res.send(event);
+    })
+});
+app.delete("/deleteItem/:id",function(req,res){
+    console.log(req.params.id);
+    Item.findByIdAndRemove(req.params.id, function(err, obj) {
+        if(err) {
+            throw err;
+        }
+        res.send(obj);
+    });
+})
+
+
+
 module.exports = app;

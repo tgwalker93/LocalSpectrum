@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
-import Redirect from "react-router"
+// import Redirect from "react-router"
 import "./NavAfter.css";
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'

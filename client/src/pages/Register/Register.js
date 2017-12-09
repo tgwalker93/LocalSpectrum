@@ -1,15 +1,16 @@
 // import React, { Component } from "react";
 
 import { Row, Container } from "../../components/Grid";
-import { InputLog, LogBtn } from "../../components/LoginItem";
+import { InputLog } from "../../components/LoginItem";
 
 
 import React, { Component } from "react";
 
-import { Link } from "react-router-dom";
-import { BrowserRouter as Router, Redirect } from 'react-router-dom'
-import Nav from "../../components/Nav";
-import API from "../../utils/API";
+// import { Link } from "react-router-dom";
+// import { BrowserRouter as Router } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
+// import Nav from "../../components/Nav";
+// import API from "../../utils/API";
 import axios from 'axios'
 
 class Register extends Component {

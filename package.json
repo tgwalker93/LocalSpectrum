@@ -36,7 +36,7 @@
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.1.0",
     "react-images-upload": "^1.1.1",
-    "react-modal": "^3.1.6",
+    "react-modal": "^3.1.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",

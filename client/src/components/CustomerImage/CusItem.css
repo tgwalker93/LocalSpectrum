@@ -21,11 +21,14 @@
     text-align: center;
     /* background:linear-gradient(60deg,#0093D6, #00D6CE, #67BE78); */
     background: linear-gradient(45deg,#FF1F99, #FF7D18, #FED92A);
-    
+    border-bottom:2px solid #FF1F99 ;
+    border-image-source: linear-gradient(to right,#FF1F99 , #FF7D18 , #FED92A );
+    border-image-slice: 2;
+
     
   }
   .card > .img-container > img {
-    width: 50%;
+    width: 100%;
     
   }
   
