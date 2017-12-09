@@ -54,7 +54,6 @@ class Contact extends Component {
     render() {
         return (
             <div>
-                <Nav />
                 <Container>
 
                     <Row>

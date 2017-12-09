@@ -1,10 +1,7 @@
-// import React from "react";
- import { BrowserRouter as Router, Switch } from "react-router-dom";
- import {Redirect, RouterProps} from "react-router";
-// import Books from "./pages/Books";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import NavAfter from "./components/NavAfter";
 import Nav from "./components/Nav";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
@@ -59,22 +56,6 @@ class App extends Component {
 		})
 	}
 
-	// _logout(event) {
-	// 	event.preventDefault()
-	// 	console.log('logging out')
-	// 	axios.post('/auth/logout').then(response => {
-	// 		console.log(response.data)
-	// 		if (response.status === 200) {
-	// 			this.setState({
-	// 				loggedIn: false,
-	// 				user: null
-	// 			})
-	// 			//{<Redirect to="/"/>}
-	// 			RouterProps.history.push('/')
-	// 		} 
-	// 	})
-	// }
-
 	_login(username, password) {
 		console.log("attempting login of: " + username + " : " + password)
 		var userData = {
@@ -127,7 +108,7 @@ class App extends Component {
 						/>} />
         		<Route exact path="/about" component={About} />
 				<Route exact path="/contact" component={Contact} />
-				{/* <LoginForm _login={this._login} /> */}
+				<Footer />
 			</div>
 		)
 	}
