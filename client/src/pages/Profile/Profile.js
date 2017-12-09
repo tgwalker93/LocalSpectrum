@@ -91,9 +91,10 @@ class Profile extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-
+        console.log("COMPONENT RECEIVED PROPS )0)))) ) ) ) )")
+        console.log(nextProps.user);
         if(nextProps.user){
-            this.setState({items: nextProps.user.properties.items, username: nextProps.user.properties.username, userProfile: nextProps.user})
+            this.setState({items: nextProps.user.items, username: nextProps.user.username, userProfile: nextProps.user, userId: nextProps._id})
         }
     }
 
@@ -165,6 +166,9 @@ class Profile extends Component {
             //Save Current Item
             console.log(this.state.itemImage);
 
+            console.log("ALSO BELOW IS USER PROFILE");
+            console.log(this.state.userProfile);
+
             this.setState({
                 currentItem: {
                     userId: this.state.userId,
@@ -184,7 +188,8 @@ class Profile extends Component {
                 })
                     .then(res => {
                         console.log("I'm in the call back of save item in addItem!!!")
-                        this.loadUserProfile()
+                        // this.loadUserProfile()
+                        this.loadItems();
                     })
                     .catch(err => console.log(err));
             });

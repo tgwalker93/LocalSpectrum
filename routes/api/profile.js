@@ -15,48 +15,50 @@ var User = require("../../db/models/User.js");
 var Item = require("../../db/models/Item.js");
 
 
-app.post("/saveItem", function (req, res) {
-    console.log("/saveItem profile")
-    var resultObj = {
-        properties: {
-            itemName: req.body.item.itemObj.itemName,
-            itemSummary: req.body.item.itemObj.itemSummary,
-            itemImage: req.body.item.itemObj.itemImage
-        },
-        geometry: {}
-    };
-    var userProfile = req.body.item.itemObj.userProfile
-    console.log("-----resultObj-----")
-    console.log(resultObj)
-    console.log("-------------------")
-    console.log("-----userProfile-----")
-    console.log(userProfile)
-    console.log("-------------------")
-})
+// app.post("/saveItem", function (req, res) {
+//     console.log("/saveItem profile")
+//     var resultObj = {
+//         properties: {
+//             itemName: req.body.item.itemObj.itemName,
+//             itemSummary: req.body.item.itemObj.itemSummary,
+//             itemImage: req.body.item.itemObj.itemImage
+//         },
+//         geometry: {}
+//     };
+//     var userProfile = req.body.item.itemObj.userProfile
+//     console.log("-----resultObj-----")
+//     console.log(resultObj)
+//     console.log("-------------------")
+//     console.log("-----userProfile-----")
+//     console.log(userProfile)
+//     console.log("-------------------")
+// })
 
 
 // Routes
 //==========================
 //getItemIds
-app.get("/getUserData/:id", function (req, res) {
-    console.log("I'm in profile api js /getUserData/:id")
-    console.log(req.params.id);
-    User.findById(req.params.id)
-        .populate("properties.items")
-        .then(function (doc, error) {
-            // Log any errors
-            if (error) {
-                console.log("getUserData back-end failed!")
-                console.log(error);
-            }
-            // Or send the doc to the browser as a json object
-            else {
-                console.log("getUserData back-end was successful!");
-                //// below console log log out the long query of imageUpload
-                // console.log(doc);
-                res.json(doc);
-            }
-        });
+// app.get("/getUserData/:id", function (req, res) {
+//     console.log("I'm in profile api js /getUserData/:id")
+//     console.log(req.params.id);
+//     User.findById(req.params.id)
+//         .populate("properties.items")
+//         .then(function (doc, error) {
+//             // Log any errors
+//             if (error) {
+//                 console.log("getUserData back-end failed!")
+//                 console.log(error);
+//             }
+//             // Or send the doc to the browser as a json object
+//             else {
+//                 console.log("getUserData back-end was successful!");
+//                 //// below console log log out the long query of imageUpload
+//                 // console.log(doc);
+//                 res.json(doc);
+//             }
+//         });
+
+//     });
 
     // //Get Items
     // app.get("/getItems", function (req, res) {
@@ -105,30 +107,10 @@ app.get("/getUserData/:id", function (req, res) {
             },
             geometry: {}
         };
-        var userProfile = req.body.item.itemObj.userProfile
-        // console.log(result);
-        // Using our Article model, create a new entry
-        // This effectively passes the result object to the entry (and the title and link)
-        // Create a new note and pass the req.body to the entry
-
-        // resultObj.results = results
-        // var apiKey = "AIzaSyBIG5ox_iGJBmdS5y1vyuaGEZUb9eBWe6U"
-        // var query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + req.params.location + "&key=" + apiKey;
-        // var query2 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + result.location + "&destinations=&key=" + apiKey;
-        // request(query, function (error, response, body) {
-        //     if (!error && response.statusCode === 200) {
-
-        //         resultObj.location = JSON.parse(body).results;
-        //         // resultObj.location = body
-        //         res.json(resultObj)
-
-        //     } else {
-        //         resultObj.results = "Google Maps API was not successful!"
-        //     }
-
-        // });
+        var userProfile = req.body.item.itemObj.userProfile;
         console.log("BEFORE I REQUEST GOOGLE API");
         console.log(userProfile);
+
         var apiKey = "AIzaSyBIG5ox_iGJBmdS5y1vyuaGEZUb9eBWe6U"
         var query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + userProfile.user_address + "+" + userProfile.user_city + "+" + userProfile.user_state + "&key=" + apiKey;
         // var query2 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + req.params.location + "&destinations=&key=" + apiKey;
@@ -160,7 +142,9 @@ app.get("/getUserData/:id", function (req, res) {
                         console.log(doc._id)
                         console.log(doc);
                         // Use the item id to find and update it's note
-                        User.findOneAndUpdate({ "_id": req.body.item.userId }, { $push: { "properties.items": doc._id } },
+                        console.log("TESTING USER ID!!!!!!! ") 
+                        console.log(userProfile);
+                        User.findOneAndUpdate({ "_id": userProfile.userId }, { $push: { "properties.items": doc._id } },
                             { safe: true, upsert: true })
                             // Execute the above query
                             .exec(function (err, doc) {
@@ -181,6 +165,5 @@ app.get("/getUserData/:id", function (req, res) {
         })
 
     });
-});
 
 module.exports = app;

@@ -22,6 +22,7 @@ var cheerio = require("cheerio");
 //SAVE ARTICLE FOR WHEN USER CLICKS SAVE
 app.post("/saveUser", function (req, res) {
     console.log("I'm in save user post")
+    console.log(req.body);
     var resultObj = {
         properties: req.body,
         geometry: {}

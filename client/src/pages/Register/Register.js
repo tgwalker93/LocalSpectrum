@@ -56,16 +56,29 @@ class Register extends Component {
 	handleSubmit(event) {
 		event.preventDefault()
 		// TODO - validate!
-		API.signUp( {
-				username: this.state.username,
-				password: this.state.password
-			})
+		if (this.state.username && this.state.password) {
+		let userObj = {
+			userId: null,
+			username: this.state.username,
+			password: this.state.password,
+			user_email: this.state.email,
+			firstName: this.state.firstName,
+			lastName: this.state.lastName,
+			user_address: this.state.address,
+			user_city: this.state.city,
+			user_state: this.state.state,
+			user_zip: this.state.zip
+		}
+		API.signUp(userObj)
 			.then(response => {
-                console.log(response)
+				console.log(response)
+				userObj.userId = response.data.doc._id;
+				console.log("BELOW IS USEOBJ . userId");
+				console.log(userObj.userId)
                 console.log(response.data.error)
 				if (!response.data.error) {
 					console.log('youre good')
-					this.props._login(this.state.username, this.state.password);
+					this.props._login(this.state.username, this.state.password, userObj);
 					this.setState({
 						redirectTo: '/profile'
 					})
@@ -73,6 +86,8 @@ class Register extends Component {
 					console.log('duplicate')
 				}
 			})
+
+		}
 	}
 	render() {
 		if (this.state.redirectTo) {

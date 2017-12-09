@@ -41,7 +41,7 @@ class App extends Component {
 	componentDidMount() {
 		console.log("CHECKING IF THERE IS A USER");
 		API.user().then(response => {
-			console.log(response.data)
+			console.log(response.data.doc)
 			if (!!response.data.user) {
 				console.log('THERE IS A USER')
 				this.setState({
@@ -73,20 +73,22 @@ class App extends Component {
 	// 	})
 	// }
 
-	_login(username, password) {
+	_login(username, password, userObj) {
 		console.log("attempting login of: " + username + " : " + password)
+		var userData = {
+			username: username,
+			password: password,
+			userObj: userObj
+		}
 		API
-			.login({
-				username,
-				password
-			})
+			.login(userData)
 			.then(response => {
 				console.log(response)
 				if (response.status === 200) {
 					// update the state
 					this.setState({
 						loggedIn: true,
-						user: response.data.user
+						user: userObj
 					})
 				}
 			})
