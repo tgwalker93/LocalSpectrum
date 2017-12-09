@@ -17,7 +17,7 @@
     position: relative;
     width: 325px;
     height: 350px;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
     /* box-shadow: 0 3px 6px #FF7D18, 0 3px 6px #FF1F99; */
     box-shadow: none;
     text-align: left;
@@ -83,7 +83,24 @@
     margin: 20px 15px;
     
   }
+
+
+  .seeReviewBtn {
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: linear-gradient(-30deg,#B3EF74 , #5DCA73 70%, #41BA59);
+    margin-left:0px;
+    border:0!important;
+    transform: scale(0.8);
+    
+  }
   
+  .edit-btn:hover {
+    background: #41BA59;
+  }
+  
+
   /* .card > .remove {
     color: #fff;
     font-size: 40px;
@@ -113,4 +130,13 @@
       
     }
        
+}
+@media (max-width: 768px){
+  .card > .content > ul > li.itemTittle {
+    margin-top:-30px!important;
+    margin-left:-20px!important;
+  }
+  .seeReviewBtn{
+    margin-left:-20px!important;
+  }
 }

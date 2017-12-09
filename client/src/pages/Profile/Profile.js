@@ -205,7 +205,7 @@ class Profile extends Component {
 
                                     <form>
                                         {/* ======= upload Image button =======*/}
-                                        <div>
+                                        <div style={{marginBottom: 30}}>
                                             <input className="fileInput" type="file"
                                                 onChange={this._handleImageChange} />
                                         </div>

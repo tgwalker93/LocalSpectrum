@@ -22,7 +22,7 @@ p#logo{
     margin: 12px
 }
 
-.iconOnly {
+span.iconOnly {
     font-weight: 100;
     font-size:15px!important;
 }

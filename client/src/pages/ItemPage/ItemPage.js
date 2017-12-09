@@ -11,7 +11,7 @@ import { BusContainer, BusItem } from "../../components/BusImage";
 import { CusContainer, CusItem } from "../../components/CustomerImage";
 import Rating from "../../components/Rating";
 import {UserContainer, UserReview} from "../../components/UserReview"
-
+import "./ItemPage.css";
 
 class ItemPage extends Component {
     // Setting our component's initial state
@@ -120,7 +120,7 @@ class ItemPage extends Component {
 
 
                         <Row>
-                            <h1> Reviews For {(this.state.itemName||"Item")} </h1> 
+                            <h1 className="review-for"> Reviews For {(this.state.itemName||"Item")} </h1> 
 
                             {/* <div className="col-sm-6 col-offset-3">
                                 <CusContainer>

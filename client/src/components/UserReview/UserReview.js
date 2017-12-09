@@ -24,14 +24,14 @@ export const UserReview = props => (
                                 <strong>Reviewer: {props.username}</strong>
                             </li>
 
-                            <hr />
+                            <hr className="reviewHr" />
 
                             <li className="item-review">
                                 <p> {props.comment}</p>
                             </li>
                             <li className="userRating">
                                 {/* <Rating index={props.index} /> */}
-                                <h1> Rating: {props.rating}/5 </h1>
+                                <h2 className="ratingAve"> Rating: {props.rating}/5 </h2>
                             </li>
                         </ul>
                     </div>

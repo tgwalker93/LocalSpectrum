@@ -1,12 +1,12 @@
 .review-btn {
-  float: right;
+  
   color: #fff;
   padding: 10px 30px;
   border-radius: 100px;
   background: linear-gradient(-30deg,#36ECFF, #41C2FF 70%, #09B0FF);
   position: absolute;
-  top: 289px;
-  right: 15px;
+  top: 360px;
+  right: 35%;
   cursor: pointer;
   transform: scale(0.8)
 }

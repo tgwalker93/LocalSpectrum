@@ -1,0 +1,17 @@
+.review-for{
+    margin-left:30px;
+    margin-top:50px;
+    color:#FF1F99;
+    background: linear-gradient(20deg,#FF1F99, #FF7D18, #FED829); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight:bolder;
+    letter-spacing: 0.05em;
+}
+
+
+@media (max-width: 768px) {
+    .ratingAve{
+        text-align:center!important;
+    }
+}

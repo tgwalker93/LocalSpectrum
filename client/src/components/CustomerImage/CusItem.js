@@ -16,18 +16,18 @@ export const CusItem = props => (
                 
             </div>
             {/* <DeleteBtn /> */}
-            <div className="content">
+            <div className="content text-center">
                 <ul>
-                    <Link to={"/itemPage/" + props.itemId}> <li className="itemTittle">
+                    <Link to={"/itemPage/" + props.itemId}> <li className="itemTittle" style={{marginLeft:-50, marginTop:20}}>
                         <strong>{props.itemName}</strong>
                     </li> </Link>
-                    <li className="itemDes">
+                    <li className="itemDes" style={{marginLeft:-50}}>
                         {props.itemSummary}
                     </li>
                 </ul>
                 <hr />
                {/* <Rating index={props.index} /> */}
-               <p> Average Rating: {props.averageRating} </p>
+               <p style={{color: '#FF1F99'}}> Average Rating: {props.averageRating} </p>
             </div>
             {/* <span onClick={() => props.removeItem(props.id)} className="remove">𝘅</span> */}
             

@@ -28,7 +28,7 @@ export const BusItem = props => (
                 </ul>
                 <hr />
                {/* <Rating index={props.index} /> */}
-                <Link to={"/itemPage/" + props.itemId}><button> See Reviews </button> </Link>
+                <Link to={"/itemPage/" + props.itemId}><button className="seeReviewBtn"> See Reviews </button> </Link>
             </div>
             {/* <span onClick={() => props.removeItem(props.id)} className="remove">𝘅</span> */}
             

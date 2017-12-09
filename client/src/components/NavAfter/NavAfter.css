@@ -22,9 +22,16 @@ p#logo{
     margin: 12px
 }
 
-.iconOnly {
+span.iconOnly {
     font-weight: 100;
     font-size:15px!important;
+}
+
+
+.welcome{
+    font-family: 'Open Sans', sans-serif!important;
+    font-size: 18px!important;
+    font-weight: 500;
 }
 
 .glyphicon{

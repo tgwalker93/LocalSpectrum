@@ -94,7 +94,7 @@ class About extends Component {
                  
                         <div className="text-center">
                             <div className="row">
-                            <div className="col-sm-1"></div>
+                            <div className="col-sm-2"></div>
                             <div className="col-sm-2 iconBox first">
                                 <img src="/assets/img/tyler.jpg" className="img-circle img-responsive" alt="Tyler" width="90%" height="90%" />
                                 <h3 style={{ color: "#09B0FF" }}>Tyler Walker</h3>
@@ -147,7 +147,7 @@ class About extends Component {
                             <div className="col-sm-2 iconBox four">
                                 <img src="/assets/img/prathihia.jpg" className="img-circle img-responsive" alt="Prathiha" width="90%" height="90%" />
                                 <h3 style={{ color: "#FF1F99" }}>Prathibha Chunchu</h3>
-                                <p>Front-end | API Developer </p>
+                                <p>Front-end Developer </p>
                                 <hr />
                                 <div className="row">
                                     <div className="col-xs-3"></div>
@@ -176,7 +176,7 @@ class About extends Component {
                                     <div className="col-xs-3"></div>
                                 </div>
                             </div> */}
-                            <div className="col-sm-1"></div>
+                            <div className="col-sm-2"></div>
                         </div>
                         </div>
                  
