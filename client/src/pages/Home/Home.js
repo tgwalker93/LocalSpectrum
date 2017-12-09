@@ -8,17 +8,21 @@ import Nav from "../../components/Nav";
 import API from "../../utils/API";
 import Modal from 'react-modal';
 import { CusContainer, CusItem } from "../../components/CustomerImage";
+import NextBtn from "../../components/NextBtn";
+import PreBtn from "../../components/PreBtn";
+import Rating from "../../components/Rating";
+import "./Home.css";
 
 // MODALLLLLLLLLLLLL
 const modalCustomStyles = {
     overlay: {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(255, 255, 255, 0.75)',
-        zIndex: 1000000000000
+        // position: 'fixed',
+        // top: 0,
+        // left: 0,
+        // right: 0,
+        // bottom: 0,
+        // backgroundColor: 'rgba(255, 255, 255, 0.75)',
+        // zIndex: 1000000000000
     },
     content: {
         //Sample Styles
@@ -38,12 +42,16 @@ const modalCustomStyles = {
 };
 
 let testObj = {
-    name: "tessst"
+    name: "test"
 }
 
 class Home extends Component {
     // Setting our component's initial state
     state = {
+        postReviews: [],
+        itemReview: "",
+        currentReview: null,
+        currentItemReview: [],
         search: "",
         location: "",
         items: [],
@@ -57,7 +65,7 @@ class Home extends Component {
 
     ///MODALLLLLLLLLL
     openModal(article, e) {
-        this.setState({isModalOpen: true});
+        this.setState({ isModalOpen: true });
         // this.renderArticleNotes(article)
     }
     closeModal(testObj) {
@@ -73,10 +81,35 @@ class Home extends Component {
         });
     };
 
+    //This function will loop through data returned from db within range and find anything relevant to search term.
+    findText(res, search) {
+        console.log("i'm in findText!!!, below is res.data");
+        console.log(res.data)
+        let geoResults = res.data.geoResults
+        let searchResults = [];
+        this.setState({
+            geoResults: geoResults
+        });
+        geoResults.forEach(function (returnedItem) {
+            console.log(returnedItem);
+            console.log(search);
+            if (returnedItem.properties.itemName === search) {
+                console.log("SUCCESS");
+                searchResults.push(returnedItem);
+            }
+        });
+
+        console.log("COMPLETED FOR LOOP, SETTING STATE");
+        this.setState({
+            items: searchResults
+        })
+
+    }
+
     // Then reload books from the database
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("i'm in handle form submit");
+        console.log("BEGIN SEARCH");
 
         if (this.state.search) {
             API.search({
@@ -84,64 +117,47 @@ class Home extends Component {
                 location: this.state.location
             })
                 .then(res => {
-                    console.log("I'm in the call back of save item in API SEARCH!!!")
-                    console.log(res.data);
-                    this.setState({
-                        items: res.data
-                    });
+                    console.log("API.Search has completed, see below")
+                    console.log(res);
+                    // this.setState({
+                    //     items: res.data
+                    // });
+                    this.findText(res, this.state.search);
                 })
                 .catch(err => console.log(err));
         }
     };
 
+
     render() {
         return (
             <div>
-                <Modal
-                    style={modalCustomStyles}
-                    isOpen={this.state.isModalOpen}
-                >
+    
 
+            
+                    <Modal className="modalStyling"
+                        isOpen={this.state.isModalOpen}
+                    >
 
-                
-                <button onClick={this.closeModal.bind(this, testObj)}> x </button>
+                        <button className='closeModal' onClick={this.closeModal.bind(this, testObj)}> x </button>
 
-                <h1> WE MADE IT </h1>
-                    {/* <div className='container-fluid text-center'>
-                        <h1 className="notesHeader">Notes </h1>
-                        <hr />
-                        <ul className='list-group note-container'>
-                        </ul>
-                        <div>
-                            <textarea placeholder='New Note' rows='4' cols='60'
-                                value={this.state.articleNote}
-                                onChange={this.handleInputChange}
-                                name="articleNote">
-                            </textarea>
-                        </div>
-                        <button className='btn btn-success save' onClick={() => this.addArticleNote()}>Save Note</button>
-                        <button className='btn btn-danger note-delete noteModal' onClick={() => this.closeModal()}>X</button>
-
-                    </div>
-                    {this.state.currentArticleNotes.length ? (
-                        <NoteContainer>
-                            <div className="articleNoteContainer">
-                                {this.state.currentArticleNotes.map(note => {
-                                    let boundNoteClick = this.deleteNote.bind(this, note);
-                                    return (
-                                        <NotePanel key={note._id} noteText={note.noteText}>
-                                            <div>
-                                                <button className='btn btn-danger note-delete insideNote' onClick={boundNoteClick}> X </button>
-                                            </div>
-                                        </NotePanel>
-                                    );
-                                })}
+                        <h1 className="item-name"> Item Name {this.state.itemName}</h1>
+                        <div className='containertext-center'>
+                            <div style={{ marginLeft: -12, marginBottom: 15 }}>
+                                <Rating />
                             </div>
-                        </NoteContainer> */}
-                    {/* ) : (
-                            <h3> There are no saved notes! </h3>
-                        )} */}
-                </Modal>
+                            <div>
+                                <textarea className='reviewArea' placeholder=' Your reviews help others to learn more about great local goodies.' rows='6' cols='60' maxLength="5000"
+                                    value={this.state.itemReview}
+                                    onChange={this.handleInputChange}
+                                    name="itemReview">
+                                </textarea>
+                            </div>
+                            <button className='postReview' onClick={() => this.postReview()}>Post Review</button>
+                            {/* <button className='btn btn-danger note-delete noteModal' onClick={() => this.closeModal()}>X</button> */}
+
+                        </div>
+                    </Modal>
                 <Container fluid>
                     <Row>
                         {/* <Hero backgroundImage="https://media.giphy.com/media/3o6gbchrcNIt4Ma8Tu/giphy.gif"> */}
@@ -192,7 +208,7 @@ class Home extends Component {
                                     let boundItemClick = this.openModal.bind(this, item);
                                     return (
 
-                                        <CusItem  key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} >
+                                        <CusItem  key={item._id} itemName={item.properties.itemName} itemSummary={item.properties.itemSummary} itemImage={item.properties.itemImage} index={i} >
                                         
 
                                         <ReviewBtn onClick={boundItemClick} />
@@ -205,7 +221,7 @@ class Home extends Component {
                         </CusContainer>
                     ) : (
                             <div className="row text-center">
-                                <h1 className="subheading">Search Result</h1>
+                                <h1 className="subheading"></h1>
                             </div>
                         )}
 
@@ -213,7 +229,10 @@ class Home extends Component {
 
                 </Container>
             </div>
+
+
         );
+
     }
 }
 

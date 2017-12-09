@@ -1,0 +1,17 @@
+.pre-btn {
+  color: #fff;
+  padding: 10px 10px;
+  border-radius: 50px;
+  background: linear-gradient(30deg,#B3EF74 , #5DCA73 70%, #41BA59) ;
+  /* linear-gradient(60deg,#0093D6, #00D6CE, #67BE78) */
+  cursor: pointer;
+}
+
+.pre-btn:hover {
+  background: #41BA59;
+}
+
+
+@media (min-width: 768px) and (max-width: 1000px) {
+
+}

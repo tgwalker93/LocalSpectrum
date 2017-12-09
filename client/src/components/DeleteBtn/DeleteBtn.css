@@ -1,6 +1,7 @@
+
 .delete-btn {
   float: right;
-  color: #fff;
+  color: #FF1F99;
   font-size: 25px;
   /* margin-right: 20px; */
   position: absolute;
@@ -10,5 +11,5 @@
 }
 
 .delete-btn:hover {
-  color: #FF1F99;
+  color: #41BA59;
 }

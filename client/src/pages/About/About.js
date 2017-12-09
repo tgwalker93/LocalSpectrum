@@ -98,7 +98,7 @@ class About extends Component {
                             <div className="col-sm-2 iconBox first">
                                 <img src="/assets/img/tyler.jpg" className="img-circle img-responsive" alt="Tyler" width="90%" height="90%" />
                                 <h3 style={{ color: "#09B0FF" }}>Tyler Walker</h3>
-                                <p>Mern | Node Developer</p>
+                                <p>Mern Stack Developer</p>
                                 <hr style={{  borderTop: "1px solid #09B0FF" }}/>
                                 <div className="row">
                                     <div className="col-xs-3"></div>

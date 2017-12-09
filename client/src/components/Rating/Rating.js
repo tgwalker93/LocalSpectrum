@@ -20,35 +20,35 @@ class StartRating extends React.Component {
 
   onStarClick(nextValue, prevValue, name) {
     console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
-    this.setState({rating: nextValue});
+    this.setState({ rating: nextValue });
   }
 
   onStarClickCustomIcon(nextValue, prevValue, name) {
     console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
-    this.setState({rating_custom_icon: nextValue});
+    this.setState({ rating_custom_icon: nextValue });
   }
 
   onStarClickHalfStar(nextValue, prevValue, name) {
     console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
-    this.setState({rating_half_star: nextValue});
+    this.setState({ rating_half_star: nextValue });
   }
 
   onStarClickEmptyInitial(nextValue, prevValue, name) {
     console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
-    this.setState({rating_empty_initial: nextValue});
+    this.setState({ rating_empty_initial: nextValue });
   }
 
   render() {
     return (
-      <div>
-       <div className="starRating">
-          <StarRatingComponent
-           name={`star${this.props.index}`}
-            value={this.state.rating_empty_initial}
-            onStarClick={this.onStarClickEmptyInitial.bind(this)}
-          />
-        </div>
+
+      <div className="starRating">
+        <StarRatingComponent
+          name={`star${this.props.index}`}
+          value={this.state.rating_empty_initial}
+          onStarClick={this.onStarClickEmptyInitial.bind(this)}
+        />
       </div>
+
     );
   }
 }
