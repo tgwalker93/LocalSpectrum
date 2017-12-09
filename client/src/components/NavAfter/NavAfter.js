@@ -4,7 +4,7 @@ import Redirect from "react-router"
 import "./NavAfter.css";
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
-
+import API from '../../utils/API'
 
 // _logout(event) {
 //   event.preventDefault()
@@ -58,7 +58,7 @@ class NavAfter extends Component {
   _logout(event) {
   event.preventDefault()
   console.log('logging out')
-  axios.post('/auth/logout').then(response => {
+  API.logout().then(response => {
     console.log("I'M IN LOGOUT");
     console.log(response.data)
     if (response.status === 200) {

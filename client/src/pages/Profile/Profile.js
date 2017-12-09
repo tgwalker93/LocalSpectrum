@@ -37,7 +37,6 @@ class Profile extends Component {
 
         itemIds: [],
         items: [],
-        isLoggedIn: false,
         userSearch: ""
     
     };
@@ -85,7 +84,8 @@ class Profile extends Component {
         // ================ Do this to show the image upload locally ===========================
         this._handleImageChange = this._handleImageChange.bind(this);
         // ================ Do this to show the image upload locally ===========================
-        this.setState({ loggedIn: false });
+        // this.setState({ loggedIn: false });
+        
         // this.loadUserProfile() 
         this.loadItems
     }
@@ -247,7 +247,7 @@ class Profile extends Component {
                         </div>
                         <Row>
                             <Col size="md-12">
-                                {this.state.items.length ? (
+                                {this.state.items ? (
                                     <BusContainer>
                                         <div>
                                             {this.state.items.map((item, i) => {

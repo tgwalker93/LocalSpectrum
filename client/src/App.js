@@ -11,10 +11,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-
+import API from "./utils/API"
 
 import React, { Component } from 'react'
-import axios from 'axios'
 import { Route, Link } from 'react-router-dom'
 
 const DisplayLinks = props => {
@@ -40,7 +39,8 @@ class App extends Component {
 		this._login = this._login.bind(this)
 	}
 	componentDidMount() {
-		axios.get('/auth/user').then(response => {
+		console.log("CHECKING IF THERE IS A USER");
+		API.user().then(response => {
 			console.log(response.data)
 			if (!!response.data.user) {
 				console.log('THERE IS A USER')
@@ -75,8 +75,8 @@ class App extends Component {
 
 	_login(username, password) {
 		console.log("attempting login of: " + username + " : " + password)
-		axios
-			.post('/auth/login', {
+		API
+			.login({
 				username,
 				password
 			})
@@ -111,7 +111,12 @@ class App extends Component {
 						/>}
 				/>
 				<Route exact path="/profile" render={() => <Profile loggedIn={this.state.loggedIn} user={this.state.user} />} />
-				<Route exact path="/register" component={Register} />
+				<Route exact path="/register"
+				render={() =>
+						<Register
+							_login={this._login}
+							
+						/>} />
         		<Route exact path="/about" component={About} />
 				<Route exact path="/contact" component={Contact} />
 				{/* <LoginForm _login={this._login} /> */}

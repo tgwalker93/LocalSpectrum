@@ -3,6 +3,7 @@ const router = require("express").Router();
 const userRoutes = require("./users");
 const profileRoutes = require("./profile");
 const homeRoutes = require("./home");
+const auth = require("./auth");
 
 var express = require("express");
 var app = express.Router();
@@ -18,5 +19,7 @@ app.use("/profile", profileRoutes);
 
 // Home routes
 app.use("/home", homeRoutes);
+
+app.use("/auth", auth);
 
 module.exports = app;

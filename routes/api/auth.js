@@ -1,22 +1,22 @@
+var path = require('path');
 const express = require('express')
-const router = express.Router()
-const User = require('../db/models/User')
-const Item = require('../db/models/Item')
-const passport = require('../passport')
+const app = express.Router()
+const User = require('../../db/models/User')
+const Item = require('../../db/models/Item')
+const passport = require('../../passport')
 
 // this route is just used to get the user basic info
-router.get('/user', (req, res) => {
+app.get('/user', (req, res) => {
 	console.log('=====get user!!======')
 	console.log(req.user)
-	let test = true;
-	if (test) {
+	if (req.user) {
 		return res.json({ user: req.user })
 	} else {
 		return res.json({ user: null })
 	}
 })
 
-router.post(
+app.post(
 	'/login',
 	function(req, res, next) {
 		console.log("/auth/login called")
@@ -37,7 +37,8 @@ router.post(
 	}
 )
 
-router.post('/logout', (req, res) => {
+app.post('/logout', (req, res) => {
+    console.log("in app.post/logout8************************************************WEFFWEFWEFWEFWEF");
 	if (req.user) {
 		req.session.destroy()
 		res.clearCookie('connect.sid') // clean up!
@@ -47,7 +48,7 @@ router.post('/logout', (req, res) => {
 	}
 })
 
-router.post('/signup', (req, res) => {
+app.post('/signup', (req, res) => {
 	console.log("------auth signup------")
 	console.log(req.body)
 	const { username, password } = req.body
@@ -58,19 +59,23 @@ router.post('/signup', (req, res) => {
 			return res.json({
 				error: `Sorry, already a user with the username: ${username}`
 			})
-		}
+        }
+        
+        console.log("WEVE SUCCESSFULLY MADE IT PAST User.findOne")
 		const newUser = new User({
 			'properties.username': username,
 			'properties.password': password
 		})
 		newUser.save((err, savedUser) => {
-			if (err) return res.json(err)
+            if (err) return res.json(err)
+            
+            console.log("THERE WAS NO ERROR IN SAVING NEW USER");
 			return res.json(savedUser)
 		})
 	})
 })
 
-router.post("/saveItem", function (req, res) {
+app.post("/saveItem", function (req, res) {
     console.log("I'm IN THE BACKEND /saveItem route api/profile")
 	var result = req.body;
 	console.log(result)
@@ -114,4 +119,4 @@ router.post("/saveItem", function (req, res) {
 });
 
 
-module.exports = router
+module.exports = app

@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
   // Gets all books
-  getBooks: function () {
-    return axios.get("/api/books");
+  user: function () {
+    return axios.get("/api/auth/user/");
   },
   // Gets the book with the given id
   getBook: function (id) {
@@ -20,13 +20,22 @@ export default {
   saveUser: function (userData) {
     return axios.post("/api/users/saveUser", userData)
   },
-  loginUser: function (userData) {
-    return axios.post("/api/users/loginUser", userData)
+  logout: function () {
+    console.log("LogoutAPI")
+    return axios.post("/api/auth/logout")
+  },
+  login: function (userData) {
+    console.log("LoginAPI")
+    return axios.post("/api/auth/login", userData)
   },
   //Get user data once on the profile page
   getUserData: function (id) {
     console.log("I'm in front-end API getUserData and the ID is " + id);
     return axios.get("/api/profile/getUserData/" + id)
+  },
+
+  signUp: function(userObj) {
+    return axios.post("/api/auth/signup", userObj);
   },
   // getItems: function (itemIds) {
   //   console.log("I'm in front-end API and the ID is " + itemIds);

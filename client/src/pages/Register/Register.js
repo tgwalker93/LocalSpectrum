@@ -56,8 +56,7 @@ class Register extends Component {
 	handleSubmit(event) {
 		event.preventDefault()
 		// TODO - validate!
-		axios
-			.post('/auth/signup', {
+		API.signUp( {
 				username: this.state.username,
 				password: this.state.password
 			})
@@ -66,6 +65,7 @@ class Register extends Component {
                 console.log(response.data.error)
 				if (!response.data.error) {
 					console.log('youre good')
+					this.props._login(this.state.username, this.state.password);
 					this.setState({
 						redirectTo: '/profile'
 					})

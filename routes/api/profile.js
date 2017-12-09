@@ -17,6 +17,21 @@ var Item = require("../../db/models/Item.js");
 
 app.post("/saveItem", function (req, res) {
     console.log("/saveItem profile")
+    var resultObj = {
+        properties: {
+            itemName: req.body.item.itemObj.itemName,
+            itemSummary: req.body.item.itemObj.itemSummary,
+            itemImage: req.body.item.itemObj.itemImage
+        },
+        geometry: {}
+    };
+    var userProfile = req.body.item.itemObj.userProfile
+    console.log("-----resultObj-----")
+    console.log(resultObj)
+    console.log("-------------------")
+    console.log("-----userProfile-----")
+    console.log(userProfile)
+    console.log("-------------------")
 })
 
 
