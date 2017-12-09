@@ -47,6 +47,11 @@ export default {
     console.log(item);
     return axios.post("/api/profile/saveItem", item)
   },
+  getItems: function(user) {
+    console.log("IM IN UTILS/API getItems!!!!!!");
+    console.log(user);
+    return axios.get("/api/profile/getItems/" + user.user._id);
+  },
   getItemReviews: function (item) {
     return axios.get("/api/profile/getItemReviews", item)
   },

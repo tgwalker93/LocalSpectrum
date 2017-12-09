@@ -20,7 +20,7 @@ app.use(
 		extended: false
 	})
 )
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit:'50mb'}))
 app.use(
 	session({
 		secret: process.env.APP_SECRET || 'this is the default passphrase',

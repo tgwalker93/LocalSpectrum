@@ -120,8 +120,17 @@ class Profile extends Component {
         console.log("-------loadItems--------")
         console.log(this.props)
         console.log("----------------------")
-        console.log(this.props.user.items)
-        this.setState({ items: this.props.user.items });
+        console.log(this.props.user.properties.items)
+        API.getItems({
+            user: this.props.user
+        })
+        .then(res => {
+                console.log("**********************I'm in the call back of save item in getItems!!!")
+                // this.loadUserProfile()
+                console.log(res.data.properties.items);
+            this.setState({ items: res.data.properties.items });
+            }).catch(err => console.log(err))
+        
     }
 
     
@@ -277,7 +286,7 @@ class Profile extends Component {
                                             {this.state.items.map((item, i) => {
                                                 return (
 
-                                                    <BusItem key={item.itemName} itemName={item.itemName} itemSummary={item.itemSummary} itemImage={item.itemImage} index={i} />
+                                                    <BusItem key={item.properties.itemName} itemName={item.properties.itemName} itemSummary={item.properties.itemSummary} itemImage={item.properties.itemImage} index={i} />
 
                                                 );
                                             }

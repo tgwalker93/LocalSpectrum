@@ -95,7 +95,28 @@ var Item = require("../../db/models/Item.js");
 
 
     // });
+    //getItemIds
+    app.get("/getItems/:id", function (req, res) {
+    console.log("I'm in profile api js /getUserData/:id")
+    console.log(req.params.id);
+    User.findById(req.params.id)
+        .populate("properties.items")
+        .then(function (doc, error) {
+            // Log any errors
+            if (error) {
+                console.log("getUserData back-end failed!")
+                console.log(error);
+            }
+            // Or send the doc to the browser as a json object
+            else {
+                console.log("getUserData back-end was successful!");
+                //// below console log log out the long query of imageUpload
+                console.log(doc);
+                res.json(doc);
+            }
+        });
 
+    });
     //SAVE ITEM EVERYTIME SOMEONE CLICKS ADD ITEM
     app.post("/saveItem", function (req, res) {
         console.log("I'm IN THE BACKEND /saveItem route api/profile")
@@ -112,7 +133,7 @@ var Item = require("../../db/models/Item.js");
         console.log(userProfile);
 
         var apiKey = "AIzaSyBIG5ox_iGJBmdS5y1vyuaGEZUb9eBWe6U"
-        var query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + userProfile.user_address + "+" + userProfile.user_city + "+" + userProfile.user_state + "&key=" + apiKey;
+        var query = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + userProfile.properties.user_address + "+" + userProfile.properties.user_city + "+" + userProfile.properties.user_state + "&key=" + apiKey;
         // var query2 = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + req.params.location + "&destinations=&key=" + apiKey;
         console.log(query);
         request(query, function (error, response, body) {
@@ -144,7 +165,7 @@ var Item = require("../../db/models/Item.js");
                         // Use the item id to find and update it's note
                         console.log("TESTING USER ID!!!!!!! ") 
                         console.log(userProfile);
-                        User.findOneAndUpdate({ "_id": userProfile.userId }, { $push: { "properties.items": doc._id } },
+                        User.findOneAndUpdate({ "_id": userProfile._id }, { $push: { "properties.items": doc._id } },
                             { safe: true, upsert: true })
                             // Execute the above query
                             .exec(function (err, doc) {
