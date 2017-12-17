@@ -10,7 +10,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const mongoose = require("mongoose");
 const MongoStore = require('connect-mongo')(session)
-//const dbConnection = require('./db') // loads our connection to the mongo database
+const dbConnection = require('./db') // loads our connection to the mongo database
 const passport = require('./passport')
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -22,7 +22,7 @@ app.use(
 		extended: false
 	})
 )
-app.use(bodyParser.json({limit:'50mb'}))
+app.use(bodyParser.json({ limit: '50mb' }))
 app.use(
 	session({
 		secret: process.env.APP_SECRET || 'this is the default passphrase',
@@ -36,18 +36,13 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session()) // will call the deserializeUser
 
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || MONGO_LOCAL_URL, {
-	useMongoClient: true
-});
-
 app.use(express.static("client/build"));
-	// const path = require('path')
-	// console.log('YOU ARE IN THE PRODUCTION ENV')
-	// app.use('/static', express.static(path.join(__dirname, '../build/static')))
-	// app.get('/', (req, res) => {
-	// 	res.sendFile(path.join(__dirname, '../build/index.html'))
-	// })
+// const path = require('path')
+// console.log('YOU ARE IN THE PRODUCTION ENV')
+// app.use('/static', express.static(path.join(__dirname, '../build/static')))
+// app.get('/', (req, res) => {
+// 	res.sendFile(path.join(__dirname, '../build/index.html'))
+// })
 // }
 
 /* Express app ROUTING */
@@ -55,7 +50,7 @@ app.use(express.static("client/build"));
 app.use('/api', require('./routes/api'))
 
 // ====== Error handler ====
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
 	console.log('====== ERROR =======')
 	console.error(err.stack)
 	res.status(500)
