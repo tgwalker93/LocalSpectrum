@@ -1,4 +1,4 @@
-const User = require('../db/models/User')
+const User = require('../db/models/user')
 const LocalStrategy = require('passport-local').Strategy
 
 const strategy = new LocalStrategy(
