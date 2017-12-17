@@ -12,7 +12,7 @@ var cheerio = require("cheerio");
 //models 
 // var Note = require("../../models/Note.js");
 var User = require("../../db/models/user.js");
-var Item = require("../../db/models/Item.js");
+var Item = require("../../db/models/item.js");
 
 
 // app.post("/saveItem", function (req, res) {
