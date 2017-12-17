@@ -1,5 +1,5 @@
 var path = require('path');
-const User = require('../db/models/user')
+const User = require('../db/models/user.js')
 const LocalStrategy = require('passport-local').Strategy
 
 const strategy = new LocalStrategy(

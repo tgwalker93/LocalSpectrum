@@ -1,8 +1,8 @@
 var path = require('path');
 const express = require('express')
 const app = express.Router()
-const User = require('../../db/models/user')
-const Item = require('../../db/models/Item')
+const User = require('../../db/models/user.js')
+const Item = require('../../db/models/item.js')
 const passport = require('../../passport')
 var request = require("request");
 
