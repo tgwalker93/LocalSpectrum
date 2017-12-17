@@ -6,7 +6,7 @@ var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
 
 //models 
-var User = require("../../db/models/User.js");
+var User = require("../../db/models/user.js");
 
 //scraping tools
 var request = require("request");
