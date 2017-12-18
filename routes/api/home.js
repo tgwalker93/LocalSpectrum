@@ -133,7 +133,7 @@ app.get("/search/search=:search&location=:location?", function (req, res) {
                     // $text: { $search: req.params.search }, 
                     'geometry.coordinates': {
                         $geoWithin: {
-                            $center: [[geo.lng, geo.lat], 5 / 3, 963.2 ]
+                            $center: [[geo.lng, geo.lat], 20 / 3963.2 ]
                         }
 
                     }
