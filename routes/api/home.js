@@ -13,7 +13,7 @@ var cheerio = require("cheerio");
 // var Note = require("../../models/Note.js");
 var User = require("../../db/models/user.js");
 var Item = require("../../db/models/item.js");
-var ItemReview = require("../../db/models/ItemReview.js");
+var ItemReview = require("../../db/models/itemReview.js");
 
 
 
