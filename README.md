@@ -1,4 +1,4 @@
-[![/images/Search.PNG](/images/Search.PNG)](/images/Search.PNG)
+[![/images/LandingPage.PNG](/images/LandingPage.PNG)](/images/LandingPage.PNG)
 
 # Local Spectrum
 
@@ -17,7 +17,11 @@ This application is still in progress, and there isn't much in the database.
 
 In most cases, you won't find anything with searching because there is isn't much in the database. However, if you search "Apple" in "Irvine", or "Irvine, Ca", you will find an item. 
 
-* **Search Page**
+
+* **Home Page**
+[![/images/LandingPage.PNG](/images/LandingPage.PNG)](/images/LandingPage.PNG)
+
+* **Results**
 [![/images/Search.PNG](/images/Search.PNG)](/images/Search.PNG)
 
 
