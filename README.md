@@ -1,4 +1,5 @@
-[![https://github.com/tgwalker93/StockLeague/blob/master/public/assets/img/carousel1.gif](https://github.com/tgwalker93/StockLeague/blob/master/public/assets/img/carousel1.gif)](https://github.com/tgwalker93/StockLeague/blob/master/public/assets/img/carousel1.gif)
+[![/images/Search.PNG](/images/Search.PNG)](/images/Search.PNG)
+
 # Local Spectrum
 
 A `NodeJS`, `MongoDB`, `Express`, and `ReactJS` application where users can query items within cities that were posted by other users. Users are free to add reviews, comments, and post their own items if they register. For each item posted, the user can add an image, title, and description. 
@@ -16,17 +17,17 @@ This application is still in progress, and there isn't much in the database.
 
 In most cases, you won't find anything with searching because there is isn't much in the database. However, if you search "Apple" in "Irvine", or "Irvine, Ca", you will find an item. 
 
-### Search Page
+* **Search Page**
 [![/images/Search.PNG](/images/Search.PNG)](/images/Search.PNG)
 
 
-### Profile Page
+* **Profile Page**
 [![/images/ProfilePage.PNG](/images/ProfilePage.PNG)](/images/ProfilePage.PNG)
 
-### Posting a Comment
+* **Posting a Comment**
 [![/images/postingComment.PNG](/images/postingComment.PNG)](/images/postingComment.PNG)
 
-### Review Page
+* **Review Page**
 [![/images/ReviewPage.PNG](/images/ReviewPage.PNG)](/images/ReviewPage.PNG)
 
 
