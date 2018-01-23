@@ -54,6 +54,7 @@ let reviewObj = {
 class Home extends Component {
     // Setting our component's initial state
     state = {
+        searchStart: false,
         postReviews: [],
         user: null,
         itemReview: "",
@@ -142,6 +143,8 @@ class Home extends Component {
             geoResults: geoResults,
             
         });
+
+
         geoResults.forEach(function (returnedItem) {
             console.log(returnedItem);
             console.log(search);
@@ -168,12 +171,18 @@ class Home extends Component {
             
         })
 
-        console.log("COMPLETED FOR LOOP, SETTING STATE");
+        console.log("COMPLETED FOR LOOP, SETTING STATE, below is search results");
+        if(searchResults.length===0){
+            this.setState({
+                searchStart: "No Items Found"
+            })
+        }
         this.setState({
             items: searchResults
         })
 
     }
+
     onStarClickEmptyInitial(nextValue, prevValue, name) {
         console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
         this.setState({ rating_empty_initial: nextValue, rating: nextValue});
@@ -183,6 +192,7 @@ class Home extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         console.log("BEGIN SEARCH");
+        this.setState({searchStart: true});
 
         if (this.state.search) {
             API.search({
@@ -280,7 +290,8 @@ class Home extends Component {
                         <Col size="sm-1"></Col>
 
                     </div>
-
+                    {console.log("below is state items -------- -")}
+                    {console.log(this.state.items)}
                     {this.state.items.length ? (
                         <CusContainer>
                             <div>
@@ -302,9 +313,14 @@ class Home extends Component {
                             </div>
                         </CusContainer>
                     ) : (
+
+                            //If user search returns none, "no results found", if user hasn't searched yet, let empty
                             <div className="row text-center">
-                                <h1 className="subheading"></h1>
+                                <h1 className="subheading">{this.state.searchStart}</h1>
                             </div>
+
+
+
                         )}
 
 
