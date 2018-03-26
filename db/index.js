@@ -16,12 +16,8 @@ if (process.env.MONGODB_URI) {
 	MONGO_URL = MONGO_LOCAL_URL
 }
 
-// mongoose.Promise = global.Promise;
-// mongoose.connect(process.env.MONGODB_URI || MONGO_LOCAL_URL, {
-// 	useMongoClient: true
-// });
 
-// should mongoose.connection be put in the call back of mongoose.connect???
+
 var db = mongoose.connection
 db.on('error', err => {
 	console.log(`There was an error connecting to the database: ${err}`)

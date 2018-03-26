@@ -1,16 +1,11 @@
-// import React, { Component } from "react";
-
 import { Row, Container } from "../../components/Grid";
-import { InputLog, LogBtn } from "../../components/LoginItem";
+import { InputLog } from "../../components/LoginItem";
 
 
 import React, { Component } from "react";
 
-import { Link } from "react-router-dom";
-import { BrowserRouter as Router, Redirect } from 'react-router-dom'
-import Nav from "../../components/Nav";
+import { BrowserRouter as Redirect } from 'react-router-dom'
 import API from "../../utils/API";
-import axios from 'axios'
 
 class Register extends Component {
 	state = {
@@ -75,7 +70,6 @@ class Register extends Component {
 	
 		
 				if (!response.data.error) {
-					console.log('youre good')
 					userObj.userId = response.data.doc._id;
 					this.props._login(this.state.username, this.state.password, userObj);
 					this.setState({
@@ -109,13 +103,6 @@ class Register extends Component {
 									name="username"
 									placeholder="&#xf007; USERNAME"
 								/>
-								{/* <p>Email</p>
-								<InputLog
-									value={this.state.email}
-									onChange={this.handleInputChange}
-									name="email"
-									placeholder="email"
-								/> */}
 								<p>Password</p>
 								<InputLog
 									value={this.state.password}
@@ -124,14 +111,6 @@ class Register extends Component {
 									type="password"
 									placeholder="&#xf023; PASSWORD"
 								/>
-								{/* <p>Confirm Password</p>
-								<InputLog
-									value={this.state.confirmPassword}
-									onChange={this.handleInputChange}
-									name="confirmPassword"
-									type="password"
-									placeholder="&#xf023; CONFIRM PASSWORD"
-								/> */}
 								<p>First Name</p>
 								<InputLog
 									value={this.state.firstName}
@@ -146,20 +125,6 @@ class Register extends Component {
 									name="lastName"
 									placeholder="&#xf007; Last Name"
 								/>
-								{/* <p>Business Name (if applicable)</p>
-								<InputLog
-									value={this.state.businessName}
-									onChange={this.handleInputChange}
-									name="businessName"
-									placeholder="&#xf007; businessName"
-								/> */}
-								{/* <p> Address </p>
-								<InputLog
-									value={this.state.address}
-									onChange={this.handleInputChange}
-									name="address"
-									placeholder="101 Cool Street"
-								/> */}
 								<p> City</p>
 								<InputLog
 									value={this.state.city}
@@ -174,13 +139,7 @@ class Register extends Component {
 									name="state"
 									placeholder="California"
 								/>
-								{/* <p> Zip</p>
-								<InputLog
-									value={this.state.zip}
-									onChange={this.handleInputChange}
-									name="zip"
-									placeholder="12345"
-								/> */}
+
 
 								<button className="btn btn-warning registerBtn"
 									onClick={this.handleSubmit}

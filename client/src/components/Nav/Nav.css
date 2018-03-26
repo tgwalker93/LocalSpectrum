@@ -38,6 +38,9 @@ a.logo, a.logo:hover{
     color: #ffffff;
 }
 
+.navbar-nav {
+    flex-direction: row;
+}
 
 .navbar-inverse .navbar-nav>li>a{
     color:#fff;

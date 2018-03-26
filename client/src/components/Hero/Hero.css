@@ -7,20 +7,9 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position:  center;
+  /* background-image:url("./assets/img/map3.jpg"); */
   position: relative;
 }
-
-/* .hero:after {
-  content: "";
-  display: block;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-} */
 
 .hero * {
   position: relative;

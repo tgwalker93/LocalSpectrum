@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
-import Redirect from "react-router"
 import "./NavAfter.css";
 import { withRouter } from 'react-router-dom'
 import API from '../../utils/API'

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Hero from "../../components/Hero";
-import { Col, Row, Container } from "../../components/Grid";
-import Nav from "../../components/Nav";
-import API from "../../utils/API";
+import { Row, Container } from "../../components/Grid";
 import "./About.css";
 import { Link } from "react-router-dom";
 

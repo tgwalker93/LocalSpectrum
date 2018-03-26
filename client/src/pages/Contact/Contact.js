@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-// import GoogleButton from '../../components/GoogleButton'
 import { Row, Container } from "../../components/Grid";
-import Nav from "../../components/Nav";
 import { TextLog, InputLog } from "../../components/LoginItem";
 import API from "../../utils/API";
 import "./Contact.css";
@@ -27,13 +25,8 @@ class Contact extends Component {
         });
     };
 
-    // login = event => {
-
-    // }
-
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("i'm in handle form submit");
 
         if (this.state.search) {
             API.search({
@@ -41,8 +34,6 @@ class Contact extends Component {
                 location: this.state.location
             })
                 .then(res => {
-                    console.log("I'm in the call back of save item in API SEARCH!!!")
-                    console.log(res.data);
                     this.setState({
                         items: res.data
                     });

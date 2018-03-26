@@ -69,10 +69,6 @@ const UserSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Item",
         }],
-        // itemReview: {
-        //     type: [Schema.Types.ObjectId],
-        //     ref: "itemReview"
-        // },
         synopsis: String,
         date: { type: Date, default: Date.now }
     },
@@ -102,12 +98,10 @@ UserSchema.pre('save', function(next) {
 		this.properties.password = this.hashPassword(this.properties.password)
 		next()
 	}
-	// this.password = this.hashPassword(this.password)
-	// next()
+
 })
 
-// UserSchema.index({ items: 'text' });
-// UserSchema.index({ 'properties.items': 'text' });
+
 UserSchema.index({ '$**': 'text' });
 
 // Create reference to User & export

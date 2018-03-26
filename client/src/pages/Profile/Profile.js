@@ -1,15 +1,8 @@
 import React, { Component } from "react";
-import Jumbotron from "../../components/Jumbotron";
 import { Col, Row, Container } from "../../components/Grid";
-import { Input, FormBtn } from "../../components/Form";
 import { InputLog} from "../../components/LoginItem";
-import NavAfter  from "../../components/NavAfter";
-import Panel from "../../components/Panel";
-import ImageUploader from 'react-images-upload';
-import ImageUpload from './ImageUpload.js';
 import API from "../../utils/API";
 import { BusContainer, BusItem} from "../../components/BusImage";
-import { CusContainer, CusItem} from "../../components/CustomerImage";
 
 
 class Profile extends Component {

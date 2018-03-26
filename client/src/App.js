@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+
 import NavAfter from "./components/NavAfter";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
@@ -12,7 +12,7 @@ import ItemPage from "./pages/ItemPage";
 import API from "./utils/API"
 
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 const DisplayLinks = props => {
 	if (props.loggedIn) {
@@ -34,20 +34,16 @@ class App extends Component {
 			user: null,
 			userId: null
 		}
-		// this._logout = this._logout.bind(this)
 		this._login = this._login.bind(this)
 	}
 	componentDidMount() {
-		console.log("CHECKING IF THERE IS A USER");
 		API.user().then(response => {
-			console.log(response.data.user)
 			if (!!response.data.user) {
-				console.log('THERE IS A USER')
 				this.setState({
 					loggedIn: true,
 					user: response.data.user,
 					userId: response.data.user._id,
-				}); console.log(this.state.loggedIn)
+				});
 			} else {
 				this.setState({
 					loggedIn: false,
@@ -58,7 +54,6 @@ class App extends Component {
 	}
 
 	_login(username, password) {
-		console.log("attempting login of: " + username + " : " + password)
 		var userData = {
 			username: username,
 			password: password,
@@ -66,11 +61,6 @@ class App extends Component {
 		API
 			.login(userData)
 			.then(response => {
-				console.log("------response------")
-				console.log(response.data)
-				console.log(response.data.user._id)
-				console.log(response.data.user.geometry.coordinates)
-				console.log("-----------")
 				if (response.status === 200) {
 					// update the state
 					this.setState({
@@ -86,9 +76,6 @@ class App extends Component {
 		return (
 			<div className="App">
 				<DisplayLinks user={this.state.user} _logout={this._logout} loggedIn={this.state.loggedIn } />
-				{/* LINKS to our different 'pages' */}
-				{/*  ROUTES */}
-				{/* <Route exact path="/" component={Home} /> */}
 
 				<Route exact path="/" render={() => <Home user={this.state.user} />} />
 				<Route
@@ -110,7 +97,6 @@ class App extends Component {
         		<Route exact path="/about" component={About} />
 				<Route exact path="/contact" component={Contact} />
 				<Route exact path="/itemPage/:itemId?" component={ItemPage} />
-				{/* <LoginForm _login={this._login} /> */}
 				<Footer />
 			</div>
 		)

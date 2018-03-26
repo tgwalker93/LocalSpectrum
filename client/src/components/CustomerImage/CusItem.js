@@ -1,7 +1,4 @@
 import React from "react";
-import Rating  from "../../components/Rating";
-import ReviewBtn from "../../components/ReviewBtn";
-// import DeleteBtn from "../../components/DeleteBtn";
 import "./CusItem.css";
 import { Link } from "react-router-dom";
 
@@ -11,8 +8,7 @@ export const CusItem = props => (
     <div className="col-sm-4">
         <div className='card'>
             <div className="img-container">
-                <img alt={"No Image"} src={props.itemImage} />
-                {/* {props.children} */}
+                <img alt={"Missing"} src={props.itemImage} />
                 
             </div>
             {/* <DeleteBtn /> */}

@@ -1,7 +1,4 @@
 import React from "react";
-import Rating from "../../components/Rating";
-import ReviewBtn from "../../components/ReviewBtn";
-// import DeleteBtn from "../../components/DeleteBtn";
 import "./UserReview.css";
 
 
