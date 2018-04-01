@@ -1,3 +1,55 @@
+#hero2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 483px;
+}
+
+#hero2 * {
+  position: relative;
+  z-index: 2;
+}
+
+
+
+
+#hero2 h2{
+  color: #FF7E19;
+  font-size:20px!important;
+  font-weight:350;
+  letter-spacing: 0.6em;
+  padding-top:20px;
+}
+
+#hero2 h1 {
+  font-size: 45px;
+  padding-top: 160px;
+  margin-top: 0;
+  color: #FF1F9A;
+}
+
+.glyphicon-heart {
+  font-size: 30px!important;
+  color:#FED92A;
+}
+
+
+@media (max-width: 548px) {
+  #hero2 {
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position:  center;
+    position: relative;
+  }
+}
+
+
+
+
+
+
 .item-name{
     background: linear-gradient(20deg,#FF1F99, #FF7D18, #FED829); 
     -webkit-background-clip: text;

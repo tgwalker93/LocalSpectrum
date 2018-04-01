@@ -156,6 +156,7 @@ class Home extends Component {
     render() {
         return (
             <div>
+
     
 
             
@@ -190,9 +191,12 @@ class Home extends Component {
                     </Modal>
                 <Container fluid>
                     <Row>
-                        <Hero backgroundImage="assets/img/map3.jpg">
+               
+                            <img id="hero2" src="./assets/img/map3.jpg" alt="test" />
+
+                        {/* <Hero backgroundImage="/assets/img/map3.jpg" /> */}
                  
-                        </Hero>
+            
                     </Row>
                     <div className="row inputBox">
                         <Col size="sm-1"></Col>
