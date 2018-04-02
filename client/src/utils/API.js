@@ -66,5 +66,12 @@ export default {
     console.log("I'M IN AXiOS SEARCH FRONT ENT UTILS/API")
     console.log(searchObj)
     return axios.get("/api/home/search/search=" + searchObj.search + "&location=" + searchObj.location);
+  },
+  searchGoogle: function(searchObj, location) {
+    console.log("inside searchGOOGLE in API.js");
+    console.log(searchObj);
+    console.log(location);
+    const apiKey = 'AIzaSyDBaC5e3-O8JfrzeNR_rNObHxMW7_WdRmM'
+    return axios.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + searchObj.search + "+" + searchObj.location + "&key="  + apiKey);
   }
 };

@@ -41,7 +41,7 @@ class Home extends Component {
     // When the component mounts, load all books and save them to this.state.books
     componentDidMount() {
         Modal.setAppElement('body');
-    }
+    };
 
 
     componentWillReceiveProps(nextProps) {
@@ -49,14 +49,14 @@ class Home extends Component {
         if (nextProps.user) {
             this.setState({ user: nextProps.user })
         }
-    }
+    };
     ///MODAL
     openModal(item, e) {
         this.setState({ isModalOpen: true, currentItem: item });
-    }
+    };
     closeModal(testObj) {
         this.setState({ isModalOpen: false });
-    }
+    };
 
 
     // Handles updating component state when the user types into the input field
@@ -84,7 +84,7 @@ class Home extends Component {
               
             })
             .catch(err => console.log(err));
-    }
+    };
     //This function will loop through data returned from db within range and find anything relevant to search term.
     findText(res, search) {
         let geoResults = res.data.geoResults
@@ -100,8 +100,6 @@ class Home extends Component {
                 searchResults.push(returnedItem);
             }
         });
-
-
         
         searchResults.forEach(function(returnedItem, i){
             let total = 0;
@@ -123,24 +121,43 @@ class Home extends Component {
             this.setState({
                 searchStart: "No Items Found"
             })
+            // API.searchGoogle(this.state.search, this.state.location);
         }
         this.setState({
             items: searchResults
         })
 
-    }
+    };
 
     onStarClickEmptyInitial(nextValue, prevValue, name) {
         console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
         this.setState({ rating_empty_initial: nextValue, rating: nextValue});
-    }
+    };
 
-    // Then reload books from the database
+    //If no search results returned, here are yelp results. 
+    searchGoogle(searchStr, location2) {
+        console.log("I'm in search Google on the front-end");
+        console.log(searchStr);
+        console.log(location2);
+        API.searchGoogle({
+            search: searchStr,
+            location: location2
+        })
+        .then(res => {
+            console.log("I've completed searchYelp and i'm on the client. Here is res");
+            console.log(res);
+         })
+         .catch(err => console.log(err));
+    };
+
+
     handleFormSubmit = event => {
         event.preventDefault();
         this.setState({searchStart: true});
 
         if (this.state.search) {
+            this.searchGoogle(this.state.search, this.state.location);
+            //API call to search term in DB
             API.search({
                 search: this.state.search,
                 location: this.state.location
