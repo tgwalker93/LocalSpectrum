@@ -174,8 +174,6 @@ class Home extends Component {
         return (
             <div>
 
-    
-
             
                     <Modal className="modalStyling"
                         isOpen={this.state.isModalOpen}
@@ -207,13 +205,11 @@ class Home extends Component {
                         </div>
                     </Modal>
                 <Container fluid>
+                                            
+
                     <Row>
                
-                            <img id="hero2" src="./assets/img/map3.jpg" alt="test" />
-
-                        {/* <Hero backgroundImage="/assets/img/map3.jpg" /> */}
-                 
-            
+                      < Hero backgroundImage = "./map4.jpg" />
                     </Row>
                     <div className="row inputBox">
                         <Col size="sm-1"></Col>
