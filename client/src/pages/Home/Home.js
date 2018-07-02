@@ -155,15 +155,20 @@ class Home extends Component {
         event.preventDefault();
         this.setState({searchStart: true});
 
+        
         if (this.state.search) {
-            this.searchGoogle(this.state.search, this.state.location);
+            
+            // this.searchGoogle(this.state.search, this.state.location);
             //API call to search term in DB
             API.search({
                 search: this.state.search,
                 location: this.state.location
             })
                 .then(res => {
-                    this.findText(res, this.state.search);
+                    // this.findText(res, this.state.search);
+                    console.log("local search was successful, trying google search now!");
+                    this.searchGoogle(this.state.search, res.data.location[0].geometry.location);
+                    
                 })
                 .catch(err => console.log(err));
         }

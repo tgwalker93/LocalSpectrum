@@ -125,6 +125,7 @@ app.get("/search/search=:search&location=:location?", function (req, res) {
                     var geo = resultObj.location[0].geometry.location
                     console.log("I requested google maps api");
                     console.log(geo);
+
                 // $near: [geo.lat, geo.lng]
                
 
@@ -157,6 +158,7 @@ app.get("/search/search=:search&location=:location?", function (req, res) {
                             console.log(results);
                             resultObj.geoResults = results
                             resultObj.finalResults = [];
+                            resultObj.geo = geo;
                             res.json(resultObj)
                         }
                     });
