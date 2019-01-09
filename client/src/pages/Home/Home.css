@@ -46,7 +46,9 @@
 }
 
 
-
+.has-error .help-block {
+    color: #fff;
+}
 
 
 

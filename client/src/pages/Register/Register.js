@@ -1,12 +1,10 @@
 import { Row, Container } from "../../components/Grid";
 import { InputLog } from "../../components/LoginItem";
 import {Input } from "../../components/Form";
-
-
 import React, { Component } from "react";
-
 import { BrowserRouter as Redirect } from 'react-router-dom'
 import API from "../../utils/API";
+import "./Register.css";
 
 class Register extends Component {
 	state = {

@@ -10,9 +10,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ItemPage from "./pages/ItemPage";
 import API from "./utils/API"
-
-import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import "./App.css";
 
 const DisplayLinks = props => {
 	if (props.loggedIn) {

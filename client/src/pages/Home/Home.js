@@ -30,6 +30,9 @@ class Home extends Component {
         currentItemReview: [],
         search: "",
         location: "",
+        searchValid: false,
+        locationValid: false,
+        formErrors: { search: "", location: "" },
         items: [],
         currentItem: null,
         isModalOpen: false,
@@ -149,8 +152,43 @@ class Home extends Component {
          })
          .catch(err => console.log(err));
     };
+    //"has-error" is a default bootstrap class that will nicely color the outline of the field red to indicate an error for the user. 
+    errorClass(error) {
+        return (error.length === 0 ? "" : "has-error");
+    }
+
+    validateFields(event) {
+        event.preventDefault();
+        let fieldValidationErrors = this.state.formErrors;
+
+        let searchValid = this.state.searchValid;
+        let locationValid = this.state.locationValid;
 
 
+
+
+
+
+        searchValid = this.state.search.length > 0;
+        fieldValidationErrors.search = searchValid ? "" : "Please provide your search";
+
+        locationValid = this.state.location.length > 0;
+        fieldValidationErrors.location = locationValid ? "" : "Please provide your location";
+
+
+
+
+
+
+        this.setState({
+            formErrors: fieldValidationErrors,
+            searchValid: searchValid,
+            locationValid: locationValid
+
+        }, () => {
+            this.handleFormSubmit.bind(this);
+        });
+    }
     handleFormSubmit = event => {
         event.preventDefault();
         this.setState({searchStart: true});
@@ -220,30 +258,30 @@ class Home extends Component {
                         <Col size="sm-1"></Col>
                         <Col size="sm-6">
                             <form>
-                                <Input
-                                    value={this.state.search}
-                                    onChange={this.handleInputChange}
-                                    name="search"
+                                <Input fielderror={this.state.formErrors.search}
+                                    formgroupclass={`form-group ${this.errorClass(this.state.formErrors.search)}`}
+                                    value={this.state.search} id="search"
+                                    onChange={this.handleInputChange.bind(this)}
                                     placeholder=" &#xf002; Search for your local goodies"
-                                />
+                                    name="search"></Input>
 
                             </form>
                         </Col>
 
                         <Col size="sm-2">
                             <form>
-                                <Input
-                                    value={this.state.location}
-                                    onChange={this.handleInputChange}
-                                    name="location"
+                                <Input fielderror={this.state.formErrors.location}
+                                    formgroupclass={`form-group ${this.errorClass(this.state.formErrors.location)}`}
+                                    value={this.state.location} id="location"
+                                    onChange={this.handleInputChange.bind(this)}
                                     placeholder=" &#xf041; Enter location"
-                                />
+                                    name="location"></Input>
                             </form>
                         </Col>
 
                         <Col size="sm-2">
                             <form>
-                                <FormBtn onClick={this.handleFormSubmit}><span className="glyphicon glyphicon-search"></span></FormBtn>
+                                <FormBtn onClick={this.validateFields.bind(this)}><span className="glyphicon glyphicon-search"></span></FormBtn>
                             </form>
                         </Col>
 
