@@ -17,7 +17,7 @@ if (process.env.MONGODB_URI) {
 }
 
 
-
+mongoose.Promise = global.Promise;
 var db = mongoose.connection
 db.on('error', err => {
 	console.log(`There was an error connecting to the database: ${err}`)

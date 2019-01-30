@@ -1,8 +1,11 @@
+
 .footer {
   min-height: 100px;
   background: #FFFFFF;
   bottom: 0;
-  position: relative;
+  position: fixed;
+   margin-bottom: 0px;
+   height: 50px;
 }
 
 .footer span {
@@ -15,4 +18,5 @@
   /* background: linear-gradient(-45deg,#0090F4, #6c38d9, #C12B9C); */
   background: linear-gradient(45deg,#FF1F9A, #FF7E19, #FED92A);
   color: white;
+  height: 44%;
 }

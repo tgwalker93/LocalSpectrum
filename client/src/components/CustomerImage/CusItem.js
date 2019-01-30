@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export const CusItem = props => (
 
     <div className="col-sm-4">
+        {props.fromGoogle === true ? <div>TEST TEST </div> : 
         <div className='card'>
             <div className="img-container">
                 <img alt={"Missing"} src={props.itemImage} />
@@ -31,7 +32,10 @@ export const CusItem = props => (
             {props.children}
             {/* <EditBtn />  */}
         </div>
+
+        }
     </div>
+    
 );
 
 

@@ -75,6 +75,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
+				<div id="container">
 				<DisplayLinks user={this.state.user} _logout={this._logout} loggedIn={this.state.loggedIn } />
 
 				<Route exact path="/" render={() => <Home user={this.state.user} />} />
@@ -97,7 +98,11 @@ class App extends Component {
         		<Route exact path="/about" component={About} />
 				<Route exact path="/contact" component={Contact} />
 				<Route exact path="/itemPage/:itemId?" component={ItemPage} />
-				<Footer />
+				
+			
+				</div>				
+				{/* <Footer /> */}
+			
 			</div>
 		)
 	}

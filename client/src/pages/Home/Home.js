@@ -100,6 +100,7 @@ class Home extends Component {
 
         geoResults.forEach(function (returnedItem) {
             if (returnedItem.properties.itemName === search) {
+                returnedItem.fromGoogle = false;
                 searchResults.push(returnedItem);
             }
         });
@@ -147,8 +148,25 @@ class Home extends Component {
             location: location2
         })
         .then(res => {
-            console.log("I've completed searchYelp and i'm on the client. Here is res");
+            console.log("I've completed searchGoogle and i'm on the client. Here is res");
             console.log(res);
+            for(var i =0; i<res.data.results.length; i++) {
+            var itemObj = {
+                _id: res.data.results[i].id,
+                fromGoogle: true,
+                properties: {
+                    itemName: res.data.results[i].name,
+                    averageRating: res.data.results[i].rating,
+                    itemSummary: "Google Results",
+                    itemImage: res.data.results[i].photos[0].icon
+                }
+            }
+        }
+            this.state.items.push(itemObj);
+            this.setState({
+                items: this.state.items
+            });
+            console.log(this.state.items);
          })
          .catch(err => console.log(err));
     };
@@ -186,14 +204,14 @@ class Home extends Component {
             locationValid: locationValid
 
         }, () => {
-            this.handleFormSubmit.bind(this);
+            console.log("i'm going to call handle form submit.");
+            this.handleFormSubmit();
         });
     }
-    handleFormSubmit = event => {
-        event.preventDefault();
+    handleFormSubmit() {
         this.setState({searchStart: true});
 
-        
+        console.log("I'm in handle form submit.");
         if (this.state.search) {
             
             // this.searchGoogle(this.state.search, this.state.location);
@@ -201,8 +219,7 @@ class Home extends Component {
             API.search({
                 search: this.state.search,
                 location: this.state.location
-            })
-                .then(res => {
+            }).then(res => {
                     // this.findText(res, this.state.search);
                     console.log("local search was successful, trying google search now!");
                     this.searchGoogle(this.state.search, res.data.location[0].geometry.location);
@@ -293,9 +310,10 @@ class Home extends Component {
                             <div>
                                 {this.state.items.map((item, i) => {
                                     let boundItemClick = this.openModal.bind(this, item);
+                                        
                                     return (
                                         
-                                        <CusItem  key={item._id} itemId={item._id} itemName={item.properties.itemName} itemSummary={item.properties.itemSummary} itemImage={item.properties.itemImage} averageRating={item.averageRating} index={i} >
+                                        <CusItem  key={item._id} itemId={item._id}  fromGoogle={item.fromGoogle} itemName={item.properties.itemName} itemSummary={item.properties.itemSummary} itemImage={item.properties.itemImage} averageRating={item.averageRating} index={i} >
                                         
 
                                         <ReviewBtn onClick={boundItemClick} />

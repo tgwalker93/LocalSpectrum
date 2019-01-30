@@ -1,6 +1,13 @@
-.App {
+.container {
     min-height: 100%;
     height: 100%;
     position: relative;
     margin: 0 auto;
+}
+.clearfooter {
+clear: both;
+}
+
+.app {
+    height:100%;
 }
