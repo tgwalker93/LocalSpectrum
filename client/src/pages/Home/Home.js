@@ -295,6 +295,16 @@ class Home extends Component {
                                     name="location"></Input>
                             </form>
                         </Col>
+                        {/* <Col size="sm-2">
+                            <form>
+                                <Input fielderror={this.state.formErrors.location}
+                                    formgroupclass={`form-group ${this.errorClass(this.state.formErrors.location)}`}
+                                    value={this.state.location} id="location"
+                                    onChange={this.handleInputChange.bind(this)}
+                                    placeholder=" &#xf041; Enter location"
+                                    name="location"></Input>
+                            </form>
+                        </Col>                        */}
 
                         <Col size="sm-2">
                             <form>

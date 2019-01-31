@@ -16,7 +16,7 @@ h1{
 }
 
 .border {
-    margin-top: 22px;
+    /* margin-top: 22px; */
     margin-left: 20px;
     border-right: 1px solid #fff;
     height: 72px;

@@ -18,5 +18,12 @@
   /* background: linear-gradient(-45deg,#0090F4, #6c38d9, #C12B9C); */
   background: linear-gradient(45deg,#FF1F9A, #FF7E19, #FED92A);
   color: white;
-  height: 44%;
+  height: 60%;
+}
+html,body,#rootContainer {
+    height: 100%;
+}
+
+#root {
+  min-height: 89%;
 }
