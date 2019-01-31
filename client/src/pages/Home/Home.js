@@ -30,9 +30,13 @@ class Home extends Component {
         currentItemReview: [],
         search: "",
         location: "",
+        city: "",
+        state: "",
         searchValid: false,
         locationValid: false,
-        formErrors: { search: "", location: "" },
+        cityValid: false,
+        stateValid: false,
+        formErrors: { search: "", location: "", city: "", state: "" },
         items: [],
         currentItem: null,
         isModalOpen: false,
@@ -180,8 +184,8 @@ class Home extends Component {
         let fieldValidationErrors = this.state.formErrors;
 
         let searchValid = this.state.searchValid;
-        let locationValid = this.state.locationValid;
-
+        let cityValid = this.state.cityValid;
+        let stateValid = this.state.stateValid;
 
 
 
@@ -190,18 +194,19 @@ class Home extends Component {
         searchValid = this.state.search.length > 0;
         fieldValidationErrors.search = searchValid ? "" : "Please provide your search";
 
-        locationValid = this.state.location.length > 0;
-        fieldValidationErrors.location = locationValid ? "" : "Please provide your location";
+        cityValid = this.state.city.length > 0;
+        fieldValidationErrors.city = cityValid ? "" : "Please provide your city";
 
-
-
-
+        stateValid = this.state.state.length > 0;
+        fieldValidationErrors.state = stateValid ? "" : "Please provide your state";
 
 
         this.setState({
             formErrors: fieldValidationErrors,
             searchValid: searchValid,
-            locationValid: locationValid
+            cityValid: cityValid,
+            stateValid: stateValid,
+            location: this.state.city + ", " + this.state.state
 
         }, () => {
             console.log("i'm going to call handle form submit.");
@@ -212,8 +217,8 @@ class Home extends Component {
         this.setState({searchStart: true});
 
         console.log("I'm in handle form submit.");
-        if (this.state.search) {
-            
+        if (this.state.searchValid && this.state.cityValid && this.state.stateValid) {
+            console.log("Handle form submit valid");
             // this.searchGoogle(this.state.search, this.state.location);
             //API call to search term in DB
             API.search({
@@ -226,7 +231,16 @@ class Home extends Component {
                     
                 })
                 .catch(err => console.log(err));
-        }
+
+
+
+
+
+
+
+
+            }
+        
     };
 
 
@@ -274,7 +288,7 @@ class Home extends Component {
                     <div className="row inputBox">
                         <Col size="sm-1"></Col>
                         <Col size="sm-6">
-                            <form>
+                            <form onSubmit={e => { e.preventDefault(); }}> 
                                 <Input fielderror={this.state.formErrors.search}
                                     formgroupclass={`form-group ${this.errorClass(this.state.formErrors.search)}`}
                                     value={this.state.search} id="search"
@@ -286,28 +300,28 @@ class Home extends Component {
                         </Col>
 
                         <Col size="sm-2">
-                            <form>
-                                <Input fielderror={this.state.formErrors.location}
-                                    formgroupclass={`form-group ${this.errorClass(this.state.formErrors.location)}`}
-                                    value={this.state.location} id="location"
+                            <form onSubmit={e => { e.preventDefault(); }}>
+                                <Input fielderror={this.state.formErrors.city}
+                                    formgroupclass={`form-group ${this.errorClass(this.state.formErrors.city)}`}
+                                    value={this.state.city} id="city"
                                     onChange={this.handleInputChange.bind(this)}
-                                    placeholder=" &#xf041; Enter location"
-                                    name="location"></Input>
+                                    placeholder=" &#xf041; Enter City"
+                                    name="city"></Input>
                             </form>
                         </Col>
-                        {/* <Col size="sm-2">
-                            <form>
-                                <Input fielderror={this.state.formErrors.location}
-                                    formgroupclass={`form-group ${this.errorClass(this.state.formErrors.location)}`}
-                                    value={this.state.location} id="location"
+                        <Col size="sm-1">
+                            <form onSubmit={e => { e.preventDefault(); }}>
+                                <Input fielderror={this.state.formErrors.state}
+                                    formgroupclass={`form-group ${this.errorClass(this.state.formErrors.state)}`}
+                                    value={this.state.state} id="state"
                                     onChange={this.handleInputChange.bind(this)}
-                                    placeholder=" &#xf041; Enter location"
-                                    name="location"></Input>
+                                    placeholder=" &#xf041; Enter State"
+                                    name="state"></Input>
                             </form>
-                        </Col>                        */}
+                        </Col>                       
 
-                        <Col size="sm-2">
-                            <form>
+                        <Col size="sm-1">
+                            <form onSubmit={e => { e.preventDefault(); }}>
                                 <FormBtn onClick={this.validateFields.bind(this)}><span className="glyphicon glyphicon-search"></span></FormBtn>
                             </form>
                         </Col>
