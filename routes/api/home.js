@@ -47,8 +47,6 @@ const apiKey = 'AIzaSyDBaC5e3-O8JfrzeNR_rNObHxMW7_WdRmM'
 const query = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyA_L_C1l4nQGquRQIXgL0a8vviEVAMaYZE&inputtype=textquery&radius=8046.72&location=" + geo.lat + "," + geo.lng + "&keyword=" + req.body.search;
     request(query, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             res.json(response);
 
         } else {

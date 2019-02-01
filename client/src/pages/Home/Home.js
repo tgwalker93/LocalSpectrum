@@ -142,7 +142,7 @@ class Home extends Component {
         this.setState({ rating_empty_initial: nextValue, rating: nextValue});
     };
 
-    //If no search results returned, here are yelp results. 
+    //AFTER search local db results returned, here are google results. 
     searchGoogle(searchStr, location2) {
         console.log("I'm in search Google on the front-end");
         console.log(searchStr);
@@ -154,15 +154,18 @@ class Home extends Component {
         .then(res => {
             console.log("I've completed searchGoogle and i'm on the client. Here is res");
             console.log(res);
-            for(var i =0; i<res.data.results.length; i++) {
+            console.log("here I try to parse json for res");
+            const parsedBody = JSON.parse(res.data.body);
+            console.log(parsedBody);
+            for (var i = 0; i < parsedBody.results.length; i++) {
             var itemObj = {
-                _id: res.data.results[i].id,
+                _id: parsedBody.results[i].id,
                 fromGoogle: true,
                 properties: {
-                    itemName: res.data.results[i].name,
-                    averageRating: res.data.results[i].rating,
+                    itemName: parsedBody.results[i].name,
+                    averageRating: parsedBody.results[i].rating,
                     itemSummary: "Google Results",
-                    itemImage: res.data.results[i].photos[0].icon
+                    itemImage: parsedBody.results[i].photos[0].icon
                 }
             }
         }

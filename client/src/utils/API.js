@@ -70,8 +70,10 @@ export default {
   searchGoogle: function(searchObj) {
     console.log("inside searchGOOGLE in API.js");
     console.log(searchObj);
-    let geo = searchObj.location;
-    const apiKey = 'AIzaSyDBaC5e3-O8JfrzeNR_rNObHxMW7_WdRmM'
-    return axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyA_L_C1l4nQGquRQIXgL0a8vviEVAMaYZE&inputtype=textquery&radius=8046.72&location=" + geo.lat + "," + geo.lng + "&keyword=" + searchObj.search);
+    return axios.post("/api/home/searchGoogle", searchObj);
+    // let geo = searchObj.location;
+    // const apiKey = 'AIzaSyDBaC5e3-O8JfrzeNR_rNObHxMW7_WdRmM'
+
+    // return axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyA_L_C1l4nQGquRQIXgL0a8vviEVAMaYZE&inputtype=textquery&radius=8046.72&location=" + geo.lat + "," + geo.lng + "&keyword=" + searchObj.search);
   }
 };
